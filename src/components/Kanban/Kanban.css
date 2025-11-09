@@ -15,6 +15,27 @@
   justify-content: space-between;
 }
 
+.kanban-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.kanban-back-arrow {
+  color: white;
+  font-size: 2rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kanban-back-arrow:hover {
+  transform: translateX(-4px);
+}
+
 .kanban-title {
   color: white;
   font-size: 2.5rem;

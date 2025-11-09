@@ -155,7 +155,10 @@ export default function Kanban() {
   return (
     <div className="kanban-container">
       <div className="kanban-header">
-        <h1 className="kanban-title">Mi Kanban</h1>
+        <div className="kanban-title-wrapper">
+          <a href="/" className="kanban-back-arrow">←</a>
+          <h1 className="kanban-title">Mi Kanban</h1>
+        </div>
         <div className="header-add-task">
           <button
             className="header-btn-add"
