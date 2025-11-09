@@ -1,0 +1,126 @@
+{
+  "users": [
+    {
+      "_id": "507f1f77bcf86cd799439011",
+      "username": "usuario1",
+      "email": "usuario1@example.com",
+      "password": "$2b$10$hashedpasswordhere",
+      "role": "user",
+      "lastLogin": "2024-01-15T10:30:00Z",
+      "profile": {
+        "firstName": "Juan",
+        "lastName": "Pérez",
+        "company": "Reustech",
+        "location": "Barcelona",
+        "website": "https://example.com"
+      }
+    },
+    {
+      "_id": "507f1f77bcf86cd799439012",
+      "username": "usuario2",
+      "email": "usuario2@example.com",
+      "password": "$2b$10$hashedpasswordhere",
+      "role": "user",
+      "createdAt": "2024-01-14T09:15:00Z",
+      "updatedAt": "2024-01-14T09:15:00Z",
+      "lastLogin": "2024-01-14T09:15:00Z",
+      "profile": {
+        "firstName": "María",
+        "lastName": "García",
+        "company": "Reustech",
+        "location": "Madrid",
+        "website": "https://github.com/usuario2"
+      }
+    },
+    {
+      "_id": "507f1f77bcf86cd799439013",
+      "username": "admin",
+      "email": "admin@example.com",
+      "password": "$2b$10$hashedpasswordhere",
+      "role": "admin",
+      "lastLogin": "2024-01-15T10:30:00Z",
+      "profile": {
+        "firstName": "Admin",
+        "lastName": "User",
+        "company": "Reustech",
+        "location": "Barcelona",
+        "website": null
+      }
+    }
+  ],
+  "schema": {
+    "description": "User schema for MongoDB with Mongoose",
+    "fields": {
+      "_id": {
+        "type": "ObjectId",
+        "description": "Identificador único del usuario (generado automáticamente por MongoDB)",
+        "required": true
+      },
+      "username": {
+        "type": "String",
+        "description": "Nombre de usuario único",
+        "required": true,
+        "unique": true,
+        "minlength": 3,
+        "maxlength": 20
+      },
+      "email": {
+        "type": "String",
+        "description": "Correo electrónico único",
+        "required": true,
+        "unique": true,
+        "lowercase": true,
+        "match": "/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/"
+      },
+      "password": {
+        "type": "String",
+        "description": "Contraseña hasheada con bcrypt",
+        "required": true,
+        "minlength": 6,
+        "select": false
+      },
+      "role": {
+        "type": "String",
+        "description": "Rol del usuario en el sistema",
+        "enum": ["user", "admin", "moderator"],
+        "default": "user"
+      },
+      "lastLogin": {
+        "type": "Date",
+        "description": "Fecha del último acceso",
+        "default": null
+      },
+      "profile": {
+        "type": "Object",
+        "description": "Información adicional del perfil del usuario",
+        "fields": {
+          "firstName": {
+            "type": "String",
+            "description": "Nombre del usuario",
+            "required": true
+          },
+          "lastName": {
+            "type": "String",
+            "description": "Apellido del usuario",
+            "required": true
+          },
+          "company": {
+            "type": "String",
+            "description": "Empresa del usuario",
+            "default": null
+          },
+          "location": {
+            "type": "String",
+            "description": "Ubicación del usuario",
+            "default": null
+          },
+          "website": {
+            "type": "String",
+            "description": "Sitio web del usuario",
+            "default": null
+          }
+        }
+      }
+    }
+  }
+}
