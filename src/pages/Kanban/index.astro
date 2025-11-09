@@ -1,5 +1,5 @@
 ---
-import FileManager from '../components/FileManager/FileManager.jsx';
+import Kanban from '../../components/Kanban/Kanban.jsx';
 ---
 
 <html lang="es">
@@ -8,7 +8,7 @@ import FileManager from '../components/FileManager/FileManager.jsx';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Archivos - Kanban</title>
+		<title>Kanban - Reuscons</title>
 		<style>
 			* {
 				margin: 0;
@@ -21,6 +21,6 @@ import FileManager from '../components/FileManager/FileManager.jsx';
 		</style>
 	</head>
 	<body>
-		<FileManager client:load />
+		<Kanban client:load />
 	</body>
 </html>

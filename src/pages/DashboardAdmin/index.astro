@@ -1,0 +1,160 @@
+---
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Dashboard Admin - Reuscons</title>
+		<style>
+			@import '/styles/global.css';
+
+			.dashboard-container {
+				min-height: 100vh;
+				background: var(--gradient-primary);
+				padding: 2rem;
+			}
+
+			.dashboard-header {
+				max-width: 1400px;
+				margin: 0 auto 2rem;
+				display: flex;
+				flex-direction: row;
+				gap: 1rem;
+				align-items: center;
+				justify-content: space-between;
+			}
+
+			.dashboard-title {
+				color: white;
+				font-size: 2.5rem;
+				margin: 0;
+				text-align: left;
+				font-weight: 700;
+				text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+			}
+
+			.admin-badge {
+				background: rgba(255, 215, 0, 0.9);
+				color: #1f2937;
+				padding: 0.5rem 1rem;
+				border-radius: 8px;
+				font-weight: 600;
+				font-size: 0.9rem;
+			}
+
+			.btn-back {
+				background: white;
+				color: #667eea;
+				text-decoration: none;
+				border: none;
+				border-radius: 8px;
+				padding: 0.75rem 1.5rem;
+				font-size: 1rem;
+				font-weight: 600;
+				cursor: pointer;
+				transition: all 0.2s ease;
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+
+			.btn-back:hover {
+				background: #f3f4f6;
+				transform: translateY(-2px);
+				box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+			}
+
+			.btn-back:active {
+				transform: translateY(0);
+			}
+
+			.dashboard-content {
+				max-width: 1400px;
+				margin: 0 auto;
+			}
+
+			.dashboard-placeholder {
+				background: white;
+				border-radius: 12px;
+				padding: 4rem 2rem;
+				text-align: center;
+				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+			}
+
+			.dashboard-placeholder h2 {
+				color: #1f2937;
+				font-size: 2rem;
+				margin-bottom: 1rem;
+			}
+
+			.dashboard-placeholder p {
+				color: #6b7280;
+				font-size: 1.1rem;
+				margin-bottom: 1rem;
+			}
+
+			.admin-info {
+				background: rgba(255, 215, 0, 0.1);
+				border: 2px solid rgba(255, 215, 0, 0.5);
+				border-radius: 8px;
+				padding: 1rem;
+				margin-top: 1rem;
+				color: #6b7280;
+			}
+
+			@media (max-width: 768px) {
+				.dashboard-container {
+					padding: 1rem;
+				}
+
+				.dashboard-header {
+					flex-direction: column;
+					gap: 1rem;
+					align-items: flex-start;
+				}
+
+				.dashboard-title {
+					font-size: 1.75rem;
+				}
+
+				.btn-back {
+					width: 100%;
+					justify-content: center;
+				}
+
+				.dashboard-placeholder {
+					padding: 2rem 1rem;
+				}
+
+				.dashboard-placeholder h2 {
+					font-size: 1.5rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="dashboard-container">
+			<div class="dashboard-header">
+				<div>
+					<h1 class="dashboard-title">Dashboard Admin</h1>
+					<span class="admin-badge">👑 Administrador</span>
+				</div>
+				<a href="/Login" class="btn-back">← Cerrar Sesión</a>
+			</div>
+
+			<div class="dashboard-content">
+				<div class="dashboard-placeholder">
+					<h2>Panel de Administración</h2>
+					<p>Bienvenido al panel de administración de Reuscons</p>
+					<div class="admin-info">
+						<p>Aquí podrás administrar usuarios, configurar permisos y monitorear la actividad del sistema.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

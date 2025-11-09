@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import TaskCard from '../UI/TaskCard';
-import ColumnHeader from '../UI/ColumnHeader';
-import AddTaskModal from '../UI/AddTaskModal';
-import TaskEditModal from '../UI/TaskEditModal';
+import { TaskCard, ColumnHeader, AddTaskModal, TaskEditModal } from '../UI';
 import { useTasks } from '../../hooks/useTasks';
 import './Kanban.css';
 

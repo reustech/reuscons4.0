@@ -9,20 +9,12 @@
 		<meta name="generator" content={Astro.generator} />
 		<title>Dashboard - Reuscons</title>
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-			}
-			body {
-				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-			}
+			@import '/styles/global.css';
 
 			.dashboard-container {
 				min-height: 100vh;
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				background: var(--gradient-primary);
 				padding: 2rem;
-				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 			}
 
 			.dashboard-header {
