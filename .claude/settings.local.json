@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(dir \"c:\\Users\\Sergi_Desktop\\Desktop\\reuscons4.0\" /b)"
     ],
     "deny": [],
     "ask": []
