@@ -1,5 +1,5 @@
 ---
-import Kanban from '../components/Kanban/Kanban.jsx';
+import '../styles/home.css';
 ---
 
 <html lang="es">
@@ -8,7 +8,7 @@ import Kanban from '../components/Kanban/Kanban.jsx';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Kanban</title>
+		<title>Reuscons - Inicio</title>
 		<style>
 			* {
 				margin: 0;
@@ -21,6 +21,22 @@ import Kanban from '../components/Kanban/Kanban.jsx';
 		</style>
 	</head>
 	<body>
-		<Kanban client:load />
+		<div class="home-container">
+			<div class="home-content">
+				<h1 class="home-title">Bienvenido a Reuscons</h1>
+				<p class="home-subtitle">Gestiona tus tareas y proyectos de manera eficiente</p>
+
+				<div class="buttons-container">
+					<a href="/kanban" class="btn btn-primary">
+						<span class="btn-icon">📊</span>
+						<span class="btn-text">Mi Kanban</span>
+					</a>
+					<a href="/dashboard" class="btn btn-secondary">
+						<span class="btn-icon">📈</span>
+						<span class="btn-text">Dashboard</span>
+					</a>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
