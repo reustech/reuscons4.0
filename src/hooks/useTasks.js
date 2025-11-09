@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { validateTasks } from './schemas';
+import { validateTasks } from '../schemas/schemas';
 
 const STORAGE_KEY = 'kanban-tasks';
 

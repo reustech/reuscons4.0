@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import TaskCard from './TaskCard';
-import ColumnHeader from './ColumnHeader';
-import AddTaskModal from './AddTaskModal';
-import { useTasks } from './useTasks';
+import TaskCard from '../UI/TaskCard';
+import ColumnHeader from '../UI/ColumnHeader';
+import AddTaskModal from '../UI/AddTaskModal';
+import TaskEditModal from '../UI/TaskEditModal';
+import { useTasks } from '../../hooks/useTasks';
 import './Kanban.css';
 
 export default function Kanban() {
@@ -30,13 +31,13 @@ export default function Kanban() {
   const { tasks, addTask, deleteTask, updateTask, moveTask, reorderTask } = useTasks(initialTasks);
 
   const [draggedTask, setDraggedTask] = useState(null);
-  const [editingTaskId, setEditingTaskId] = useState(null);
-  const [editingText, setEditingText] = useState('');
-  const [editingColumnKey, setEditingColumnKey] = useState(null);
   const [dropIndicator, setDropIndicator] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
   const [modalInput, setModalInput] = useState('');
   const [selectedColumn, setSelectedColumn] = useState('iProp');
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editingTask, setEditingTask] = useState(null);
+  const [editingTaskColumn, setEditingTaskColumn] = useState(null);
 
   const columns = [
     { key: 'iProp', title: 'iPropietari', color: '#3b82f6' },
@@ -47,44 +48,35 @@ export default function Kanban() {
     { key: 'iFine', title: 'Finestres', color: '#10b981' },
   ];
 
-  // Funciones de edición
-  const startEdit = (task, columnKey) => {
-    setEditingTaskId(task.id);
-    setEditingColumnKey(columnKey);
-    setEditingText(task.title);
-  };
-
-  const saveEdit = () => {
-    if (!editingText.trim() || !editingColumnKey) {
-      cancelEdit();
-      return;
-    }
-    updateTask(editingColumnKey, editingTaskId, editingText);
-    cancelEdit();
-  };
-
-  const cancelEdit = () => {
-    setEditingTaskId(null);
-    setEditingText('');
-    setEditingColumnKey(null);
-  };
-
-  // Funciones de Modal
-  const openModal = (columnKey = 'iProp') => {
+  // Funciones de Modal para Agregar Tarea
+  const openAddModal = (columnKey = 'iProp') => {
     setSelectedColumn(columnKey);
     setModalInput('');
-    setShowModal(true);
+    setShowAddModal(true);
   };
 
-  const closeModal = () => {
-    setShowModal(false);
+  const closeAddModal = () => {
+    setShowAddModal(false);
     setModalInput('');
   };
 
   const handleAddTaskFromModal = () => {
     if (!modalInput.trim()) return;
     addTask(selectedColumn, modalInput);
-    closeModal();
+    closeAddModal();
+  };
+
+  // Funciones de Modal para Editar Tarea
+  const openEditModal = (task, columnKey) => {
+    setEditingTask(task);
+    setEditingTaskColumn(columnKey);
+    setShowEditModal(true);
+  };
+
+  const closeEditModal = () => {
+    setShowEditModal(false);
+    setEditingTask(null);
+    setEditingTaskColumn(null);
   };
 
   // Funciones de Drag and Drop
@@ -167,7 +159,7 @@ export default function Kanban() {
         <div className="header-add-task">
           <button
             className="header-btn-add"
-            onClick={() => openModal('iProp')}
+            onClick={() => openAddModal('iProp')}
           >
             + Agregar
           </button>
@@ -206,14 +198,8 @@ export default function Kanban() {
                     task={task}
                     columnKey={column.key}
                     columnColor={column.color}
-                    isEditing={editingTaskId === task.id}
-                    editingText={editingText}
-                    onEditChange={setEditingText}
-                    onEditSave={saveEdit}
-                    onEditCancel={cancelEdit}
-                    onEdit={(t) => startEdit(t, column.key)}
-                    onDelete={deleteTask}
                     onDragStart={handleDragStart}
+                    onDoubleClick={openEditModal}
                   />
                 </React.Fragment>
               )) || []}
@@ -226,14 +212,23 @@ export default function Kanban() {
       </div>
 
       <AddTaskModal
-        isOpen={showModal}
+        isOpen={showAddModal}
         columns={columns}
         selectedColumn={selectedColumn}
         modalInput={modalInput}
         onColumnChange={setSelectedColumn}
         onInputChange={setModalInput}
         onAdd={handleAddTaskFromModal}
-        onClose={closeModal}
+        onClose={closeAddModal}
+      />
+
+      <TaskEditModal
+        isOpen={showEditModal}
+        task={editingTask}
+        columnKey={editingTaskColumn}
+        onClose={closeEditModal}
+        onSave={updateTask}
+        onDelete={deleteTask}
       />
     </div>
   );
