@@ -5,24 +5,35 @@ export default function Kanban() {
   const STORAGE_KEY = 'kanban-tasks';
 
   const initialTasks = {
-    todo: [
-      { id: '1', title: 'Diseñar la interfaz' },
-      { id: '2', title: 'Crear componentes' },
+    iProp: [
+      { id: '1', title: 'Tarea 1' },
     ],
-    inProgress: [
-      { id: '3', title: 'Implementar drag and drop' },
+    iCons: [
+      { id: '2', title: 'Tarea 2' },
     ],
-    done: [
-      { id: '4', title: 'Instalar dependencias' },
+    iElec: [
+      { id: '3', title: 'Tarea 3' },
+    ],
+    iLamp: [
+      { id: '4', title: 'Tarea 4' },
+    ],
+    iFust: [
+      { id: '5', title: 'Tarea 5' },
+    ],
+    iFine: [
+      { id: '6', title: 'Tarea 6' },
     ],
   };
 
   const [tasks, setTasks] = useState(initialTasks);
   const [draggedTask, setDraggedTask] = useState(null);
-  const [dragOverIndex, setDragOverIndex] = useState(null);
   const [editingTaskId, setEditingTaskId] = useState(null);
   const [editingText, setEditingText] = useState('');
   const [headerInput, setHeaderInput] = useState('');
+  const [dropIndicator, setDropIndicator] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [modalInput, setModalInput] = useState('');
+  const [selectedColumn, setSelectedColumn] = useState('iProp');
 
   // Cargar datos del localStorage
   useEffect(() => {
@@ -64,7 +75,7 @@ export default function Kanban() {
   };
 
   // Editar tarjeta
-  const startEdit = (task, columnKey) => {
+  const startEdit = (task) => {
     setEditingTaskId(task.id);
     setEditingText(task.title);
   };
@@ -97,44 +108,79 @@ export default function Kanban() {
     e.dataTransfer.effectAllowed = 'move';
   };
 
-  const handleDragOver = (e, targetColumn, targetIndex) => {
+  const handleDragOver = (e, targetColumn) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
-    setDragOverIndex({ column: targetColumn, index: targetIndex });
+
+    if (!draggedTask) return;
+
+    const container = e.currentTarget;
+    const rect = container.getBoundingClientRect();
+    const y = e.clientY - rect.top;
+
+    const taskCards = container.querySelectorAll('[data-task-id]');
+    let dropIndex = tasks[targetColumn].length;
+
+    for (let i = 0; i < taskCards.length; i++) {
+      const cardRect = taskCards[i].getBoundingClientRect();
+      const cardTop = cardRect.top - rect.top;
+      const cardMiddle = cardTop + cardRect.height / 2;
+
+      if (y < cardMiddle) {
+        dropIndex = i;
+        break;
+      }
+    }
+
+    setDropIndicator({ column: targetColumn, index: dropIndex });
   };
 
-  const handleDragLeave = () => {
-    setDragOverIndex(null);
+  const handleDragLeave = (e) => {
+    // Solo limpiar si se sale completamente del contenedor
+    if (e.currentTarget === e.target) {
+      setDropIndicator(null);
+    }
   };
 
-  const handleDrop = (e, targetColumn, dropIndex) => {
+  const handleDrop = (e, targetColumn) => {
     e.preventDefault();
     e.stopPropagation();
 
-    if (!draggedTask) {
-      setDragOverIndex(null);
-      return;
-    }
+    if (!draggedTask) return;
 
     const { taskId, sourceColumn } = draggedTask;
+    const container = e.currentTarget;
+    const rect = container.getBoundingClientRect();
+    const y = e.clientY - rect.top;
 
-    // Encontrar la tarea
-    const task = tasks[sourceColumn].find(t => t.id === taskId);
-    if (!task) {
-      setDraggedTask(null);
-      setDragOverIndex(null);
-      return;
+    let dropIndex = tasks[targetColumn].length;
+
+    // Calcular el índice de drop
+    if (sourceColumn === targetColumn) {
+      const taskCards = container.querySelectorAll('[data-task-id]');
+      for (let i = 0; i < taskCards.length; i++) {
+        const cardRect = taskCards[i].getBoundingClientRect();
+        const cardTop = cardRect.top - rect.top;
+        const cardMiddle = cardTop + cardRect.height / 2;
+
+        if (y < cardMiddle) {
+          dropIndex = i;
+          break;
+        }
+      }
     }
 
     setTasks(prev => {
       const newTasks = { ...prev };
+      const task = newTasks[sourceColumn].find(t => t.id === taskId);
 
+      if (!task) return prev;
+
+      // Si es la misma columna, reordenar
       if (sourceColumn === targetColumn) {
-        // Reordenar dentro de la misma columna
         const column = [...newTasks[sourceColumn]];
         const currentIndex = column.findIndex(t => t.id === taskId);
 
-        // Si es el mismo índice, no hacer nada
         if (currentIndex === dropIndex) {
           return prev;
         }
@@ -152,36 +198,50 @@ export default function Kanban() {
         column.splice(newIndex, 0, task);
 
         newTasks[sourceColumn] = column;
-      } else {
-        // Mover a otra columna
-        const sourceCol = newTasks[sourceColumn].filter(t => t.id !== taskId);
-        const targetCol = [...newTasks[targetColumn]];
-
-        // Insertar en el índice correcto
-        const insertIndex = Math.min(dropIndex, targetCol.length);
-        targetCol.splice(insertIndex, 0, task);
-
-        newTasks[sourceColumn] = sourceCol;
-        newTasks[targetColumn] = targetCol;
+        return newTasks;
       }
+
+      // Si es diferente columna, mover
+      newTasks[sourceColumn] = newTasks[sourceColumn].filter(t => t.id !== taskId);
+      newTasks[targetColumn] = [...newTasks[targetColumn], task];
 
       return newTasks;
     });
 
     setDraggedTask(null);
-    setDragOverIndex(null);
+    setDropIndicator(null);
   };
 
   const columns = [
-    { key: 'todo', title: 'Por hacer', color: '#3b82f6' },
-    { key: 'inProgress', title: 'En progreso', color: '#f59e0b' },
-    { key: 'done', title: 'Hecho', color: '#10b981' },
+    { key: 'iProp', title: 'Propietari', color: '#3b82f6' },
+    { key: 'iCons', title: 'Constructora', color: '#f59e0b' },
+    { key: 'iElec', title: 'Electricista', color: '#10b981' },
+    { key: 'iLamp', title: 'Lampista', color: '#3b82f6' },
+    { key: 'iFust', title: 'Fuster', color: '#f59e0b' },
+    { key: 'iFine', title: 'Finestres', color: '#10b981' },
   ];
 
   const handleAddTaskFromHeader = () => {
     if (!headerInput.trim()) return;
-    addTask('todo', headerInput);
+    addTask('iProp', headerInput);
     setHeaderInput('');
+  };
+
+  const openModal = (columnKey) => {
+    setSelectedColumn(columnKey);
+    setModalInput('');
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setModalInput('');
+  };
+
+  const handleAddTaskFromModal = () => {
+    if (!modalInput.trim()) return;
+    addTask(selectedColumn, modalInput);
+    closeModal();
   };
 
   return (
@@ -203,9 +263,9 @@ export default function Kanban() {
           />
           <button
             className="header-btn-add"
-            onClick={handleAddTaskFromHeader}
+            onClick={() => openModal('iProp')}
           >
-            Agregar
+            + Agregar
           </button>
           <a href="/archivos" className="header-btn-files">
             📁 Archivos
@@ -218,8 +278,7 @@ export default function Kanban() {
           <div
             key={column.key}
             className="kanban-column"
-            onDragOver={handleDragOver}
-            onDrop={(e) => handleDrop(e, column.key)}
+            data-column-key={column.key}
           >
             <div className="column-header" style={{ borderColor: column.color }}>
               <h2 className="column-title">{column.title}</h2>
@@ -228,34 +287,16 @@ export default function Kanban() {
 
             <div
               className="tasks-container"
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-
-                // Calcular el índice basado en la posición Y
-                const container = e.currentTarget;
-                const rect = container.getBoundingClientRect();
-                const y = e.clientY - rect.top;
-
-                const taskCards = container.querySelectorAll('.task-card');
-                let dropIndex = tasks[column.key].length;
-
-                for (let i = 0; i < taskCards.length; i++) {
-                  const cardRect = taskCards[i].getBoundingClientRect();
-                  const cardTop = cardRect.top - rect.top;
-                  const cardMiddle = cardTop + cardRect.height / 2;
-
-                  if (y < cardMiddle) {
-                    dropIndex = i;
-                    break;
-                  }
-                }
-
-                handleDrop(e, column.key, dropIndex);
-              }}
+              data-column-key={column.key}
+              onDragOver={(e) => handleDragOver(e, column.key)}
+              onDragLeave={handleDragLeave}
+              onDrop={(e) => handleDrop(e, column.key)}
             >
               {tasks[column.key].map((task, index) => (
+                <>
+                  {dropIndicator?.column === column.key && dropIndicator?.index === index && (
+                    <div className="drop-indicator" />
+                  )}
                 <div key={task.id}>
                   {editingTaskId === task.id ? (
                     <div className="task-edit">
@@ -289,15 +330,10 @@ export default function Kanban() {
                     </div>
                   ) : (
                     <div
-                      className={`task-card ${dragOverIndex?.column === column.key && dragOverIndex?.index === index ? 'drag-over' : ''}`}
+                      className="task-card"
                       draggable
+                      data-task-id={task.id}
                       onDragStart={(e) => handleDragStart(e, task.id, column.key)}
-                      onDragOver={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleDragOver(e, column.key, index);
-                      }}
-                      onDragLeave={handleDragLeave}
                       style={{ borderLeftColor: column.color }}
                     >
                       <div className="task-content">
@@ -306,7 +342,7 @@ export default function Kanban() {
                       <div className="task-actions">
                         <button
                           className="btn-edit"
-                          onClick={() => startEdit(task, column.key)}
+                          onClick={() => startEdit(task)}
                           title="Editar"
                         >
                           ✏️
@@ -322,11 +358,71 @@ export default function Kanban() {
                     </div>
                   )}
                 </div>
+                </>
               ))}
+              {dropIndicator?.column === column.key && dropIndicator?.index === tasks[column.key].length && (
+                <div className="drop-indicator" />
+              )}
             </div>
           </div>
         ))}
       </div>
+
+      {showModal && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Agregar Nueva Tarea</h2>
+              <button className="modal-close" onClick={closeModal}>✕</button>
+            </div>
+            <div className="modal-body">
+              <label htmlFor="modal-column">Columna:</label>
+              <select
+                id="modal-column"
+                value={selectedColumn}
+                onChange={(e) => setSelectedColumn(e.target.value)}
+                className="modal-select"
+              >
+                {columns.map(column => (
+                  <option key={column.key} value={column.key}>
+                    {column.title}
+                  </option>
+                ))}
+              </select>
+
+              <label htmlFor="modal-input">Tarea:</label>
+              <input
+                id="modal-input"
+                type="text"
+                placeholder="Escribe la tarea..."
+                value={modalInput}
+                onChange={(e) => setModalInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleAddTaskFromModal();
+                  } else if (e.key === 'Escape') {
+                    closeModal();
+                  }
+                }}
+                className="modal-input"
+                autoFocus
+              />
+
+              <button className="modal-btn-file">
+                📎 Añadir Archivo
+              </button>
+            </div>
+            <div className="modal-footer">
+              <button className="modal-btn-cancel" onClick={closeModal}>
+                Cancelar
+              </button>
+              <button className="modal-btn-add" onClick={handleAddTaskFromModal}>
+                Agregar Tarea
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
