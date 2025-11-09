@@ -1,0 +1,169 @@
+{
+  "tasks": [
+    {
+      "_id": "507f1f77bcf86cd799439012",
+      "title": "Diseñar landing page",
+      "description": "Crear diseño responsivo para la página principal",
+      "kanban_id": "507f1f77bcf86cd799439020",
+      "column": "todo",
+      "columnColor": "#E8F4F8",
+      "userId": "507f1f77bcf86cd799439011",
+      "priority": "high",
+      "dueDate": "2024-02-01T00:00:00Z",
+      "tags": ["design", "frontend"],
+      "order": 1
+    },
+    {
+      "_id": "507f1f77bcf86cd799439013",
+      "title": "Implementar autenticación",
+      "description": "Configurar JWT y endpoints de login/registro",
+      "kanban_id": "507f1f77bcf86cd799439020",
+      "column": "in-progress",
+      "columnColor": "#FFF4E6",
+      "userId": "507f1f77bcf86cd799439011",
+      "priority": "high",
+      "dueDate": "2024-01-25T00:00:00Z",
+      "tags": ["backend", "security"],
+      "order": 1
+    },
+    {
+      "_id": "507f1f77bcf86cd799439014",
+      "title": "Integrar MongoDB",
+      "description": "Conectar base de datos MongoDB y crear esquemas",
+      "kanban_id": "507f1f77bcf86cd799439020",
+      "column": "in-progress",
+      "columnColor": "#FFF4E6",
+      "userId": "507f1f77bcf86cd799439011",
+      "priority": "high",
+      "dueDate": "2024-01-30T00:00:00Z",
+      "tags": ["backend", "database"],
+      "order": 2
+    },
+    {
+      "_id": "507f1f77bcf86cd799439015",
+      "title": "Crear sistema de permisos",
+      "description": "Implementar roles y control de acceso",
+      "kanban_id": "507f1f77bcf86cd799439020",
+      "column": "todo",
+      "columnColor": "#E8F4F8",
+      "userId": "507f1f77bcf86cd799439011",
+      "priority": "medium",
+      "dueDate": "2024-02-10T00:00:00Z",
+      "tags": ["backend", "security"],
+      "order": 2
+    },
+    {
+      "_id": "507f1f77bcf86cd799439016",
+      "title": "Optimizar performance",
+      "description": "Mejorar velocidad de carga y renderizado",
+      "kanban_id": "507f1f77bcf86cd799439021",
+      "column": "done",
+      "columnColor": "#E8F8F0",
+      "userId": "507f1f77bcf86cd799439012",
+      "priority": "low",
+      "dueDate": "2024-01-20T00:00:00Z",
+      "tags": ["frontend", "performance"],
+      "order": 1
+    },
+    {
+      "_id": "507f1f77bcf86cd799439017",
+      "title": "Documentar API",
+      "description": "Crear documentación Swagger/OpenAPI",
+      "kanban_id": "507f1f77bcf86cd799439021",
+      "column": "done",
+      "columnColor": "#E8F8F0",
+      "userId": "507f1f77bcf86cd799439012",
+      "priority": "medium",
+      "dueDate": "2024-01-18T00:00:00Z",
+      "tags": ["documentation", "backend"],
+      "order": 2
+    }
+  ],
+  "schema": {
+    "description": "Task schema for MongoDB with Mongoose - Kanban board tasks",
+    "fields": {
+      "_id": {
+        "type": "ObjectId",
+        "description": "Identificador único de la tarea (generado automáticamente por MongoDB)",
+        "required": true
+      },
+      "title": {
+        "type": "String",
+        "description": "Título de la tarea",
+        "required": true,
+        "maxlength": 100
+      },
+      "description": {
+        "type": "String",
+        "description": "Descripción detallada de la tarea",
+        "default": null,
+        "maxlength": 500
+      },
+      "column": {
+        "type": "String",
+        "description": "Columna del Kanban donde se encuentra la tarea",
+        "enum": ["todo", "in-progress", "done"],
+        "required": true,
+        "default": "todo"
+      },
+      "columnColor": {
+        "type": "String",
+        "description": "Color hexadecimal de la columna",
+        "required": true,
+        "match": "/^#[0-9A-Fa-f]{6}$/"
+      },
+      "kanban_id": {
+        "type": "ObjectId",
+        "description": "Referencia al tablero Kanban al que pertenece la tarea",
+        "required": true,
+        "ref": "KanbanBoard"
+      },
+      "userId": {
+        "type": "ObjectId",
+        "description": "Referencia al usuario propietario de la tarea",
+        "required": true,
+        "ref": "User"
+      },
+      "priority": {
+        "type": "String",
+        "description": "Nivel de prioridad de la tarea",
+        "enum": ["low", "medium", "high"],
+        "default": "medium"
+      },
+      "dueDate": {
+        "type": "Date",
+        "description": "Fecha de vencimiento de la tarea",
+        "default": null
+      },
+      "tags": {
+        "type": "Array",
+        "description": "Etiquetas para categorizar la tarea",
+        "default": [],
+        "items": {
+          "type": "String",
+          "maxlength": 20
+        }
+      },
+      "order": {
+        "type": "Number",
+        "description": "Orden de la tarea dentro de su columna para drag-and-drop",
+        "required": true,
+        "default": 1
+      }
+    },
+    "indexes": [
+      {
+        "field": "userId",
+        "description": "Índice para consultas rápidas por usuario"
+      },
+      {
+        "field": "column",
+        "description": "Índice para consultas rápidas por columna"
+      },
+      {
+        "fields": ["userId", "column"],
+        "description": "Índice compuesto para obtener tareas de un usuario en una columna específica"
+      }
+    ]
+  }
+}
