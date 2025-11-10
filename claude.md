@@ -4,8 +4,8 @@
 - **Nombre del Proyecto**: `helpless-houston` (reuscons4.0)
 - **Framework**: Astro 5.15.4 con integración de React
 - **Lenguaje**: JavaScript/JSX con TypeScript
-- **Estado**: En desarrollo
-- **Rama**: testAltasian
+- **Estado**: En desarrollo (fase de refactoring y optimización)
+- **Rama**: data
 
 ## 🏗️ Estructura del Proyecto
 
@@ -15,27 +15,42 @@
 ├── src/
 │   ├── components/
 │   │   ├── Kanban/
-│   │   │   ├── Kanban.jsx              # Componente principal del Kanban
-│   │   │   └── Kanban.css              # Estilos del Kanban + Modales
+│   │   │   └── Kanban.jsx              # Componente principal del Kanban (estilos inline)
 │   │   ├── FileManager/
-│   │   │   ├── FileManager.jsx         # Gestor de archivos
-│   │   │   └── FileManager.css         # Estilos del gestor
-│   │   └── UI/
-│   │       ├── TaskCard.jsx            # Componente de tarjeta de tarea
-│   │       ├── ColumnHeader.jsx        # Encabezado de columna
-│   │       ├── AddTaskModal.jsx        # Modal para agregar tareas
-│   │       └── TaskEditModal.jsx       # Modal para editar/eliminar tareas (NUEVO)
+│   │   │   └── FileManager.jsx         # Gestor de archivos (estilos inline)
+│   │   ├── UI/
+│   │   │   ├── TaskCard/
+│   │   │   │   └── TaskCard.jsx        # Componente de tarjeta de tarea
+│   │   │   ├── ColumnHeader/
+│   │   │   │   └── ColumnHeader.jsx    # Encabezado de columna
+│   │   │   ├── AddTaskModal/
+│   │   │   │   └── AddTaskModal.jsx    # Modal para agregar tareas
+│   │   │   ├── TaskEditModal/
+│   │   │   │   └── TaskEditModal.jsx   # Modal para editar/eliminar tareas
+│   │   │   └── index.js                # Barrel export para componentes UI
+│   │   └── useTasks.js                 # Hook para gestión de tareas (en raíz de components)
 │   ├── hooks/
-│   │   └── useTasks.js                 # Hook para gestión de tareas
+│   │   └── useTasks.js                 # Hook para gestión de tareas con localStorage
 │   ├── schemas/
 │   │   └── schemas.js                  # Esquemas de validación con Zod
+│   ├── styles/
+│   │   └── global.css                  # Variables CSS globales y reset
 │   └── pages/
-│       ├── index.astro                 # Página principal (Kanban)
-│       └── archivos.astro              # Página de gestión de archivos
+│       ├── index.astro                 # Redirige a /Login
+│       ├── Login/
+│       │   └── index.astro             # Página de login (autenticación cliente)
+│       ├── Dashboard/
+│       │   └── index.astro             # Dashboard para usuarios regulares
+│       ├── DashboardAdmin/
+│       │   └── index.astro             # Dashboard para administradores
+│       ├── Kanban/
+│       │   └── index.astro             # Página del Kanban
+│       └── Archivos/
+│           └── index.astro             # Página del gestor de archivos
 ├── astro.config.mjs
 ├── package.json
 ├── tsconfig.json
-├── claude.md                           # Este archivo
+├── CLAUDE.md                           # Este archivo
 └── README.md
 ```
 
@@ -57,16 +72,22 @@ npm run astro    # Acceso a comandos CLI de Astro
 
 ## 🎯 Componentes Principales
 
-### 1. **Kanban**
-- Ubicación: `src/components/Kanban/`
+### 1. **Kanban** ✨ REFACTORIZADO
+- Ubicación: `src/components/Kanban/Kanban.jsx`
 - Componente React cargado en el cliente (`client:load`)
+- **Cambio reciente**: Estilos integrados directamente en el componente (template string)
 - Funcionalidad: Gestión de tareas en columnas tipo Kanban
-- Utiliza: `TaskCard`, `ColumnHeader`, `AddTaskModal`, `useTasks` hook
-- Estilos: `Kanban.css` (incluye estilos para el modal)
+- Utiliza: `TaskCard`, `ColumnHeader`, `AddTaskModal`, `TaskEditModal`, `useTasks` hook
+- Características:
+  - Drag and drop nativo HTML5 con indicador visual
+  - Modales para agregar y editar tareas
+  - 6 columnas personalizadas (iPropietari, iConstructora, iElectricista, iLampista, Fuster, Finestres)
+  - Persistencia con localStorage
 
-### 2. **FileManager**
-- Ubicación: `src/components/FileManager/`
+### 2. **FileManager** ✨ REFACTORIZADO
+- Ubicación: `src/components/FileManager/FileManager.jsx`
 - Componente React para subir, descargar y eliminar archivos
+- **Cambio reciente**: Estilos integrados directamente en el componente
 - Funcionalidades:
   - Upload de múltiples archivos
   - Lectura en ArrayBuffer
@@ -79,37 +100,56 @@ Ubicación: `src/components/UI/`
 
 #### TaskCard
 - Componente reutilizable para mostrar tarjetas de tareas
-- Implementa drag & drop
+- Implementa drag & drop nativo
 - Abre modal al hacer doble-click para editar/eliminar
 - Muestra 3 puntitos (⋯) al pasar el mouse que indican que se puede abrir el modal
 - Props: `task`, `columnKey`, `columnColor`, `onDragStart`, `onDoubleClick`
 
 #### ColumnHeader
 - Encabezado de columna con título y contador de tareas
+- Estilos inline
 - Props: `title`, `count`, `color`
 
 #### AddTaskModal
 - Modal para agregar nuevas tareas
 - Selector de columna y validación de entrada
 - Manejo de eventos de teclado (Enter, Escape)
+- Estilos inline
 
-#### TaskEditModal (NUEVO)
+#### TaskEditModal
 - Modal para editar y eliminar tareas
 - Abre al hacer doble-click en una tarjeta
 - Opciones: Guardar cambios, Eliminar tarea, Cancelar
 - Confirmación antes de eliminar
+- Estilos inline
 - Props: `isOpen`, `task`, `columnKey`, `onClose`, `onSave`, `onDelete`
 
 ## 🌐 Rutas de la Aplicación
-- `/` - Página principal (Kanban)
-- `/archivos` - Gestor de archivos
+- `/` - Redirige a `/Login`
+- `/Login` - Página de autenticación
+- `/Dashboard` - Dashboard para usuarios regulares
+- `/DashboardAdmin` - Dashboard para administradores (solo si login es admin/admin)
+- `/Kanban` - Gestor de tareas Kanban
+- `/Archivos` - Gestor de archivos
 
 ## 🎨 Configuración de Estilos
 - Astro integrado con React
-- CSS modules en componentes
-- Estilos globales en `index.astro`
+- **Cambio reciente**: Estilos inline en componentes (no hay archivos CSS separados para componentes principales)
+- Variables CSS globales en `src/styles/global.css`
 - Tipografía: System fonts predeterminadas
 - Box-sizing: border-box en todos los elementos
+- Colores, sombras, bordes y transiciones centralizadas en variables CSS
+
+## 🔐 Autenticación y Seguridad
+- **Tipo**: Autenticación cliente (sin backend)
+- **Credenciales de prueba**:
+  - Admin: usuario `admin`, contraseña `admin` → redirige a `/DashboardAdmin`
+  - Usuario regular: cualquier otra combinación → redirige a `/Dashboard`
+- **Ubicación**: `src/pages/Login/index.astro`
+- **Características**:
+  - Validación de campos requeridos
+  - Redirección condicional según credenciales
+  - Interfaz en español
 
 ## 📝 Notas Técnicas
 - Uso de `client:load` en Astro para componentes React interactivos
@@ -117,8 +157,9 @@ Ubicación: `src/components/UI/`
 - Identificadores únicos basados en `Date.now().toString()`
 - Manejo de archivos con FileReader API
 - Validación de datos con Zod (en `src/schemas/schemas.js`)
-- Persistencia con localStorage
-- Interfaz en español
+- Persistencia con localStorage (con validación SSR: `typeof window === 'undefined'`)
+- Interfaz completamente en español
+- Drag and drop implementado con API nativa HTML5 (dataTransfer)
 
 ## 🔗 Hooks Personalizados
 - **useTasks**: Hook para gestionar tareas del Kanban
@@ -137,16 +178,45 @@ Ubicación: `src/components/UI/`
 - TypeScript habilitado
 - Módulo de tipo ES
 
-## 📅 Historial de Commits Recientes
-- 86d7fbd: dfgsdfg
-- 06fb715: sdfsdf
-- 55ff06b: sdfasdf
-- 1202feb: asdfasd
+## 📅 Cambios Recientes - Última Sesión
+
+### ✨ Refactoring de Estilos
+- **FileManager.jsx**: Movidos todos los estilos de `FileManager.css` a template string inline
+- **Kanban.jsx**: Movidos todos los estilos de `Kanban.css` a template string inline
+- **Eliminar archivos CSS innecesarios**: Borrados `FileManager.css` y `Kanban.css`
+
+### 🐛 Correcciones de Errores
+- **FileManager.jsx**: Arreglada estructura JSX incompleta (faltaban closing tags)
+- **Kanban.jsx**: Corregido enlace a `/archivos` → `/Archivos` (case-sensitive en Astro)
+- **PostCSS imports**: Corregidas importaciones de `global.css` en archivos Astro:
+  - `src/pages/Login/index.astro`: `/styles/global.css` → `../../styles/global.css`
+  - `src/pages/Dashboard/index.astro`: `/styles/global.css` → `../../styles/global.css`
+  - `src/pages/DashboardAdmin/index.astro`: `/styles/global.css` → `../../styles/global.css`
+- **Duplicated global.css**: Eliminada copia de `public/styles/global.css` (mantenida única fuente en `src/styles/global.css`)
+
+### 🧪 Pruebas con Playwright
+- Verificados todos los enlaces de la aplicación
+- Confirmada navegación completa:
+  - `/` → `/Login`
+  - Login admin/admin → `/DashboardAdmin`
+  - Login otro usuario → `/Dashboard`
+  - Navegación entre Kanban ↔ Archivos
+  - Cerrar sesión → `/Login`
+
+### 📊 Estado del Proyecto
+- **Componentes CSS**: ✅ Completamente refactorizados a inline
+- **Enlaces**: ✅ Todos funcionando correctamente
+- **Errores de compilación**: ✅ Resueltos
+- **Autenticación**: ✅ Implementada (cliente)
+- **Persistencia**: ✅ localStorage con validación SSR
 
 ## 🎯 Próximas Mejoras Potenciales
-- Persistencia de datos (LocalStorage/DB)
+- Backend de autenticación (JWT, OAuth)
+- Base de datos para persistencia de tareas
 - Validación avanzada con Zod
 - Límites de tamaño en archivos
-- Mejor UI/UX
+- Edición colaborativa en tiempo real
 - Temas oscuro/claro
-- Autenticación de usuarios
+- Exportación de tareas (PDF, CSV)
+- Sistema de notificaciones
+- Panel de administración funcional
