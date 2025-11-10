@@ -11,6 +11,126 @@
       "taskId": "507f1f77bcf86cd799439012",
       "uploadDate": "2024-01-15T14:30:00Z",
       "description": "Documento de especificación del proyecto Reuscons 4.0"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439041",
+      "filename": "diseño-ui-mockups.figma",
+      "originalName": "diseño-ui-mockups.figma",
+      "mimetype": "application/octet-stream",
+      "size": 5242880,
+      "userId": "507f1f77bcf86cd799439012",
+      "kanbanId": "507f1f77bcf86cd799439020",
+      "taskId": "507f1f77bcf86cd799439012",
+      "uploadDate": "2024-01-14T10:15:00Z",
+      "description": "Mockups y diseños de UI en Figma"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439042",
+      "filename": "base-de-datos-esquema.sql",
+      "originalName": "base-de-datos-esquema.sql",
+      "mimetype": "text/plain",
+      "size": 512000,
+      "userId": "507f1f77bcf86cd799439012",
+      "kanbanId": "507f1f77bcf86cd799439020",
+      "taskId": "507f1f77bcf86cd799439026",
+      "uploadDate": "2024-01-13T11:45:00Z",
+      "description": "Script SQL para crear esquema de base de datos"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439043",
+      "filename": "manual-usuario.docx",
+      "originalName": "manual-usuario.docx",
+      "mimetype": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 1048576,
+      "userId": "507f1f77bcf86cd799439014",
+      "kanbanId": "507f1f77bcf86cd799439020",
+      "taskId": "507f1f77bcf86cd799439012",
+      "uploadDate": "2024-01-12T09:20:00Z",
+      "description": "Manual de usuario para la aplicación"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439044",
+      "filename": "presentacion-proyecto.pptx",
+      "originalName": "presentacion-proyecto.pptx",
+      "mimetype": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "size": 3145728,
+      "userId": "507f1f77bcf86cd799439015",
+      "kanbanId": "507f1f77bcf86cd799439020",
+      "taskId": null,
+      "uploadDate": "2024-01-11T14:00:00Z",
+      "description": "Presentación del proyecto para clientes"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439045",
+      "filename": "test-casos.xlsx",
+      "originalName": "test-casos.xlsx",
+      "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "size": 786432,
+      "userId": "507f1f77bcf86cd799439016",
+      "kanbanId": "507f1f77bcf86cd799439020",
+      "taskId": "507f1f77bcf86cd799439028",
+      "uploadDate": "2024-01-10T16:30:00Z",
+      "description": "Casos de prueba para testing"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439046",
+      "filename": "documentacion-api.md",
+      "originalName": "documentacion-api.md",
+      "mimetype": "text/markdown",
+      "size": 256000,
+      "userId": "507f1f77bcf86cd799439017",
+      "kanbanId": "507f1f77bcf86cd799439020",
+      "taskId": "507f1f77bcf86cd799439029",
+      "uploadDate": "2024-01-09T13:15:00Z",
+      "description": "Documentación completa de API endpoints"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439047",
+      "filename": "logs-deployment.log",
+      "originalName": "logs-deployment.log",
+      "mimetype": "text/plain",
+      "size": 409600,
+      "userId": "507f1f77bcf86cd799439018",
+      "kanbanId": "507f1f77bcf86cd799439020",
+      "taskId": null,
+      "uploadDate": "2024-01-08T10:45:00Z",
+      "description": "Logs del deployment en producción"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439048",
+      "filename": "backup-base-datos.zip",
+      "originalName": "backup-base-datos.zip",
+      "mimetype": "application/zip",
+      "size": 10485760,
+      "userId": "507f1f77bcf86cd799439019",
+      "kanbanId": "507f1f77bcf86cd799439020",
+      "taskId": null,
+      "uploadDate": "2024-01-07T08:00:00Z",
+      "description": "Backup completo de la base de datos"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439049",
+      "filename": "reporte-rendimiento.pdf",
+      "originalName": "reporte-rendimiento.pdf",
+      "mimetype": "application/pdf",
+      "size": 1572864,
+      "userId": "507f1f77bcf86cd799439020",
+      "kanbanId": "507f1f77bcf86cd799439020",
+      "taskId": "507f1f77bcf86cd799439030",
+      "uploadDate": "2024-01-06T15:30:00Z",
+      "description": "Reporte de análisis de rendimiento"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439050",
+      "filename": "imagen-screenshot.png",
+      "originalName": "imagen-screenshot.png",
+      "mimetype": "image/png",
+      "size": 524288,
+      "userId": "507f1f77bcf86cd799439021",
+      "kanbanId": "507f1f77bcf86cd799439020",
+      "taskId": "507f1f77bcf86cd799439025",
+      "uploadDate": "2024-01-05T12:00:00Z",
+      "description": "Screenshot de la interfaz Kanban"
     }
   ]
 }

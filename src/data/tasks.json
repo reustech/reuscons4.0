@@ -10,6 +10,127 @@
       "priority": "high",
       "order": 1,
       "attachments": []
+    },
+    {
+      "_id": "507f1f77bcf86cd799439023",
+      "title": "Implementar API de autenticación",
+      "description": "Crear endpoints REST para login y registro de usuarios",
+      "kanban_id": "507f1f77bcf86cd799439020",
+      "column": "in-progress",
+      "userId": "507f1f77bcf86cd799439012",
+      "priority": "high",
+      "order": 2,
+      "attachments": []
+    },
+    {
+      "_id": "507f1f77bcf86cd799439024",
+      "title": "Configurar base de datos MongoDB",
+      "description": "Establecer conexión y schemas de MongoDB con Mongoose",
+      "kanban_id": "507f1f77bcf86cd799439020",
+      "column": "done",
+      "userId": "507f1f77bcf86cd799439011",
+      "priority": "high",
+      "order": 3,
+      "attachments": []
+    },
+    {
+      "_id": "507f1f77bcf86cd799439025",
+      "title": "Crear componente de Kanban",
+      "description": "Desarrollar tablero Kanban interactivo con drag and drop",
+      "kanban_id": "507f1f77bcf86cd799439020",
+      "column": "in-progress",
+      "userId": "507f1f77bcf86cd799439014",
+      "priority": "high",
+      "order": 4,
+      "attachments": []
+    },
+    {
+      "_id": "507f1f77bcf86cd799439026",
+      "title": "Diseñar base de datos",
+      "description": "Crear esquemas y modelos de datos para la aplicación",
+      "kanban_id": "507f1f77bcf86cd799439020",
+      "column": "done",
+      "userId": "507f1f77bcf86cd799439012",
+      "priority": "medium",
+      "order": 5,
+      "attachments": []
+    },
+    {
+      "_id": "507f1f77bcf86cd799439027",
+      "title": "Implementar gestor de archivos",
+      "description": "Crear funcionalidad de upload y descarga de archivos",
+      "kanban_id": "507f1f77bcf86cd799439020",
+      "column": "todo",
+      "userId": "507f1f77bcf86cd799439015",
+      "priority": "medium",
+      "order": 6,
+      "attachments": []
+    },
+    {
+      "_id": "507f1f77bcf86cd799439028",
+      "title": "Testing de componentes React",
+      "description": "Escribir unit tests para todos los componentes principales",
+      "kanban_id": "507f1f77bcf86cd799439020",
+      "column": "todo",
+      "userId": "507f1f77bcf86cd799439016",
+      "priority": "medium",
+      "order": 7,
+      "attachments": []
+    },
+    {
+      "_id": "507f1f77bcf86cd799439029",
+      "title": "Documentar API endpoints",
+      "description": "Crear documentación completa de todos los endpoints REST",
+      "kanban_id": "507f1f77bcf86cd799439020",
+      "column": "in-progress",
+      "userId": "507f1f77bcf86cd799439017",
+      "priority": "low",
+      "order": 8,
+      "attachments": []
+    },
+    {
+      "_id": "507f1f77bcf86cd799439030",
+      "title": "Optimizar rendimiento de base de datos",
+      "description": "Añadir índices y optimizar queries en MongoDB",
+      "kanban_id": "507f1f77bcf86cd799439020",
+      "column": "todo",
+      "userId": "507f1f77bcf86cd799439018",
+      "priority": "low",
+      "order": 9,
+      "attachments": []
+    },
+    {
+      "_id": "507f1f77bcf86cd799439031",
+      "title": "Implementar sistema de notificaciones",
+      "description": "Crear notificaciones en tiempo real para usuarios",
+      "kanban_id": "507f1f77bcf86cd799439020",
+      "column": "todo",
+      "userId": "507f1f77bcf86cd799439019",
+      "priority": "low",
+      "order": 10,
+      "attachments": []
+    },
+    {
+      "_id": "507f1f77bcf86cd799439032",
+      "title": "Revisar código y refactoring",
+      "description": "Refactorizar código existente y mejorar estructura del proyecto",
+      "kanban_id": "507f1f77bcf86cd799439020",
+      "column": "in-progress",
+      "userId": "507f1f77bcf86cd799439020",
+      "priority": "medium",
+      "order": 11,
+      "attachments": []
+    },
+    {
+      "_id": "507f1f77bcf86cd799439033",
+      "title": "Implementar temas de diseño (Dark/Light)",
+      "description": "Añadir soporte para tema oscuro y claro en la aplicación",
+      "kanban_id": "507f1f77bcf86cd799439020",
+      "column": "todo",
+      "userId": "507f1f77bcf86cd799439021",
+      "priority": "low",
+      "order": 12,
+      "attachments": []
     }
   ]
 }

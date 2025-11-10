@@ -25,6 +25,362 @@
         }
       ],
       "isPublic": false
+    },
+    {
+      "_id": "507f1f77bcf86cd799439061",
+      "name": "Reforma Edificio Centro",
+      "description": "Kanban para la gestión de tareas de reforma del edificio central",
+      "columns": [
+        {
+          "key": "iPropietari",
+          "title": "Propietario",
+          "color": "#FFE8E8",
+          "order": 1
+        },
+        {
+          "key": "iConstructora",
+          "title": "Constructora",
+          "color": "#E8F0FF",
+          "order": 2
+        },
+        {
+          "key": "iElectricista",
+          "title": "Electricista",
+          "color": "#FFF8E8",
+          "order": 3
+        },
+        {
+          "key": "iLampista",
+          "title": "Lampista",
+          "color": "#E8FFE8",
+          "order": 4
+        },
+        {
+          "key": "Fuster",
+          "title": "Carpintero",
+          "color": "#F0E8FF",
+          "order": 5
+        },
+        {
+          "key": "Finestres",
+          "title": "Cristalero",
+          "color": "#FFE8F8",
+          "order": 6
+        }
+      ],
+      "isPublic": false
+    },
+    {
+      "_id": "507f1f77bcf86cd799439062",
+      "name": "Marketing & Ventas",
+      "description": "Tablero para campaña de marketing y estrategia de ventas",
+      "columns": [
+        {
+          "key": "brainstorm",
+          "title": "Ideas",
+          "color": "#FFE8E8",
+          "order": 1
+        },
+        {
+          "key": "in-progress",
+          "title": "En Ejecución",
+          "color": "#FFF4E6",
+          "order": 2
+        },
+        {
+          "key": "review",
+          "title": "Revisión",
+          "color": "#FFF8E8",
+          "order": 3
+        },
+        {
+          "key": "launched",
+          "title": "Lanzado",
+          "color": "#E8F8F0",
+          "order": 4
+        }
+      ],
+      "isPublic": true
+    },
+    {
+      "_id": "507f1f77bcf86cd799439063",
+      "name": "Recursos Humanos",
+      "description": "Gestión de procesos de RRHH y selección de personal",
+      "columns": [
+        {
+          "key": "aplicantes",
+          "title": "Aplicantes",
+          "color": "#E8F0FF",
+          "order": 1
+        },
+        {
+          "key": "entrevista",
+          "title": "En Entrevista",
+          "color": "#FFF4E6",
+          "order": 2
+        },
+        {
+          "key": "evaluacion",
+          "title": "Evaluación",
+          "color": "#FFE8E8",
+          "order": 3
+        },
+        {
+          "key": "contratado",
+          "title": "Contratado",
+          "color": "#E8F8F0",
+          "order": 4
+        }
+      ],
+      "isPublic": false
+    },
+    {
+      "_id": "507f1f77bcf86cd799439064",
+      "name": "Centro Comercial",
+      "description": "Kanban para la construcción del nuevo centro comercial",
+      "columns": [
+        {
+          "key": "diseño",
+          "title": "Diseño",
+          "color": "#E8F0FF",
+          "order": 1
+        },
+        {
+          "key": "presupuesto",
+          "title": "Presupuesto",
+          "color": "#FFE8E8",
+          "order": 2
+        },
+        {
+          "key": "construccion",
+          "title": "Construcción",
+          "color": "#FFF4E6",
+          "order": 3
+        },
+        {
+          "key": "inspecciones",
+          "title": "Inspecciones",
+          "color": "#FFF8E8",
+          "order": 4
+        },
+        {
+          "key": "inauguracion",
+          "title": "Inauguración",
+          "color": "#E8F8F0",
+          "order": 5
+        }
+      ],
+      "isPublic": false
+    },
+    {
+      "_id": "507f1f77bcf86cd799439065",
+      "name": "Soporte Técnico",
+      "description": "Tickets y tareas de soporte técnico",
+      "columns": [
+        {
+          "key": "nuevo",
+          "title": "Nuevos Tickets",
+          "color": "#E8F0FF",
+          "order": 1
+        },
+        {
+          "key": "asignado",
+          "title": "Asignado",
+          "color": "#FFF4E6",
+          "order": 2
+        },
+        {
+          "key": "trabajando",
+          "title": "Trabajando",
+          "color": "#FFE8E8",
+          "order": 3
+        },
+        {
+          "key": "resuelto",
+          "title": "Resuelto",
+          "color": "#E8F8F0",
+          "order": 4
+        }
+      ],
+      "isPublic": false
+    },
+    {
+      "_id": "507f1f77bcf86cd799439066",
+      "name": "Gestión de Proyectos",
+      "description": "Overview de todos los proyectos activos de la empresa",
+      "columns": [
+        {
+          "key": "propuesta",
+          "title": "Propuestas",
+          "color": "#E8F0FF",
+          "order": 1
+        },
+        {
+          "key": "aprobado",
+          "title": "Aprobado",
+          "color": "#FFF8E8",
+          "order": 2
+        },
+        {
+          "key": "activo",
+          "title": "Activo",
+          "color": "#FFF4E6",
+          "order": 3
+        },
+        {
+          "key": "completado",
+          "title": "Completado",
+          "color": "#E8F8F0",
+          "order": 4
+        }
+      ],
+      "isPublic": true
+    },
+    {
+      "_id": "507f1f77bcf86cd799439067",
+      "name": "Hospital Municipal",
+      "description": "Seguimiento de construcción y ampliación del hospital",
+      "columns": [
+        {
+          "key": "planificacion",
+          "title": "Planificación",
+          "color": "#E8F0FF",
+          "order": 1
+        },
+        {
+          "key": "permisos",
+          "title": "Permisos",
+          "color": "#FFF8E8",
+          "order": 2
+        },
+        {
+          "key": "construccion",
+          "title": "Construcción",
+          "color": "#FFF4E6",
+          "order": 3
+        },
+        {
+          "key": "equipamiento",
+          "title": "Equipamiento",
+          "color": "#FFE8E8",
+          "order": 4
+        },
+        {
+          "key": "inauguracion",
+          "title": "Inauguración",
+          "color": "#E8F8F0",
+          "order": 5
+        }
+      ],
+      "isPublic": false
+    },
+    {
+      "_id": "507f1f77bcf86cd799439068",
+      "name": "Energías Renovables",
+      "description": "Proyecto de instalación de placas solares",
+      "columns": [
+        {
+          "key": "estudios",
+          "title": "Estudios",
+          "color": "#E8F0FF",
+          "order": 1
+        },
+        {
+          "key": "logistica",
+          "title": "Logística",
+          "color": "#FFF4E6",
+          "order": 2
+        },
+        {
+          "key": "instalacion",
+          "title": "Instalación",
+          "color": "#FFE8E8",
+          "order": 3
+        },
+        {
+          "key": "pruebas",
+          "title": "Pruebas",
+          "color": "#FFF8E8",
+          "order": 4
+        },
+        {
+          "key": "operativo",
+          "title": "Operativo",
+          "color": "#E8F8F0",
+          "order": 5
+        }
+      ],
+      "isPublic": false
+    },
+    {
+      "_id": "507f1f77bcf86cd799439069",
+      "name": "Hotel Lujo",
+      "description": "Reforma y modernización del hotel 4 estrellas",
+      "columns": [
+        {
+          "key": "diseño",
+          "title": "Diseño",
+          "color": "#E8F0FF",
+          "order": 1
+        },
+        {
+          "key": "contratacion",
+          "title": "Contratación",
+          "color": "#FFF8E8",
+          "order": 2
+        },
+        {
+          "key": "reforma",
+          "title": "Reforma",
+          "color": "#FFF4E6",
+          "order": 3
+        },
+        {
+          "key": "decoracion",
+          "title": "Decoración",
+          "color": "#FFE8E8",
+          "order": 4
+        },
+        {
+          "key": "reapertura",
+          "title": "Reapertura",
+          "color": "#E8F8F0",
+          "order": 5
+        }
+      ],
+      "isPublic": false
+    },
+    {
+      "_id": "507f1f77bcf86cd799439070",
+      "name": "Patrimonio Histórico",
+      "description": "Restauración de edificios históricos protegidos",
+      "columns": [
+        {
+          "key": "investigacion",
+          "title": "Investigación",
+          "color": "#E8F0FF",
+          "order": 1
+        },
+        {
+          "key": "aprobacion",
+          "title": "Aprobación",
+          "color": "#FFF8E8",
+          "order": 2
+        },
+        {
+          "key": "restauracion",
+          "title": "Restauración",
+          "color": "#FFF4E6",
+          "order": 3
+        },
+        {
+          "key": "inauguracion",
+          "title": "Inauguración",
+          "color": "#E8F8F0",
+          "order": 4
+        }
+      ],
+      "isPublic": true
     }
   ]
 }
