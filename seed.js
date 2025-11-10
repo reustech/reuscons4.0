@@ -64,6 +64,8 @@ async function seedDatabase() {
 
 		// Importar datos
 		console.log('📥 Importando datos desde archivos JSON...\n');
+		const insertedData = {}; // Guardar referencias de IDs generados
+
 		for (const collection of COLLECTIONS) {
 			const filePath = path.join(__dirname, collection.file);
 
@@ -73,23 +75,36 @@ async function seedDatabase() {
 				continue;
 			}
 
-			const fileContent = fs.readFileSync(filePath, 'utf-8');
-			const jsonData = JSON.parse(fileContent);
+			try {
+				const fileContent = fs.readFileSync(filePath, 'utf-8');
+				const jsonData = JSON.parse(fileContent);
 
-			// Obtener datos según la clave especificada
-			const data = jsonData[collection.dataKey];
+				// Obtener datos según la clave especificada
+				const data = jsonData[collection.dataKey];
 
-			if (!Array.isArray(data)) {
-				console.error(`   ❌ Datos en "${collection.file}" no es un array válido`);
+				if (!Array.isArray(data)) {
+					console.error(`   ❌ Datos en "${collection.file}" no es un array válido`);
+					continue;
+				}
+
+				// Limpiar campos _id si existen (MongoDB los generará automáticamente)
+				const cleanedData = data.map(item => {
+					const cleaned = { ...item };
+					delete cleaned._id;
+					return cleaned;
+				});
+
+				// Insertar documentos
+				if (cleanedData.length > 0) {
+					const result = await collection.model.insertMany(cleanedData);
+					insertedData[collection.dataKey] = result;
+					console.log(`   ✅ Colección "${collection.name}": ${result.length} documentos insertados`);
+				} else {
+					console.log(`   ⚠️  Colección "${collection.name}": Sin datos para importar`);
+				}
+			} catch (error) {
+				console.error(`   ❌ Error importando ${collection.name}: ${error.message}`);
 				continue;
-			}
-
-			// Insertar documentos
-			if (data.length > 0) {
-				const result = await collection.model.insertMany(data);
-				console.log(`   ✅ Colección "${collection.name}": ${result.length} documentos insertados`);
-			} else {
-				console.log(`   ⚠️  Colección "${collection.name}": Sin datos para importar`);
 			}
 		}
 
@@ -100,6 +115,20 @@ async function seedDatabase() {
 		for (const collection of COLLECTIONS) {
 			const count = await collection.model.countDocuments();
 			console.log(`   • ${collection.name}: ${count} documentos`);
+		}
+
+		// Mostrar IDs generados (útil para testing)
+		console.log('\n🔑 IDs generados (para referencia):');
+		for (const [key, docs] of Object.entries(insertedData)) {
+			if (docs && docs.length > 0) {
+				console.log(`   ${key}:`);
+				docs.slice(0, 3).forEach((doc, i) => {
+					console.log(`      [${i}] ${doc._id}`);
+				});
+				if (docs.length > 3) {
+					console.log(`      ... y ${docs.length - 3} más`);
+				}
+			}
 		}
 	} catch (error) {
 		console.error('\n❌ Error durante el seed:', error);

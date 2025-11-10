@@ -1,7 +1,6 @@
 {
   "users": [
     {
-      "_id": "507f1f77bcf86cd799439011",
       "username": "usuario1",
       "email": "usuario1@example.com",
       "password": "$2b$10$hashedpasswordhere",
@@ -18,7 +17,6 @@
       }
     },
     {
-      "_id": "507f1f77bcf86cd799439012",
       "username": "usuario2",
       "email": "usuario2@example.com",
       "password": "$2b$10$hashedpasswordhere",
@@ -35,7 +33,6 @@
       }
     },
     {
-      "_id": "507f1f77bcf86cd799439013",
       "username": "admin1",
       "email": "admin1@example.com",
       "password": "$2b$10$hashedpasswordhere",
@@ -52,7 +49,6 @@
       }
     },
     {
-      "_id": "507f1f77bcf86cd799439014",
       "username": "usuario3",
       "email": "usuario3@example.com",
       "password": "$2b$10$hashedpasswordhere",
@@ -69,7 +65,6 @@
       }
     },
     {
-      "_id": "507f1f77bcf86cd799439015",
       "username": "usuario4",
       "email": "usuario4@example.com",
       "password": "$2b$10$hashedpasswordhere",
@@ -86,7 +81,6 @@
       }
     },
     {
-      "_id": "507f1f77bcf86cd799439016",
       "username": "usuario5",
       "email": "usuario5@example.com",
       "password": "$2b$10$hashedpasswordhere",
@@ -103,7 +97,6 @@
       }
     },
     {
-      "_id": "507f1f77bcf86cd799439017",
       "username": "usuario6",
       "email": "usuario6@example.com",
       "password": "$2b$10$hashedpasswordhere",
@@ -120,7 +113,6 @@
       }
     },
     {
-      "_id": "507f1f77bcf86cd799439018",
       "username": "usuario7",
       "email": "usuario7@example.com",
       "password": "$2b$10$hashedpasswordhere",
@@ -137,7 +129,6 @@
       }
     },
     {
-      "_id": "507f1f77bcf86cd799439019",
       "username": "usuario8",
       "email": "usuario8@example.com",
       "password": "$2b$10$hashedpasswordhere",
@@ -154,7 +145,6 @@
       }
     },
     {
-      "_id": "507f1f77bcf86cd799439020",
       "username": "usuario9",
       "email": "usuario9@example.com",
       "password": "$2b$10$hashedpasswordhere",
@@ -171,7 +161,6 @@
       }
     },
     {
-      "_id": "507f1f77bcf86cd799439021",
       "username": "usuario10",
       "email": "usuario10@example.com",
       "password": "$2b$10$hashedpasswordhere",
@@ -188,7 +177,6 @@
       }
     },
     {
-      "_id": "507f1f77bcf86cd799439022",
       "username": "usuario11",
       "email": "usuario11@example.com",
       "password": "$2b$10$hashedpasswordhere",

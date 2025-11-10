@@ -1,7 +1,6 @@
 {
   "archivos": [
     {
-      "_id": "507f1f77bcf86cd799439030",
       "filename": "proyecto-reuscons-v1.0.pdf",
       "originalName": "proyecto-reuscons-v1.0.pdf",
       "mimetype": "application/pdf",
@@ -13,7 +12,6 @@
       "description": "Documento de especificación del proyecto Reuscons 4.0"
     },
     {
-      "_id": "507f1f77bcf86cd799439041",
       "filename": "diseño-ui-mockups.figma",
       "originalName": "diseño-ui-mockups.figma",
       "mimetype": "application/octet-stream",
@@ -25,7 +23,6 @@
       "description": "Mockups y diseños de UI en Figma"
     },
     {
-      "_id": "507f1f77bcf86cd799439042",
       "filename": "base-de-datos-esquema.sql",
       "originalName": "base-de-datos-esquema.sql",
       "mimetype": "text/plain",
@@ -37,7 +34,6 @@
       "description": "Script SQL para crear esquema de base de datos"
     },
     {
-      "_id": "507f1f77bcf86cd799439043",
       "filename": "manual-usuario.docx",
       "originalName": "manual-usuario.docx",
       "mimetype": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -49,7 +45,6 @@
       "description": "Manual de usuario para la aplicación"
     },
     {
-      "_id": "507f1f77bcf86cd799439044",
       "filename": "presentacion-proyecto.pptx",
       "originalName": "presentacion-proyecto.pptx",
       "mimetype": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -61,7 +56,6 @@
       "description": "Presentación del proyecto para clientes"
     },
     {
-      "_id": "507f1f77bcf86cd799439045",
       "filename": "test-casos.xlsx",
       "originalName": "test-casos.xlsx",
       "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -73,7 +67,6 @@
       "description": "Casos de prueba para testing"
     },
     {
-      "_id": "507f1f77bcf86cd799439046",
       "filename": "documentacion-api.md",
       "originalName": "documentacion-api.md",
       "mimetype": "text/markdown",
@@ -85,7 +78,6 @@
       "description": "Documentación completa de API endpoints"
     },
     {
-      "_id": "507f1f77bcf86cd799439047",
       "filename": "logs-deployment.log",
       "originalName": "logs-deployment.log",
       "mimetype": "text/plain",
@@ -97,7 +89,6 @@
       "description": "Logs del deployment en producción"
     },
     {
-      "_id": "507f1f77bcf86cd799439048",
       "filename": "backup-base-datos.zip",
       "originalName": "backup-base-datos.zip",
       "mimetype": "application/zip",
@@ -109,7 +100,6 @@
       "description": "Backup completo de la base de datos"
     },
     {
-      "_id": "507f1f77bcf86cd799439049",
       "filename": "reporte-rendimiento.pdf",
       "originalName": "reporte-rendimiento.pdf",
       "mimetype": "application/pdf",
@@ -121,7 +111,6 @@
       "description": "Reporte de análisis de rendimiento"
     },
     {
-      "_id": "507f1f77bcf86cd799439050",
       "filename": "imagen-screenshot.png",
       "originalName": "imagen-screenshot.png",
       "mimetype": "image/png",
