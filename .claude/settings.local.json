@@ -3,7 +3,10 @@
     "allow": [
       "Bash(mkdir:*)",
       "Bash(dir \"c:\\Users\\Sergi_Desktop\\Desktop\\reuscons4.0\" /b)",
-      "Bash(copy:*)"
+      "Bash(copy:*)",
+      "Bash(npm run build:*)",
+      "Bash(move \"CrearUsuarioModal.jsx\" \"Usuario\"\" && move \"ModificarUsuarioModal.jsx\" \"Usuario\"\")",
+      "Bash(move \"CambiarContrasenaModal.jsx\" \"Usuario\"\")"
     ],
     "deny": [],
     "ask": []

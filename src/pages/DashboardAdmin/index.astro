@@ -1,4 +1,5 @@
 ---
+import DashboardAdminContent from '../../components/DashboardAdminContent.jsx';
 ---
 
 <html lang="es">
@@ -8,7 +9,7 @@
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Dashboard Admin - Reuscons</title>
-		<style>
+		<style is:global>
 			@import '../../styles/global.css';
 
 			.dashboard-container {
@@ -34,15 +35,6 @@
 				text-align: left;
 				font-weight: 700;
 				text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-			}
-
-			.admin-badge {
-				background: rgba(255, 215, 0, 0.9);
-				color: #1f2937;
-				padding: 0.5rem 1rem;
-				border-radius: 8px;
-				font-weight: 600;
-				font-size: 0.9rem;
 			}
 
 			.btn-back {
@@ -81,7 +73,6 @@
 				background: white;
 				border-radius: 12px;
 				padding: 4rem 2rem;
-				text-align: center;
 				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 			}
 
@@ -89,21 +80,20 @@
 				color: #1f2937;
 				font-size: 2rem;
 				margin-bottom: 1rem;
+				text-align: center;
 			}
 
 			.dashboard-placeholder p {
 				color: #6b7280;
 				font-size: 1.1rem;
 				margin-bottom: 1rem;
+				text-align: center;
 			}
 
-			.admin-info {
-				background: rgba(255, 215, 0, 0.1);
-				border: 2px solid rgba(255, 215, 0, 0.5);
-				border-radius: 8px;
-				padding: 1rem;
-				margin-top: 1rem;
-				color: #6b7280;
+			@media (max-width: 1024px) {
+				.dashboard-placeholder {
+					padding: 2rem 1rem;
+				}
 			}
 
 			@media (max-width: 768px) {
@@ -139,10 +129,7 @@
 	<body>
 		<div class="dashboard-container">
 			<div class="dashboard-header">
-				<div>
-					<h1 class="dashboard-title">Dashboard Admin</h1>
-					<span class="admin-badge">👑 Administrador</span>
-				</div>
+				<h1 class="dashboard-title">Dashboard Admin</h1>
 				<a href="/Login" class="btn-back">← Cerrar Sesión</a>
 			</div>
 
@@ -150,9 +137,7 @@
 				<div class="dashboard-placeholder">
 					<h2>Panel de Administración</h2>
 					<p>Bienvenido al panel de administración de Reuscons</p>
-					<div class="admin-info">
-						<p>Aquí podrás administrar usuarios, configurar permisos y monitorear la actividad del sistema.</p>
-					</div>
+					<DashboardAdminContent client:load />
 				</div>
 			</div>
 		</div>
