@@ -210,13 +210,64 @@ Ubicación: `src/components/UI/`
 - **Autenticación**: ✅ Implementada (cliente)
 - **Persistencia**: ✅ localStorage con validación SSR
 
+## 🚀 Arquitectura Backend - API Endpoints
+
+### Decisión: API Endpoints (REST)
+Se ha decidido usar **API Endpoints** sobre Astro Actions por las siguientes razones:
+- Mayor familiaridad del equipo con REST APIs
+- Máximo control y flexibilidad en las operaciones
+- Mejor soporte para casos de uso complejos
+- Facilita integración futura con clientes externos
+- Más documentación y comunidad disponible
+
+### Estructura de API Endpoints
+```
+src/
+├── pages/
+│   ├── api/
+│   │   ├── usuarios/
+│   │   │   ├── [id].ts              # GET, PUT, DELETE usuario por ID
+│   │   │   └── index.ts             # GET list, POST crear usuario
+│   │   ├── kanbans/
+│   │   │   ├── [id].ts              # GET, PUT, DELETE kanban por ID
+│   │   │   └── index.ts             # GET list, POST crear kanban
+│   │   ├── archivos/
+│   │   │   ├── [id].ts              # GET, DELETE archivo por ID
+│   │   │   └── index.ts             # POST upload archivo
+│   │   └── auth/
+│   │       └── login.ts             # POST autenticación
+```
+
+### Configuración de Base de Datos
+- **Base de Datos**: MongoDB
+- **ODM**: Mongoose
+- **Validación**: Zod (en endpoints)
+- **Variable de entorno**: `MONGODB_URI` (debe definirse en `.env`)
+
+### Patrón de Endpoints
+Cada endpoint sigue este patrón:
+1. Validación de entrada con Zod
+2. Llamada a base de datos via Mongoose
+3. Manejo de errores
+4. Respuesta JSON con status HTTP apropriado
+
+**Status Codes a usar:**
+- `200`: OK - Operación exitosa
+- `201`: Created - Recurso creado
+- `400`: Bad Request - Validación fallida
+- `401`: Unauthorized - No autenticado
+- `403`: Forbidden - No autorizado
+- `404`: Not Found - Recurso no existe
+- `500`: Internal Server Error - Error del servidor
+
 ## 🎯 Próximas Mejoras Potenciales
-- Backend de autenticación (JWT, OAuth)
-- Base de datos para persistencia de tareas
-- Validación avanzada con Zod
+- Autenticación con JWT/OAuth
+- Persistencia real de datos en MongoDB
+- Validación avanzada con Zod en endpoints
 - Límites de tamaño en archivos
 - Edición colaborativa en tiempo real
 - Temas oscuro/claro
 - Exportación de tareas (PDF, CSV)
 - Sistema de notificaciones
-- Panel de administración funcional
+- Rate limiting en API endpoints
+- Logging y monitoreo
