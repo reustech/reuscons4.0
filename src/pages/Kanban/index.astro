@@ -1,26 +1,8 @@
 ---
+import Layout from '../../layouts/Layout.astro';
 import Kanban from '../../components/Kanban/Kanban.jsx';
 ---
 
-<html lang="es">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Kanban - Reuscons</title>
-		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-			}
-			body {
-				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-			}
-		</style>
-	</head>
-	<body>
-		<Kanban client:load />
-	</body>
-</html>
+<Layout title="Kanban">
+	<Kanban client:load />
+</Layout>

@@ -1,145 +1,73 @@
 ---
-import DashboardAdminContent from '../../components/DashboardAdminContent.jsx';
+import Layout from '../../layouts/Layout.astro';
 ---
 
-<html lang="es">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Dashboard Admin - Reuscons</title>
-		<style is:global>
-			@import '../../styles/global.css';
+<Layout title="Dashboard Admin">
+	<style>
+		.dashboard-container {
+			min-height: 100vh;
+			background: var(--gradient-primary);
+			padding: 2rem;
+		}
 
-			.dashboard-container {
-				min-height: 100vh;
-				background: var(--gradient-primary);
-				padding: 2rem;
-			}
+		.dashboard-header {
+			max-width: 1400px;
+			margin: 0 auto 2rem;
+			display: flex;
+			flex-direction: row;
+			gap: 1rem;
+			align-items: center;
+			justify-content: space-between;
+		}
 
-			.dashboard-header {
-				max-width: 1400px;
-				margin: 0 auto 2rem;
-				display: flex;
-				flex-direction: row;
-				gap: 1rem;
-				align-items: center;
-				justify-content: space-between;
-			}
+		.dashboard-title {
+			color: white;
+			font-size: 2rem;
+			font-weight: 700;
+		}
 
-			.dashboard-title {
-				color: white;
-				font-size: 2.5rem;
-				margin: 0;
-				text-align: left;
-				font-weight: 700;
-				text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-			}
+		.dashboard-nav {
+			display: flex;
+			gap: 1rem;
+		}
 
-			.btn-back {
-				background: white;
-				color: #667eea;
-				text-decoration: none;
-				border: none;
-				border-radius: 8px;
-				padding: 0.75rem 1.5rem;
-				font-size: 1rem;
-				font-weight: 600;
-				cursor: pointer;
-				transition: all 0.2s ease;
-				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-				display: inline-flex;
-				align-items: center;
-				gap: 0.5rem;
-			}
+		.btn {
+			padding: 0.75rem 1.5rem;
+			background: white;
+			color: var(--primary);
+			border: none;
+			border-radius: 8px;
+			cursor: pointer;
+			font-weight: 600;
+			transition: all 0.3s ease;
+		}
 
-			.btn-back:hover {
-				background: #f3f4f6;
-				transform: translateY(-2px);
-				box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-			}
+		.btn:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+		}
 
-			.btn-back:active {
-				transform: translateY(0);
-			}
+		.content {
+			max-width: 1400px;
+			margin: 0 auto;
+			background: white;
+			border-radius: 16px;
+			padding: 2rem;
+		}
+	</style>
 
-			.dashboard-content {
-				max-width: 1400px;
-				margin: 0 auto;
-			}
-
-			.dashboard-placeholder {
-				background: white;
-				border-radius: 12px;
-				padding: 4rem 2rem;
-				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-			}
-
-			.dashboard-placeholder h2 {
-				color: #1f2937;
-				font-size: 2rem;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-
-			.dashboard-placeholder p {
-				color: #6b7280;
-				font-size: 1.1rem;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-
-			@media (max-width: 1024px) {
-				.dashboard-placeholder {
-					padding: 2rem 1rem;
-				}
-			}
-
-			@media (max-width: 768px) {
-				.dashboard-container {
-					padding: 1rem;
-				}
-
-				.dashboard-header {
-					flex-direction: column;
-					gap: 1rem;
-					align-items: flex-start;
-				}
-
-				.dashboard-title {
-					font-size: 1.75rem;
-				}
-
-				.btn-back {
-					width: 100%;
-					justify-content: center;
-				}
-
-				.dashboard-placeholder {
-					padding: 2rem 1rem;
-				}
-
-				.dashboard-placeholder h2 {
-					font-size: 1.5rem;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<div class="dashboard-container">
-			<div class="dashboard-header">
-				<h1 class="dashboard-title">Dashboard Admin</h1>
-				<a href="/Login" class="btn-back">← Cerrar Sesión</a>
-			</div>
-
-			<div class="dashboard-content">
-				<div class="dashboard-placeholder">
-					<h2>Panel de Administración</h2>
-					<p>Bienvenido al panel de administración de Reuscons</p>
-					<DashboardAdminContent client:load />
-				</div>
+	<div class="dashboard-container">
+		<div class="dashboard-header">
+			<h1 class="dashboard-title">Dashboard Admin</h1>
+			<div class="dashboard-nav">
+				<button class="btn" onclick="window.location.href='/Kanban'">Kanban</button>
+				<button class="btn" onclick="window.location.href='/Archivos'">Archivos</button>
+				<button class="btn" onclick="window.location.href='/Login'">Cerrar Sesión</button>
 			</div>
 		</div>
-	</body>
-</html>
+		<div class="content">
+			<h2>Bienvenido Administrador</h2>
+			<p>Panel de administración - Sistema de gestión de obras y tareas</p>
+		</div>
+	</div>
+</Layout>
