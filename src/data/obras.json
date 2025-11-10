@@ -7,78 +7,12 @@
       "location": "Barcelona, España",
       "address": "Calle Mayor 123, Barcelona 08002",
       "client": "ABC Inmobiliaria",
-      "userId": "507f1f77bcf86cd799439011",
       "status": "in-progress",
-      "startDate": "2024-01-01T00:00:00Z",
-      "endDate": "2024-06-30T00:00:00Z",
-      "budget": 150000,
-      "spent": 75000,
-      "progress": 50,
       "team": ["507f1f77bcf86cd799439011", "507f1f77bcf86cd799439012"],
+      "admin": ["507f1f77bcf86cd799439011"],
       "kanban_id": "507f1f77bcf86cd799439020",
-      "tags": ["reforma", "construcción", "prioritario"],
       "priority": "high",
       "notes": "Proyecto principal de la empresa para este trimestre"
-    },
-    {
-      "_id": "507f1f77bcf86cd799439041",
-      "name": "Construcción Casa Unifamiliar",
-      "description": "Construcción de nueva vivienda unifamiliar de 250 m²",
-      "location": "Girona, España",
-      "address": "Av. Sant Narcís 45, Girona 17001",
-      "client": "Joan Martínez García",
-      "userId": "507f1f77bcf86cd799439011",
-      "status": "planning",
-      "startDate": "2024-03-15T00:00:00Z",
-      "endDate": "2024-12-31T00:00:00Z",
-      "budget": 350000,
-      "spent": 0,
-      "progress": 0,
-      "team": ["507f1f77bcf86cd799439011"],
-      "kanban_id": "507f1f77bcf86cd799439020",
-      "tags": ["construcción", "residencial", "nuevo"],
-      "priority": "medium",
-      "notes": "Proyecto en fase de planificación, inicio confirmado para marzo"
-    },
-    {
-      "_id": "507f1f77bcf86cd799439042",
-      "name": "Remodelación Local Comercial",
-      "description": "Remodelación y ampliación de local comercial",
-      "location": "Madrid, España",
-      "address": "Paseo de la Castellana 89, Madrid 28046",
-      "client": "Retail Plus SL",
-      "userId": "507f1f77bcf86cd799439012",
-      "status": "completed",
-      "startDate": "2023-09-01T00:00:00Z",
-      "endDate": "2023-12-15T00:00:00Z",
-      "budget": 85000,
-      "spent": 84500,
-      "progress": 100,
-      "team": ["507f1f77bcf86cd799439012"],
-      "kanban_id": "507f1f77bcf86cd799439021",
-      "tags": ["comercial", "remodelación", "completado"],
-      "priority": "medium",
-      "notes": "Proyecto finalizado exitosamente, cliente muy satisfecho"
-    },
-    {
-      "_id": "507f1f77bcf86cd799439043",
-      "name": "Ampliación Oficinas Corporativas",
-      "description": "Ampliación de 500 m² en oficinas centrales",
-      "location": "Valencia, España",
-      "address": "Calle Colón 234, Valencia 46004",
-      "client": "TechCorp Valencia",
-      "userId": "507f1f77bcf86cd799439012",
-      "status": "on-hold",
-      "startDate": "2024-02-01T00:00:00Z",
-      "endDate": "2024-05-30T00:00:00Z",
-      "budget": 200000,
-      "spent": 25000,
-      "progress": 15,
-      "team": ["507f1f77bcf86cd799439012"],
-      "kanban_id": "507f1f77bcf86cd799439021",
-      "tags": ["oficinas", "corporativo", "pausado"],
-      "priority": "low",
-      "notes": "Proyecto pausado temporalmente por cambios en requisitos del cliente"
     }
   ],
   "schema": {
@@ -119,12 +53,6 @@
         "required": true,
         "maxlength": 150
       },
-      "userId": {
-        "type": "ObjectId",
-        "description": "Referencia al usuario gerente/propietario de la obra",
-        "required": true,
-        "ref": "User"
-      },
       "status": {
         "type": "String",
         "description": "Estado actual de la obra",
@@ -132,38 +60,18 @@
         "default": "planning",
         "required": true
       },
-      "startDate": {
-        "type": "Date",
-        "description": "Fecha de inicio de la obra",
-        "required": true
-      },
-      "endDate": {
-        "type": "Date",
-        "description": "Fecha de finalización estimada o real",
-        "required": true
-      },
-      "budget": {
-        "type": "Number",
-        "description": "Presupuesto total de la obra en euros",
-        "required": true,
-        "min": 0
-      },
-      "spent": {
-        "type": "Number",
-        "description": "Monto gastado hasta el momento en euros",
-        "default": 0,
-        "min": 0
-      },
-      "progress": {
-        "type": "Number",
-        "description": "Porcentaje de progreso de la obra (0-100)",
-        "default": 0,
-        "min": 0,
-        "max": 100
-      },
       "team": {
         "type": "Array",
         "description": "Array de IDs de usuarios asignados a la obra",
+        "items": {
+          "type": "ObjectId",
+          "ref": "User"
+        },
+        "default": []
+      },
+      "admin": {
+        "type": "Array",
+        "description": "Array de IDs de usuarios administradores de la obra",
         "items": {
           "type": "ObjectId",
           "ref": "User"
@@ -175,15 +83,6 @@
         "description": "Referencia al tablero Kanban asociado para gestionar tareas de la obra",
         "default": null,
         "ref": "KanbanBoard"
-      },
-      "tags": {
-        "type": "Array",
-        "description": "Etiquetas para categorizar la obra",
-        "items": {
-          "type": "String",
-          "maxlength": 30
-        },
-        "default": []
       },
       "priority": {
         "type": "String",
@@ -200,20 +99,12 @@
     },
     "indexes": [
       {
-        "field": "userId",
-        "description": "Índice para consultas rápidas por usuario gerente"
-      },
-      {
         "field": "status",
         "description": "Índice para filtrar obras por estado"
       },
       {
         "field": "kanban_id",
         "description": "Índice para obtener obras asociadas a un Kanban"
-      },
-      {
-        "fields": ["userId", "status"],
-        "description": "Índice compuesto para obtener obras de un usuario en un estado específico"
       },
       {
         "field": "client",

@@ -4,7 +4,6 @@
       "_id": "507f1f77bcf86cd799439020",
       "name": "Proyecto Reuscons 4.0",
       "description": "Tablero Kanban principal para el desarrollo del proyecto Reuscons 4.0",
-      "userId": "507f1f77bcf86cd799439011",
       "columns": [
         {
           "key": "todo",
@@ -25,46 +24,7 @@
           "order": 3
         }
       ],
-      "isPublic": false,
-      "collaborators": ["507f1f77bcf86cd799439011"],
-      "settings": {
-        "allowComments": true,
-        "allowAttachments": true,
-        "showEstimates": true
-      }
-    },
-    {
-      "_id": "507f1f77bcf86cd799439021",
-      "name": "Dashboard Development",
-      "description": "Tablero para el desarrollo del Dashboard",
-      "userId": "507f1f77bcf86cd799439012",
-      "columns": [
-        {
-          "key": "todo",
-          "title": "Por Hacer",
-          "color": "#E8F4F8",
-          "order": 1
-        },
-        {
-          "key": "in-progress",
-          "title": "En Progreso",
-          "color": "#FFF4E6",
-          "order": 2
-        },
-        {
-          "key": "done",
-          "title": "Hecho",
-          "color": "#E8F8F0",
-          "order": 3
-        }
-      ],
-      "isPublic": false,
-      "collaborators": ["507f1f77bcf86cd799439012"],
-      "settings": {
-        "allowComments": true,
-        "allowAttachments": true,
-        "showEstimates": false
-      }
+      "isPublic": false
     }
   ],
   "schema": {
@@ -86,12 +46,6 @@
         "description": "Descripción del tablero Kanban",
         "default": null,
         "maxlength": 500
-      },
-      "userId": {
-        "type": "ObjectId",
-        "description": "Referencia al usuario propietario del tablero",
-        "required": true,
-        "ref": "User"
       },
       "columns": {
         "type": "Array",
@@ -130,47 +84,26 @@
         "type": "Boolean",
         "description": "Indica si el tablero es público o privado",
         "default": false
-      },
-      "collaborators": {
-        "type": "Array",
-        "description": "Array de IDs de usuarios colaboradores",
-        "items": {
-          "type": "ObjectId",
-          "ref": "User"
-        },
-        "default": []
-      },
-      "settings": {
-        "type": "Object",
-        "description": "Configuración del tablero Kanban",
-        "fields": {
-          "allowComments": {
-            "type": "Boolean",
-            "description": "Permitir comentarios en las tareas",
-            "default": true
-          },
-          "allowAttachments": {
-            "type": "Boolean",
-            "description": "Permitir adjuntos en las tareas",
-            "default": true
-          },
-          "showEstimates": {
-            "type": "Boolean",
-            "description": "Mostrar estimaciones de tiempo en las tareas",
-            "default": true
-          }
-        }
       }
     },
-    "indexes": [
-      {
-        "field": "userId",
-        "description": "Índice para consultas rápidas por usuario propietario"
+    "indexes": [],
+    "permissions": {
+      "create": {
+        "description": "Solo usuarios con rol 'admin' pueden crear tableros Kanban",
+        "allowedRoles": ["admin"]
       },
-      {
-        "fields": ["userId", "_id"],
-        "description": "Índice compuesto para obtener un tablero específico de un usuario"
+      "read": {
+        "description": "Cualquier usuario autenticado puede leer tableros",
+        "allowedRoles": ["user", "admin", "moderator"]
+      },
+      "update": {
+        "description": "Solo usuarios con rol 'admin' pueden actualizar tableros",
+        "allowedRoles": ["admin"]
+      },
+      "delete": {
+        "description": "Solo usuarios con rol 'admin' pueden eliminar tableros",
+        "allowedRoles": ["admin"]
       }
-    ]
+    }
   }
 }

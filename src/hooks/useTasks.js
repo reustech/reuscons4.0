@@ -1,133 +1,186 @@
-import { useState, useEffect } from 'react';
-import { validateTasks } from '../schemas/schemas';
+import { useState, useEffect, useCallback } from 'react';
 
-const STORAGE_KEY = 'kanban-tasks';
+export function useTasks(kanbanId, initialTasks = []) {
+	const [tasks, setTasks] = useState(initialTasks);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
 
-// Helper function to safely access localStorage
-const getFromStorage = () => {
-  if (typeof window === 'undefined') return null;
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved;
-  } catch (e) {
-    console.error('Error leyendo localStorage:', e);
-    return null;
-  }
-};
+	// Cargar tareas del API
+	const fetchTasks = useCallback(async () => {
+		if (!kanbanId) return;
+		setLoading(true);
+		setError(null);
 
-// Helper function to safely save to localStorage
-const saveToStorage = (data) => {
-  if (typeof window === 'undefined') return;
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  } catch (e) {
-    console.error('Error guardando en localStorage:', e);
-  }
-};
+		try {
+			const response = await fetch(`/api/tareas?kanban_id=${kanbanId}`);
+			const data = await response.json();
 
-export function useTasks(initialTasks) {
-  const [tasks, setTasks] = useState(initialTasks);
+			if (response.ok) {
+				setTasks(data.data);
+			} else {
+				setError(data.error || 'Error al cargar las tareas');
+			}
+		} catch (err) {
+			setError('Error de conexión: ' + err.message);
+		} finally {
+			setLoading(false);
+		}
+	}, [kanbanId]);
 
-  // Cargar datos del localStorage en cliente
-  useEffect(() => {
-    const saved = getFromStorage();
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        const validated = validateTasks(parsed);
-        if (validated) {
-          setTasks(validated);
-        }
-      } catch (e) {
-        console.error('Error cargando datos:', e);
-      }
-    }
-  }, []);
+	// Cargar tareas al montar el componente
+	useEffect(() => {
+		fetchTasks();
+	}, [fetchTasks]);
 
-  // Guardar datos en localStorage
-  useEffect(() => {
-    saveToStorage(tasks);
-  }, [tasks]);
+	// Agregar tarea
+	const addTask = useCallback(async (columnKey, title, description = '', priority = 'medium', userId = '') => {
+		if (!title.trim() || !kanbanId) return null;
 
-  const addTask = (columnKey, title) => {
-    if (!title.trim()) return;
+		try {
+			const response = await fetch('/api/tareas', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					title: title.trim(),
+					description: description || null,
+					kanban_id: kanbanId,
+					column: columnKey,
+					priority: priority,
+					userId: userId || null,
+					order: tasks.filter(t => t.column === columnKey).length + 1
+				})
+			});
 
-    const newId = Date.now().toString();
-    setTasks(prev => ({
-      ...prev,
-      [columnKey]: [
-        ...prev[columnKey],
-        { id: newId, title: title.trim() },
-      ],
-    }));
-  };
+			const data = await response.json();
 
-  const deleteTask = (columnKey, taskId) => {
-    setTasks(prev => ({
-      ...prev,
-      [columnKey]: prev[columnKey].filter(t => t.id !== taskId),
-    }));
-  };
+			if (!response.ok) {
+				setError(data.error || 'Error al crear la tarea');
+				return null;
+			}
 
-  const updateTask = (columnKey, taskId, newTitle) => {
-    if (!newTitle.trim()) return;
+			setTasks(prev => [...prev, data.data]);
+			return data.data;
+		} catch (err) {
+			setError('Error de conexión: ' + err.message);
+			return null;
+		}
+	}, [kanbanId, tasks]);
 
-    setTasks(prev => ({
-      ...prev,
-      [columnKey]: prev[columnKey].map(t =>
-        t.id === taskId ? { ...t, title: newTitle.trim() } : t
-      ),
-    }));
-  };
+	// Eliminar tarea
+	const deleteTask = useCallback(async (taskId) => {
+		try {
+			const response = await fetch(`/api/tareas/${taskId}`, {
+				method: 'DELETE'
+			});
 
-  const moveTask = (sourceColumn, targetColumn, taskId) => {
-    if (sourceColumn === targetColumn) return;
+			const data = await response.json();
 
-    setTasks(prev => {
-      const newTasks = { ...prev };
-      const task = newTasks[sourceColumn].find(t => t.id === taskId);
+			if (!response.ok) {
+				setError(data.error || 'Error al eliminar la tarea');
+				return false;
+			}
 
-      if (!task) return prev;
+			setTasks(prev => prev.filter(t => t._id !== taskId));
+			return true;
+		} catch (err) {
+			setError('Error de conexión: ' + err.message);
+			return false;
+		}
+	}, []);
 
-      newTasks[sourceColumn] = newTasks[sourceColumn].filter(t => t.id !== taskId);
-      newTasks[targetColumn] = [...newTasks[targetColumn], task];
+	// Actualizar tarea
+	const updateTask = useCallback(async (taskId, updates) => {
+		if (!taskId) return null;
 
-      return newTasks;
-    });
-  };
+		try {
+			const response = await fetch(`/api/tareas/${taskId}`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(updates)
+			});
 
-  const reorderTask = (columnKey, taskId, newIndex) => {
-    setTasks(prev => {
-      const newTasks = { ...prev };
-      const column = [...newTasks[columnKey]];
-      const task = column.find(t => t.id === taskId);
+			const data = await response.json();
 
-      if (!task) return prev;
+			if (!response.ok) {
+				setError(data.error || 'Error al actualizar la tarea');
+				return null;
+			}
 
-      const currentIndex = column.findIndex(t => t.id === taskId);
+			setTasks(prev =>
+				prev.map(t => t._id === taskId ? data.data : t)
+			);
+			return data.data;
+		} catch (err) {
+			setError('Error de conexión: ' + err.message);
+			return null;
+		}
+	}, []);
 
-      if (currentIndex === newIndex) return prev;
+	// Mover tarea a otra columna
+	const moveTask = useCallback(async (taskId, newColumn) => {
+		return updateTask(taskId, { column: newColumn });
+	}, [updateTask]);
 
-      column.splice(currentIndex, 1);
+	// Reordenar tarea
+	const reorderTask = useCallback(async (taskId, newOrder) => {
+		return updateTask(taskId, { order: newOrder });
+	}, [updateTask]);
 
-      let insertIndex = newIndex;
-      if (currentIndex < newIndex) {
-        insertIndex = newIndex - 1;
-      }
+	// Cambiar prioridad
+	const updatePriority = useCallback(async (taskId, newPriority) => {
+		return updateTask(taskId, { priority: newPriority });
+	}, [updateTask]);
 
-      column.splice(insertIndex, 0, task);
-      newTasks[columnKey] = column;
+	// Obtener tareas por columna
+	const getTasksByColumn = useCallback((columnKey) => {
+		return tasks.filter(t => t.column === columnKey).sort((a, b) => a.order - b.order);
+	}, [tasks]);
 
-      return newTasks;
-    });
-  };
+	// Obtener tareas por prioridad
+	const getTasksByPriority = useCallback((priority) => {
+		return tasks.filter(t => t.priority === priority);
+	}, [tasks]);
 
-  return {
-    tasks,
-    addTask,
-    deleteTask,
-    updateTask,
-    moveTask,
-    reorderTask,
-  };
+	// Obtener estadísticas
+	const getStats = useCallback(() => {
+		return {
+			total: tasks.length,
+			byColumn: {
+				todo: tasks.filter(t => t.column === 'todo').length,
+				'in-progress': tasks.filter(t => t.column === 'in-progress').length,
+				done: tasks.filter(t => t.column === 'done').length
+			},
+			byPriority: {
+				low: tasks.filter(t => t.priority === 'low').length,
+				medium: tasks.filter(t => t.priority === 'medium').length,
+				high: tasks.filter(t => t.priority === 'high').length
+			}
+		};
+	}, [tasks]);
+
+	// Refrescar tareas desde el servidor
+	const refresh = useCallback(() => {
+		return fetchTasks();
+	}, [fetchTasks]);
+
+	return {
+		tasks,
+		loading,
+		error,
+		addTask,
+		deleteTask,
+		updateTask,
+		moveTask,
+		reorderTask,
+		updatePriority,
+		getTasksByColumn,
+		getTasksByPriority,
+		getStats,
+		refresh,
+		clearError: () => setError(null)
+	};
 }

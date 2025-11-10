@@ -10,41 +10,11 @@
       "profile": {
         "firstName": "Juan",
         "lastName": "Pérez",
+        "email": "juan.perez@reustech.com",
+        "telefono": "+34 912 345 678",
         "company": "Reustech",
         "location": "Barcelona",
         "website": "https://example.com"
-      }
-    },
-    {
-      "_id": "507f1f77bcf86cd799439012",
-      "username": "usuario2",
-      "email": "usuario2@example.com",
-      "password": "$2b$10$hashedpasswordhere",
-      "role": "user",
-      "createdAt": "2024-01-14T09:15:00Z",
-      "updatedAt": "2024-01-14T09:15:00Z",
-      "lastLogin": "2024-01-14T09:15:00Z",
-      "profile": {
-        "firstName": "María",
-        "lastName": "García",
-        "company": "Reustech",
-        "location": "Madrid",
-        "website": "https://github.com/usuario2"
-      }
-    },
-    {
-      "_id": "507f1f77bcf86cd799439013",
-      "username": "admin",
-      "email": "admin@example.com",
-      "password": "$2b$10$hashedpasswordhere",
-      "role": "admin",
-      "lastLogin": "2024-01-15T10:30:00Z",
-      "profile": {
-        "firstName": "Admin",
-        "lastName": "User",
-        "company": "Reustech",
-        "location": "Barcelona",
-        "website": null
       }
     }
   ],
@@ -103,6 +73,16 @@
             "type": "String",
             "description": "Apellido del usuario",
             "required": true
+          },
+          "email": {
+            "type": "String",
+            "description": "Correo electrónico del perfil del usuario",
+            "default": null
+          },
+          "telefono": {
+            "type": "String",
+            "description": "Número de teléfono del usuario",
+            "default": null
           },
           "company": {
             "type": "String",

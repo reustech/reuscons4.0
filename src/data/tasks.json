@@ -6,77 +6,10 @@
       "description": "Crear diseño responsivo para la página principal",
       "kanban_id": "507f1f77bcf86cd799439020",
       "column": "todo",
-      "columnColor": "#E8F4F8",
       "userId": "507f1f77bcf86cd799439011",
       "priority": "high",
-      "dueDate": "2024-02-01T00:00:00Z",
-      "tags": ["design", "frontend"],
-      "order": 1
-    },
-    {
-      "_id": "507f1f77bcf86cd799439013",
-      "title": "Implementar autenticación",
-      "description": "Configurar JWT y endpoints de login/registro",
-      "kanban_id": "507f1f77bcf86cd799439020",
-      "column": "in-progress",
-      "columnColor": "#FFF4E6",
-      "userId": "507f1f77bcf86cd799439011",
-      "priority": "high",
-      "dueDate": "2024-01-25T00:00:00Z",
-      "tags": ["backend", "security"],
-      "order": 1
-    },
-    {
-      "_id": "507f1f77bcf86cd799439014",
-      "title": "Integrar MongoDB",
-      "description": "Conectar base de datos MongoDB y crear esquemas",
-      "kanban_id": "507f1f77bcf86cd799439020",
-      "column": "in-progress",
-      "columnColor": "#FFF4E6",
-      "userId": "507f1f77bcf86cd799439011",
-      "priority": "high",
-      "dueDate": "2024-01-30T00:00:00Z",
-      "tags": ["backend", "database"],
-      "order": 2
-    },
-    {
-      "_id": "507f1f77bcf86cd799439015",
-      "title": "Crear sistema de permisos",
-      "description": "Implementar roles y control de acceso",
-      "kanban_id": "507f1f77bcf86cd799439020",
-      "column": "todo",
-      "columnColor": "#E8F4F8",
-      "userId": "507f1f77bcf86cd799439011",
-      "priority": "medium",
-      "dueDate": "2024-02-10T00:00:00Z",
-      "tags": ["backend", "security"],
-      "order": 2
-    },
-    {
-      "_id": "507f1f77bcf86cd799439016",
-      "title": "Optimizar performance",
-      "description": "Mejorar velocidad de carga y renderizado",
-      "kanban_id": "507f1f77bcf86cd799439021",
-      "column": "done",
-      "columnColor": "#E8F8F0",
-      "userId": "507f1f77bcf86cd799439012",
-      "priority": "low",
-      "dueDate": "2024-01-20T00:00:00Z",
-      "tags": ["frontend", "performance"],
-      "order": 1
-    },
-    {
-      "_id": "507f1f77bcf86cd799439017",
-      "title": "Documentar API",
-      "description": "Crear documentación Swagger/OpenAPI",
-      "kanban_id": "507f1f77bcf86cd799439021",
-      "column": "done",
-      "columnColor": "#E8F8F0",
-      "userId": "507f1f77bcf86cd799439012",
-      "priority": "medium",
-      "dueDate": "2024-01-18T00:00:00Z",
-      "tags": ["documentation", "backend"],
-      "order": 2
+      "order": 1,
+      "attachments": []
     }
   ],
   "schema": {
@@ -106,12 +39,6 @@
         "required": true,
         "default": "todo"
       },
-      "columnColor": {
-        "type": "String",
-        "description": "Color hexadecimal de la columna",
-        "required": true,
-        "match": "/^#[0-9A-Fa-f]{6}$/"
-      },
       "kanban_id": {
         "type": "ObjectId",
         "description": "Referencia al tablero Kanban al que pertenece la tarea",
@@ -130,25 +57,54 @@
         "enum": ["low", "medium", "high"],
         "default": "medium"
       },
-      "dueDate": {
-        "type": "Date",
-        "description": "Fecha de vencimiento de la tarea",
-        "default": null
-      },
-      "tags": {
-        "type": "Array",
-        "description": "Etiquetas para categorizar la tarea",
-        "default": [],
-        "items": {
-          "type": "String",
-          "maxlength": 20
-        }
-      },
       "order": {
         "type": "Number",
         "description": "Orden de la tarea dentro de su columna para drag-and-drop",
         "required": true,
         "default": 1
+      },
+      "attachments": {
+        "type": "Array",
+        "description": "Archivos adjuntos asociados a la tarea",
+        "default": [],
+        "items": {
+          "type": "Object",
+          "properties": {
+            "_id": {
+              "type": "ObjectId",
+              "description": "Identificador único del archivo adjunto"
+            },
+            "filename": {
+              "type": "String",
+              "description": "Nombre del archivo"
+            },
+            "originalName": {
+              "type": "String",
+              "description": "Nombre original del archivo"
+            },
+            "mimeType": {
+              "type": "String",
+              "description": "Tipo MIME del archivo (ej: image/png, application/pdf)"
+            },
+            "size": {
+              "type": "Number",
+              "description": "Tamaño del archivo en bytes"
+            },
+            "uploadedAt": {
+              "type": "Date",
+              "description": "Fecha y hora de subida del archivo"
+            },
+            "uploadedBy": {
+              "type": "ObjectId",
+              "description": "ID del usuario que subió el archivo",
+              "ref": "User"
+            },
+            "url": {
+              "type": "String",
+              "description": "URL del archivo para descargar"
+            }
+          }
+        }
       }
     },
     "indexes": [

@@ -1,5 +1,5 @@
 {
-  "files": [
+  "archivos": [
     {
       "_id": "507f1f77bcf86cd799439030",
       "filename": "proyecto-reuscons-v1.0.pdf",
@@ -7,58 +7,10 @@
       "mimetype": "application/pdf",
       "size": 2048576,
       "userId": "507f1f77bcf86cd799439011",
-      "kanban_id": "507f1f77bcf86cd799439020",
+      "kanbanId": "507f1f77bcf86cd799439020",
+      "taskId": "507f1f77bcf86cd799439012",
       "uploadDate": "2024-01-15T14:30:00Z",
-      "description": "Documento de especificación del proyecto Reuscons 4.0",
-      "tags": ["proyecto", "especificación"]
-    },
-    {
-      "_id": "507f1f77bcf86cd799439031",
-      "filename": "diseño-ui-kanban.png",
-      "originalName": "diseño-ui-kanban.png",
-      "mimetype": "image/png",
-      "size": 1024000,
-      "userId": "507f1f77bcf86cd799439011",
-      "kanban_id": "507f1f77bcf86cd799439020",
-      "uploadDate": "2024-01-14T10:15:00Z",
-      "description": "Diseño visual del panel Kanban",
-      "tags": ["diseño", "interfaz", "ui"]
-    },
-    {
-      "_id": "507f1f77bcf86cd799439032",
-      "filename": "base-datos-schema.json",
-      "originalName": "base-datos-schema.json",
-      "mimetype": "application/json",
-      "size": 5120,
-      "userId": "507f1f77bcf86cd799439011",
-      "kanban_id": null,
-      "uploadDate": "2024-01-13T09:45:00Z",
-      "description": "Esquema de la base de datos MongoDB",
-      "tags": ["base-datos", "mongodb", "schema"]
-    },
-    {
-      "_id": "507f1f77bcf86cd799439033",
-      "filename": "reporte-dashboard-enero.xlsx",
-      "originalName": "reporte-dashboard-enero.xlsx",
-      "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      "size": 256000,
-      "userId": "507f1f77bcf86cd799439012",
-      "kanban_id": "507f1f77bcf86cd799439021",
-      "uploadDate": "2024-01-12T16:20:00Z",
-      "description": "Reporte de métricas del dashboard para enero",
-      "tags": ["reporte", "métricas", "dashboard"]
-    },
-    {
-      "_id": "507f1f77bcf86cd799439034",
-      "filename": "api-documentation.md",
-      "originalName": "api-documentation.md",
-      "mimetype": "text/markdown",
-      "size": 65536,
-      "userId": "507f1f77bcf86cd799439012",
-      "kanban_id": null,
-      "uploadDate": "2024-01-10T11:30:00Z",
-      "description": "Documentación completa de endpoints de la API",
-      "tags": ["documentación", "api", "backend"]
+      "description": "Documento de especificación del proyecto Reuscons 4.0"
     }
   ],
   "schema": {
@@ -106,6 +58,12 @@
         "default": null,
         "ref": "KanbanBoard"
       },
+      "taskId": {
+        "type": "ObjectId",
+        "description": "Referencia a la tarea asociada (opcional)",
+        "default": null,
+        "ref": "Task"
+      },
       "uploadDate": {
         "type": "Date",
         "description": "Fecha y hora de subida del archivo",
@@ -117,15 +75,6 @@
         "description": "Descripción o notas sobre el archivo",
         "default": null,
         "maxlength": 500
-      },
-      "tags": {
-        "type": "Array",
-        "description": "Etiquetas para categorizar y buscar archivos",
-        "default": [],
-        "items": {
-          "type": "String",
-          "maxlength": 30
-        }
       }
     },
     "indexes": [
@@ -138,12 +87,12 @@
         "description": "Índice para consultas rápidas por tablero Kanban"
       },
       {
-        "fields": ["userId", "uploadDate"],
-        "description": "Índice compuesto para obtener archivos de un usuario ordenados por fecha"
+        "field": "taskId",
+        "description": "Índice para consultas rápidas por tarea asociada"
       },
       {
-        "field": "tags",
-        "description": "Índice para búsqueda por etiquetas"
+        "fields": ["userId", "uploadDate"],
+        "description": "Índice compuesto para obtener archivos de un usuario ordenados por fecha"
       }
     ]
   }

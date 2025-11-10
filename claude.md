@@ -18,39 +18,88 @@
 │   │   │   └── Kanban.jsx              # Componente principal del Kanban (estilos inline)
 │   │   ├── FileManager/
 │   │   │   └── FileManager.jsx         # Gestor de archivos (estilos inline)
+│   │   ├── DashboardAdminContent.jsx   # Contenido del dashboard admin
+│   │   ├── Modals/                     # ✨ NUEVO - Modals para operaciones CRUD
+│   │   │   ├── Tareas/
+│   │   │   │   ├── AddTareaModal.jsx   # Crear tareas
+│   │   │   │   └── EditTareaModal.jsx  # Editar/eliminar tareas
+│   │   │   ├── Obras/
+│   │   │   │   └── AddObraModal.jsx    # Crear obras
+│   │   │   ├── Archivos/
+│   │   │   │   └── UploadArchivoModal.jsx # Subir archivos
+│   │   │   ├── Kanbans/
+│   │   │   │   └── AddKanbanModal.jsx  # Crear kanbans
+│   │   │   ├── Kanban/
+│   │   │   │   ├── AsignarKanbanModal.jsx
+│   │   │   │   ├── CrearKanbanModal.jsx
+│   │   │   │   └── ModificarKanbanModal.jsx
+│   │   │   ├── Usuario/
+│   │   │   │   ├── CambiarContrasenaModal.jsx
+│   │   │   │   ├── CrearUsuarioModal.jsx
+│   │   │   │   └── ModificarUsuarioModal.jsx
+│   │   │   ├── Otros/
+│   │   │   │   ├── ConfiguracionGeneralModal.jsx
+│   │   │   │   ├── NotificacionesModal.jsx
+│   │   │   │   └── ReportesModal.jsx
+│   │   │   └── index.js                # Barrel export para Modals
 │   │   ├── UI/
 │   │   │   ├── TaskCard/
 │   │   │   │   └── TaskCard.jsx        # Componente de tarjeta de tarea
 │   │   │   ├── ColumnHeader/
 │   │   │   │   └── ColumnHeader.jsx    # Encabezado de columna
 │   │   │   ├── AddTaskModal/
-│   │   │   │   └── AddTaskModal.jsx    # Modal para agregar tareas
+│   │   │   │   └── AddTaskModal.jsx    # Modal para agregar tareas (legacy)
 │   │   │   ├── TaskEditModal/
-│   │   │   │   └── TaskEditModal.jsx   # Modal para editar/eliminar tareas
+│   │   │   │   └── TaskEditModal.jsx   # Modal para editar/eliminar tareas (legacy)
 │   │   │   └── index.js                # Barrel export para componentes UI
-│   │   └── useTasks.js                 # Hook para gestión de tareas (en raíz de components)
-│   ├── hooks/
-│   │   └── useTasks.js                 # Hook para gestión de tareas con localStorage
+│   ├── hooks/                          # ✨ ACTUALIZADO/NUEVO - Hooks para APIs
+│   │   ├── useTasks.js                 # Hook para tareas (ahora usa API)
+│   │   ├── useObras.js                 # Hook para obras
+│   │   ├── useArchivos.js              # Hook para archivos
+│   │   ├── useKanbans.js               # Hook para kanbans
+│   │   └── index.js                    # Barrel export para Hooks
+│   ├── lib/
+│   │   ├── mongodb.js                  # ✨ NUEVO - Conexión a MongoDB con Mongoose
+│   │   └── schemas/                    # ✨ NUEVO - Schemas de Mongoose
+│   │       ├── kanban.js               # Schema de Kanban
+│   │       ├── tareas.js               # Schema de Tareas
+│   │       ├── archivos.js             # Schema de Archivos
+│   │       ├── obras.js                # Schema de Obras
+│   │       ├── users.js                # Schema de Usuarios
+│   │       └── index.js                # Barrel export
 │   ├── schemas/
 │   │   └── schemas.js                  # Esquemas de validación con Zod
+│   ├── data/                           # ✨ NUEVO - Archivos JSON para seed
+│   │   ├── kanban.json
+│   │   ├── tasks.json
+│   │   ├── archivos.json
+│   │   ├── obras.json
+│   │   └── users.json
 │   ├── styles/
 │   │   └── global.css                  # Variables CSS globales y reset
-│   └── pages/
-│       ├── index.astro                 # Redirige a /Login
-│       ├── Login/
-│       │   └── index.astro             # Página de login (autenticación cliente)
-│       ├── Dashboard/
-│       │   └── index.astro             # Dashboard para usuarios regulares
-│       ├── DashboardAdmin/
-│       │   └── index.astro             # Dashboard para administradores
-│       ├── Kanban/
-│       │   └── index.astro             # Página del Kanban
-│       └── Archivos/
-│           └── index.astro             # Página del gestor de archivos
+│   ├── pages/
+│   │   ├── api/                        # ✨ ACTUALIZADO - Endpoints REST con MongoDB
+│   │   │   ├── tareas/                 # 7 endpoints (GET, POST, [id], search, stats)
+│   │   │   ├── archivos/               # 8 endpoints (GET, POST, [id], search, task, kanban, user)
+│   │   │   ├── obras/                  # 5 endpoints (GET, POST, [id], search, status, user)
+│   │   │   └── kanbans/                # 4 endpoints (GET, POST, [id], [id]/columns)
+│   │   ├── index.astro                 # Redirige a /Login
+│   │   ├── Login/
+│   │   │   └── index.astro             # Página de login (autenticación cliente)
+│   │   ├── Dashboard/
+│   │   │   └── index.astro             # Dashboard para usuarios regulares
+│   │   ├── DashboardAdmin/
+│   │   │   └── index.astro             # Dashboard para administradores
+│   │   ├── Kanban/
+│   │   │   └── index.astro             # Página del Kanban
+│   │   └── Archivos/
+│   │       └── index.astro             # Página del gestor de archivos
+├── seed.js                             # ✨ NUEVO - Script para importar datos a MongoDB
 ├── astro.config.mjs
 ├── package.json
 ├── tsconfig.json
 ├── CLAUDE.md                           # Este archivo
+├── HOOKS_REFERENCE.md                  # ✨ NUEVO - Documentación de hooks
 └── README.md
 ```
 
@@ -61,6 +110,7 @@
 - **@astrojs/react**: ^4.4.2
 - **@atlaskit/pragmatic-drag-and-drop**: ^1.7.7 (drag & drop avanzado)
 - **zod**: ^3.25.76 (validación de esquemas)
+- **mongoose**: ^8.0.0 (ODM para MongoDB)
 
 ## 🚀 Comandos Disponibles
 ```bash
@@ -68,6 +118,7 @@ npm run dev      # Inicia servidor de desarrollo en localhost:4321
 npm run build    # Build para producción en ./dist/
 npm run preview  # Vista previa del build
 npm run astro    # Acceso a comandos CLI de Astro
+npm run seed     # Importa datos de JSON a MongoDB
 ```
 
 ## 🎯 Componentes Principales
@@ -161,11 +212,29 @@ Ubicación: `src/components/UI/`
 - Interfaz completamente en español
 - Drag and drop implementado con API nativa HTML5 (dataTransfer)
 
-## 🔗 Hooks Personalizados
+## 🔗 Hooks Personalizados - APIs MongoDB
 - **useTasks**: Hook para gestionar tareas del Kanban
   - Ubicación: `src/hooks/useTasks.js`
-  - Funcionalidades: agregar, eliminar, actualizar, mover y reordenar tareas
-  - Sincroniza con localStorage automáticamente
+  - Funcionalidades: agregar, eliminar, actualizar, mover, reordenar tareas
+  - Llamadas a `/api/tareas` - Sincroniza con MongoDB
+  - Estados: loading, error, refresh automático
+
+- **useObras**: Hook para gestionar obras
+  - Ubicación: `src/hooks/useObras.js`
+  - CRUD completo + búsqueda por usuario/status
+  - Llamadas a `/api/obras`
+
+- **useArchivos**: Hook para gestionar archivos
+  - Ubicación: `src/hooks/useArchivos.js`
+  - CRUD + búsqueda + filtrado por tarea/kanban/usuario
+  - Soporte para upload con FormData
+
+- **useKanbans**: Hook para gestionar kanbans
+  - Ubicación: `src/hooks/useKanbans.js`
+  - CRUD de kanbans + gestión de columnas (add, update, delete)
+  - Llamadas a `/api/kanbans` y `/api/kanbans/[id]/columns`
+
+Documentación completa en [HOOKS_REFERENCE.md](HOOKS_REFERENCE.md)
 
 ## 📋 Esquemas de Validación
 - **TaskSchema**: Valida tareas individuales (id + title)
@@ -260,14 +329,192 @@ Cada endpoint sigue este patrón:
 - `404`: Not Found - Recurso no existe
 - `500`: Internal Server Error - Error del servidor
 
+### Endpoints de Usuarios Implementados
+
+#### 1. **GET /api/usuarios** - Listar usuarios
+- Paginación: parámetros `page` y `limit`
+- Filtrado por rol: parámetro `role`
+- Respuesta con metadatos de paginación
+- Ubicación: `src/pages/api/usuarios/index.js`
+
+#### 2. **POST /api/usuarios** - Crear usuario
+- Validación de campos: username, email, password, firstName, lastName
+- Campos opcionales: role, company, location, website, telefono
+- Verificación de duplicados (username, email)
+- Retorna usuario creado (sin password)
+- Ubicación: `src/pages/api/usuarios/index.js`
+
+#### 3. **GET /api/usuarios/[id]** - Obtener usuario por ID
+- Retorna datos completos del usuario
+- Elimina campo password de la respuesta
+- Ubicación: `src/pages/api/usuarios/[id].js`
+
+#### 4. **PUT /api/usuarios/[id]** - Actualizar usuario
+- Actualización parcial (campos opcionales)
+- Validación de duplicados al cambiar username/email
+- Mantiene valores existentes si no se proporcionan nuevos
+- Ubicación: `src/pages/api/usuarios/[id].js`
+
+#### 5. **DELETE /api/usuarios/[id]** - Eliminar usuario
+- Elimina usuario del sistema
+- Retorna datos del usuario eliminado
+- Ubicación: `src/pages/api/usuarios/[id].js`
+
+#### 6. **PUT /api/usuarios/[id]/password** - Cambiar contraseña
+- Validación de contraseña actual
+- Validación de nueva contraseña (mínimo 6 caracteres)
+- Confirmación de contraseña
+- Retorna 401 si contraseña actual es incorrecta
+- Ubicación: `src/pages/api/usuarios/[id]/password.js`
+
+#### 7. **GET /api/usuarios/search** - Buscar usuarios
+- Búsqueda por parámetro `q` (query)
+- Búsqueda por tipo: `username`, `email`, `name` o todos los campos
+- Búsqueda insensible a mayúsculas
+- Retorna total de resultados encontrados
+- Ubicación: `src/pages/api/usuarios/search.js`
+
+#### 8. **GET /api/usuarios/stats** - Estadísticas de usuarios
+- Total de usuarios por rol (admin, moderator, user)
+- Usuarios nuevos este mes
+- Usuario con último acceso más reciente
+- Desglose por rol
+- Ubicación: `src/pages/api/usuarios/stats.js`
+
+### Estructura de Carpetas - API Usuarios
+
+```
+src/pages/api/usuarios/
+├── index.js                 # GET (listar) y POST (crear)
+├── [id].js                  # GET, PUT, DELETE usuario por ID
+├── [id]/
+│   └── password.js          # PUT cambiar contraseña
+├── search.js                # GET buscar usuarios
+└── stats.js                 # GET estadísticas
+```
+
+### Patrones Utilizados
+
+**Validación con Zod:**
+- Todos los endpoints validan entrada con esquemas Zod
+- Mensajes de error descriptivos
+- Validación de tipos y restricciones
+
+**Seguridad:**
+- Eliminación automática del campo `password` en respuestas
+- Verificación de duplicados (username, email)
+- Validación de credenciales en cambio de contraseña
+- Manejo de errores con status HTTP apropriados
+
+**Formato de Respuesta:**
+```json
+{
+  "success": true/false,
+  "message": "Descripción",
+  "data": {},
+  "error": "Nombre del error (si aplica)",
+  "details": [] // Errores de validación (si aplica)
+}
+```
+
+**Mock Data:**
+- Datos de prueba duplicados en cada endpoint
+- En producción, reemplazar con llamadas a MongoDB via Mongoose
+- IDs generados con `Date.now().toString()`
+
+## 📅 Cambios Recientes - Sesión Actual
+
+### ✨ Integración con MongoDB y Mongoose
+- **Conexión a MongoDB**: Creado `src/lib/mongodb.js` con soporte para caching de conexión
+- **Schemas de Mongoose**: 5 schemas separados en `src/lib/schemas/` (Kanban, Tareas, Archivos, Obras, Users)
+- **Script Seed**: Creado `seed.js` para importar datos JSON a MongoDB automáticamente
+- **Base de datos**: `reuscons` en MongoDB local
+
+### ✨ API Endpoints - Refactorización a MongoDB
+Todos los endpoints actualizados para usar Mongoose en lugar de mock data:
+- **Tareas**: 7 endpoints (GET list, POST create, GET by ID, PUT, DELETE, GET search, GET stats)
+- **Archivos**: 8 endpoints (GET list, POST upload, GET by ID, PUT, DELETE, GET search, GET by task, GET by kanban, GET by user)
+- **Obras**: 5 endpoints (GET list, POST create, GET by ID, PUT, DELETE, GET search, GET by status, GET by user)
+- **Kanbans**: 4 endpoints (GET list, POST create, GET by ID, PUT, DELETE, GET columns, POST/PUT/DELETE column)
+
+Características comunes:
+- Validación con Zod en todos los endpoints
+- Validación de ObjectIds para Mongoose
+- Manejo robusto de errores
+- Respuestas estandarizadas con metadatos
+- Paginación en endpoints de listado
+
+### ✨ Modals - Interfaz de usuario funcional
+Creados 5 modals principales en `src/components/Modals/`:
+1. **AddTareaModal**: Crear tareas con validación de caracteres
+2. **EditTareaModal**: Editar y eliminar tareas existentes
+3. **AddObraModal**: Crear obras con gestión de equipo y admin
+4. **UploadArchivoModal**: Subir archivos con drag & drop
+5. **AddKanbanModal**: Crear kanbans con editor de columnas visual
+
+Características:
+- Llamadas reales a los endpoints de API
+- Validación de datos en el cliente
+- Manejo de errores con mensajes claros
+- Estados de carga durante operaciones
+- UI responsivo y accesible
+
+### ✨ Hooks personalizados - Gestión de datos
+Creados 4 hooks en `src/hooks/`:
+1. **useTasks**: Gestión de tareas (crear, leer, actualizar, eliminar, filtrar por columna/prioridad)
+2. **useObras**: Gestión de obras (CRUD + búsqueda por usuario/status)
+3. **useArchivos**: Gestión de archivos (CRUD + búsqueda + filtrado)
+4. **useKanbans**: Gestión de kanbans (CRUD + gestión de columnas)
+
+Características:
+- Conexión automática a APIs
+- Estados de carga y error
+- Funciones useCallback para optimización
+- Métodos de filtrado y búsqueda
+- Sincronización en tiempo real con MongoDB
+
+### 📊 Estado del Proyecto - POST MongoDB Integration
+- **MongoDB**: ✅ Conectado y funcional
+- **Mongoose Schemas**: ✅ 5 schemas completos
+- **Seed Script**: ✅ Importa datos correctamente
+- **API Endpoints**: ✅ 24 endpoints funcionales con MongoDB
+- **Modals**: ✅ 5 modals con integración de API
+- **Hooks**: ✅ 4 hooks para gestión de datos
+- **Documentación**: ✅ HOOKS_REFERENCE.md creado
+
+### 🚀 Instrucciones de Inicialización
+```bash
+# 1. Instalar dependencias
+npm install
+
+# 2. Asegurar que MongoDB está corriendo en localhost:27017
+# En Windows: mongod
+
+# 3. Importar datos a la BD 'reuscons'
+npm run seed
+
+# 4. Iniciar el servidor de desarrollo
+npm run dev
+
+# 5. Navegar a http://localhost:4321
+```
+
+### 💾 Datos Disponibles en MongoDB
+- **Kanbans**: 1 kanban de prueba con 3 columnas
+- **Tareas**: 1 tarea de prueba
+- **Archivos**: 1 archivo de prueba
+- **Obras**: 1 obra de prueba
+- **Usuarios**: 5 usuarios de prueba
+
 ## 🎯 Próximas Mejoras Potenciales
 - Autenticación con JWT/OAuth
-- Persistencia real de datos en MongoDB
-- Validación avanzada con Zod en endpoints
+- Rate limiting en API endpoints
+- Logging y monitoreo
+- Validación avanzada con Zod
 - Límites de tamaño en archivos
 - Edición colaborativa en tiempo real
 - Temas oscuro/claro
 - Exportación de tareas (PDF, CSV)
 - Sistema de notificaciones
-- Rate limiting en API endpoints
-- Logging y monitoreo
+- Caché de resultados
+- Índices de base de datos optimizados
