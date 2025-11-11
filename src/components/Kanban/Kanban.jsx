@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { TaskCard, ColumnHeader, AddTaskModal, TaskEditModal } from '../UI';
-import { useTasks } from '../../hooks/useTasks';
+import { TaskCard, ColumnHeader } from '../UI';
 
 const styles = `
   .kanban-container {
@@ -542,8 +541,7 @@ export default function Kanban() {
     ],
   };
 
-  const { tasks, addTask, deleteTask, updateTask, moveTask, reorderTask } = useTasks(initialTasks);
-
+  const [tasks, setTasks] = useState(initialTasks);
   const [draggedTask, setDraggedTask] = useState(null);
   const [dropIndicator, setDropIndicator] = useState(null);
   const [showAddModal, setShowAddModal] = useState(false);

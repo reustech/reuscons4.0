@@ -1,0 +1,67 @@
+{
+  "columns": [
+    {
+      "key": "todo",
+      "title": "Por Hacer",
+      "color": "#E8F4F8",
+      "order": 1,
+      "kanbanId": "507f1f77bcf86cd799439020"
+    },
+    {
+      "key": "in-progress",
+      "title": "En Progreso",
+      "color": "#FFF4E6",
+      "order": 2,
+      "kanbanId": "507f1f77bcf86cd799439020"
+    },
+    {
+      "key": "done",
+      "title": "Hecho",
+      "color": "#E8F8F0",
+      "order": 3,
+      "kanbanId": "507f1f77bcf86cd799439020"
+    },
+    {
+      "key": "iPropietari",
+      "title": "Propietario",
+      "color": "#FFE8E8",
+      "order": 1,
+      "kanbanId": "507f1f77bcf86cd799439021"
+    },
+    {
+      "key": "iConstructora",
+      "title": "Constructora",
+      "color": "#E8F0FF",
+      "order": 2,
+      "kanbanId": "507f1f77bcf86cd799439021"
+    },
+    {
+      "key": "iElectricista",
+      "title": "Electricista",
+      "color": "#FFF8E8",
+      "order": 3,
+      "kanbanId": "507f1f77bcf86cd799439021"
+    },
+    {
+      "key": "iLampista",
+      "title": "Lampista",
+      "color": "#E8FFE8",
+      "order": 4,
+      "kanbanId": "507f1f77bcf86cd799439021"
+    },
+    {
+      "key": "Fuster",
+      "title": "Carpintero",
+      "color": "#F0E8FF",
+      "order": 5,
+      "kanbanId": "507f1f77bcf86cd799439021"
+    },
+    {
+      "key": "Finestres",
+      "title": "Cristalero",
+      "color": "#FFE8F8",
+      "order": 6,
+      "kanbanId": "507f1f77bcf86cd799439021"
+    }
+  ]
+}

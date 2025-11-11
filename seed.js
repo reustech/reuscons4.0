@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { Kanban, Tareas, Archivos, Obras, Users } from './src/lib/schemas/index.js';
+import { Kanban, Columns, Tareas, Files, Worksites, Users } from './src/lib/schemas/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,22 +24,28 @@ const COLLECTIONS = [
 		dataKey: 'users'
 	},
 	{
-		name: 'tareas',
+		name: 'columns',
+		model: Columns,
+		file: 'src/data/columns.json',
+		dataKey: 'columns'
+	},
+	{
+		name: 'tasks',
 		model: Tareas,
 		file: 'src/data/tasks.json',
 		dataKey: 'tasks'
 	},
 	{
-		name: 'archivos',
-		model: Archivos,
-		file: 'src/data/archivos.json',
-		dataKey: 'archivos'
+		name: 'files',
+		model: Files,
+		file: 'src/data/files.json',
+		dataKey: 'files'
 	},
 	{
-		name: 'obras',
-		model: Obras,
-		file: 'src/data/obras.json',
-		dataKey: 'obras'
+		name: 'worksites',
+		model: Worksites,
+		file: 'src/data/worksites.json',
+		dataKey: 'worksites'
 	}
 ];
 
