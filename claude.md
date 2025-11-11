@@ -506,8 +506,29 @@ npm run dev
 - **Obras**: 1 obra de prueba
 - **Usuarios**: 5 usuarios de prueba
 
+## 🔐 Autenticación - Middleware y Login
+
+### Middleware de Autenticación (src/middleware/auth.ts)
+- Valida roles de usuario en rutas protegidas
+- Rutas protegidas: `/DashboardAdmin` (admin), `/Dashboard` (user), `/Kanban` y `/Archivos` (ambos)
+- Redirige a `/Login` si falta autenticación o rol incorrecto
+- Usa cookies HTTP-only para mantener sesión
+
+### Login Page (src/pages/Login/index.astro)
+**Credenciales de Prueba:**
+- Admin: `admin` / `admin` → Redirige a `/DashboardAdmin`
+- Usuario: `user` / `user` → Redirige a `/Dashboard`
+- Otras combinaciones → Muestra error
+
+**Características:**
+- Validación de credentials en servidor (POST form)
+- Cookies HTTP-only con 24 horas de expiracion
+- Mensajes de error personalizados
+- Interfaz responsive y diseño atractivo
+- Test credentials mostrados en login para referencia
+
 ## 🎯 Próximas Mejoras Potenciales
-- Autenticación con JWT/OAuth
+- Autenticación con JWT/OAuth (reemplazar cookies simples)
 - Rate limiting en API endpoints
 - Logging y monitoreo
 - Validación avanzada con Zod
@@ -518,3 +539,4 @@ npm run dev
 - Sistema de notificaciones
 - Caché de resultados
 - Índices de base de datos optimizados
+- Integración con base de datos de usuarios (MongoDB)
