@@ -1,6 +1,6 @@
-import BigText from './BigText.jsx';
-import SmallText from './SmallText.jsx';
-import Paragraph from './Paragraph.jsx';
+import BigText from '../../UI/BigText/BigText.jsx';
+import SmallText from '../../UI/SmallText/SmallText.jsx';
+import Paragraph from '../../UI/Paragraph/Paragraph.jsx';
 
 export default function LoginLeftPanel() {
 	return (

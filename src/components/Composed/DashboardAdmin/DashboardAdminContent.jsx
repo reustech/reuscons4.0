@@ -6,7 +6,7 @@ import {
   CreateColumnModal, EditColumnModal, DeleteColumnModal,
   CreateFileModal, EditFileModal, DeleteFileModal,
   CreateTaskModal, EditTaskModal, DeleteTaskModal
-} from '../Modals';
+} from '../../Modals';
 
 export default function DashboardAdminContent() {
   const [modals, setModals] = useState({
@@ -154,30 +154,10 @@ export default function DashboardAdminContent() {
 
   const styles = `
     .admin-container {
-      background: var(--gradient-primary);
-      min-height: 100vh;
       padding: 2rem;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    }
-
-    .admin-header {
-      max-width: 1400px;
-      margin: 0 auto;
-      margin-bottom: 3rem;
-    }
-
-    .admin-header h1 {
-      color: white;
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .admin-header p {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 1rem;
-      margin: 0;
+      background: #f9fafb;
+      height: 100%;
     }
 
     .actions-grid {
@@ -302,11 +282,6 @@ export default function DashboardAdminContent() {
     <>
       <style>{styles}</style>
       <div className="admin-container">
-        <div className="admin-header">
-          <h1>Panel de Administración</h1>
-          <p>Gestiona usuarios, obras, kanbans, columnas, archivos y tareas</p>
-        </div>
-
         <div className="actions-grid">
           {/* Usuario */}
           <div className="action-card">

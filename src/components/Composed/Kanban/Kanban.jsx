@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { TaskCard, ColumnHeader } from '../UI';
+import TaskCard from '../../UI/TaskCard/TaskCard.jsx';
+import ColumnHeader from '../../UI/ColumnHeader/ColumnHeader.jsx';
 
 const styles = `
   .kanban-container {

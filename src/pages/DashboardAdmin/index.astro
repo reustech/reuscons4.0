@@ -1,8 +1,271 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import DashboardAdminContent from '../../components/DashboardAdmin/DashboardAdminContent.jsx';
+import { DashboardAdminContent } from '../../components/Composed/DashboardAdmin/index.js';
 ---
 
 <Layout title="Dashboard Admin">
-	<DashboardAdminContent client:load />
+	<style>
+		body {
+			background: #000;
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0;
+			margin: 0;
+			overflow: hidden;
+		}
+
+		.dashboard-wrapper {
+			display: flex;
+			width: 100%;
+			height: 100vh;
+			max-height: 100vh;
+			overflow: hidden;
+		}
+
+		.dashboard-left {
+			flex: 0 0 35%;
+			background: linear-gradient(135deg, #1a0033 0%, #2d0052 25%, #3d0066 50%, #2d0052 75%, #1a0033 100%);
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 3rem;
+			overflow: hidden;
+		}
+
+		.dashboard-left::before {
+			content: '';
+			position: absolute;
+			top: -50%;
+			right: -50%;
+			width: 200%;
+			height: 200%;
+			background:
+				radial-gradient(circle at 20% 50%, rgba(255, 0, 150, 0.4) 0%, transparent 50%),
+				radial-gradient(circle at 80% 80%, rgba(0, 100, 255, 0.3) 0%, transparent 50%);
+			animation: float 20s ease-in-out infinite;
+		}
+
+		@keyframes float {
+			0%, 100% {
+				transform: translate(0, 0);
+			}
+			25% {
+				transform: translate(-20px, -20px);
+			}
+			50% {
+				transform: translate(20px, 20px);
+			}
+			75% {
+				transform: translate(-10px, 10px);
+			}
+		}
+
+		.dashboard-left-content {
+			position: relative;
+			z-index: 1;
+			color: white;
+			text-align: center;
+			max-width: 350px;
+		}
+
+		.dashboard-left-content h2 {
+			font-size: 0.9rem;
+			letter-spacing: 3px;
+			text-transform: uppercase;
+			color: rgba(255, 255, 255, 0.6);
+			margin-bottom: 2rem;
+			font-weight: 400;
+		}
+
+		.dashboard-left-content h1 {
+			font-size: 3rem;
+			line-height: 1.2;
+			font-weight: 700;
+			margin-bottom: 2rem;
+			letter-spacing: -1px;
+		}
+
+		.dashboard-left-content p {
+			font-size: 0.95rem;
+			line-height: 1.6;
+			opacity: 0.9;
+			margin: 0;
+			font-weight: 300;
+		}
+
+		.dashboard-left-footer {
+			position: absolute;
+			bottom: 2rem;
+			left: 0;
+			right: 0;
+			text-align: center;
+			font-size: 0.85rem;
+			color: rgba(255, 255, 255, 0.7);
+		}
+
+		.dashboard-left-footer a {
+			color: rgba(255, 0, 150, 0.8);
+			text-decoration: none;
+			transition: color 0.3s ease;
+			font-weight: 600;
+		}
+
+		.dashboard-left-footer a:hover {
+			color: rgba(255, 0, 150, 1);
+		}
+
+		.dashboard-right {
+			flex: 1;
+			background: white;
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
+		}
+
+		.dashboard-header {
+			background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+			color: white;
+			padding: 2rem 3rem;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.dashboard-header-title h1 {
+			margin: 0;
+			font-size: 2rem;
+			font-weight: 700;
+		}
+
+		.dashboard-header-title p {
+			margin: 0.25rem 0 0 0;
+			font-size: 0.95rem;
+			color: rgba(255, 255, 255, 0.8);
+		}
+
+		.logout-button {
+			background: rgba(255, 255, 255, 0.1);
+			color: white;
+			border: 1px solid rgba(255, 255, 255, 0.3);
+			padding: 0.75rem 1.5rem;
+			border-radius: 8px;
+			font-size: 0.9rem;
+			font-weight: 600;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+
+		.logout-button:hover {
+			background: rgba(255, 255, 255, 0.2);
+			border-color: rgba(255, 255, 255, 0.5);
+		}
+
+		.dashboard-content {
+			flex: 1;
+			overflow-y: auto;
+			background: #f9fafb;
+		}
+
+		@media (max-width: 1024px) {
+			.dashboard-wrapper {
+				flex-direction: column;
+				height: auto;
+			}
+
+			.dashboard-left {
+				flex: 0 0 auto;
+				min-height: 300px;
+				padding: 2rem;
+			}
+
+			.dashboard-left-content h1 {
+				font-size: 2.5rem;
+			}
+
+			.dashboard-right {
+				flex: 1;
+			}
+
+			.dashboard-header {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 1rem;
+			}
+
+			.dashboard-header-title h1 {
+				font-size: 1.75rem;
+			}
+		}
+
+		@media (max-width: 640px) {
+			.dashboard-wrapper {
+				flex-direction: column;
+				height: auto;
+			}
+
+			.dashboard-left {
+				min-height: 250px;
+				padding: 1.5rem 1rem;
+			}
+
+			.dashboard-left-content h1 {
+				font-size: 1.75rem;
+			}
+
+			.dashboard-left-content h2 {
+				font-size: 0.75rem;
+			}
+
+			.dashboard-right {
+				min-height: auto;
+			}
+
+			.dashboard-header {
+				padding: 1.5rem;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+			}
+
+			.dashboard-header-title h1 {
+				font-size: 1.5rem;
+			}
+
+			.logout-button {
+				width: 100%;
+			}
+		}
+	</style>
+
+	<div class="dashboard-wrapper">
+		<div class="dashboard-left">
+			<div class="dashboard-left-content">
+				<h2>Bienvenido</h2>
+				<h1>Panel Admin</h1>
+				<p>Gestiona todos los aspectos de tu plataforma desde aquí</p>
+			</div>
+			<div class="dashboard-left-footer">
+				<p><a href="/Kanban">Ver Kanban</a> • <a href="/Archivos">Ver Archivos</a></p>
+			</div>
+		</div>
+
+		<div class="dashboard-right">
+			<div class="dashboard-header">
+				<div class="dashboard-header-title">
+					<h1>Administración del Sistema</h1>
+					<p>Gestiona usuarios, obras, kanbans, columnas, archivos y tareas</p>
+				</div>
+				<button class="logout-button" onclick="window.location.href='/Login'">
+					Cerrar Sesión
+				</button>
+			</div>
+			<div class="dashboard-content">
+				<DashboardAdminContent client:load />
+			</div>
+		</div>
+	</div>
 </Layout>

@@ -1,5 +1,5 @@
-import Label from './Label.jsx';
-import Input from './Input.jsx';
+import Label from '../Label/Label.jsx';
+import Input from '../Input/Input.jsx';
 
 export default function FormGroup({ label, id, name, type = 'text', placeholder, required = false }) {
 	const styles = {

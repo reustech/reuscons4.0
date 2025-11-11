@@ -1,6 +1,6 @@
-import FormGroup from './FormGroup.jsx';
-import Button from './Button.jsx';
-import ErrorMessage from './ErrorMessage.jsx';
+import FormGroup from '../../UI/FormGroup/FormGroup.jsx';
+import Button from '../../UI/Button/Button.jsx';
+import ErrorMessage from '../../UI/ErrorMessage/ErrorMessage.jsx';
 import TestCredentials from './TestCredentials.jsx';
 
 export default function LoginForm({ errorMessage }) {

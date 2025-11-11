@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { Label, Input, Button, ErrorMessage, Select } from '../../Login/index.js';
+import Label from '../../UI/Label/Label.jsx';
+import Input from '../../UI/Input/Input.jsx';
+import Select from '../../UI/Select/Select.jsx';
+import Button from '../../UI/Button/Button.jsx';
+import ErrorMessage from '../../UI/ErrorMessage/ErrorMessage.jsx';
 
 const styles = {
 	modalOverlay: {
