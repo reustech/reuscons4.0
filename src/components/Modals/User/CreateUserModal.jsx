@@ -1,156 +1,86 @@
 import React, { useState } from 'react';
+import { Label, Input, Button, ErrorMessage, Select } from '../../Login/index.js';
 
-const styles = `
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  }
+const styles = {
+	modalOverlay: {
+		position: 'fixed',
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
+		background: 'rgba(0, 0, 0, 0.5)',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		zIndex: 1000,
+		fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+	},
+	modalContainer: {
+		background: 'white',
+		borderRadius: '16px',
+		boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+		maxWidth: '500px',
+		width: '90%',
+		maxHeight: '90vh',
+		overflowY: 'auto',
+		animation: 'slideIn 0.3s ease-out',
+	},
+	modalHeader: {
+		background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+		color: 'white',
+		padding: '2rem',
+		borderBottom: '1px solid #e5e7eb',
+	},
+	modalHeaderH2: {
+		margin: 0,
+		fontSize: '1.5rem',
+		fontWeight: '700',
+	},
+	modalBody: {
+		padding: '2rem',
+	},
+	modalFooter: {
+		display: 'flex',
+		gap: '1rem',
+		padding: '1.5rem 2rem',
+		borderTop: '1px solid #e5e7eb',
+		background: '#f8f9fa',
+	},
+	btn: {
+		flex: 1,
+		padding: '0.75rem 1rem',
+		border: 'none',
+		borderRadius: '8px',
+		fontSize: '0.95rem',
+		fontWeight: '600',
+		cursor: 'pointer',
+		transition: 'all 0.3s ease',
+	},
+	btnPrimary: {
+		background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+		color: 'white',
+		boxShadow: '0 4px 15px rgba(102, 126, 234, 0.3)',
+	},
+	btnSecondary: {
+		background: '#e5e7eb',
+		color: '#1f2937',
+	},
+};
 
-  .modal-container {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    max-width: 500px;
-    width: 90%;
-    max-height: 90vh;
-    overflow-y: auto;
-    animation: slideIn 0.3s ease-out;
-  }
-
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateY(-50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .modal-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 2rem;
-    border-bottom: 1px solid #e5e7eb;
-  }
-
-  .modal-header h2 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 700;
-  }
-
-  .modal-body {
-    padding: 2rem;
-  }
-
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-
-  .form-group label {
-    display: block;
-    font-weight: 600;
-    color: #1f2937;
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-  }
-
-  .form-group input,
-  .form-group select {
-    width: 100%;
-    padding: 0.75rem;
-    border: 2px solid #e5e7eb;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-family: inherit;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-  }
-
-  .form-group input:focus,
-  .form-group select:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-  }
-
-  .modal-footer {
-    display: flex;
-    gap: 1rem;
-    padding: 1.5rem 2rem;
-    border-top: 1px solid #e5e7eb;
-    background: #f8f9fa;
-  }
-
-  .btn {
-    flex: 1;
-    padding: 0.75rem 1rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-  }
-
-  .btn-secondary {
-    background: #e5e7eb;
-    color: #1f2937;
-  }
-
-  .btn-secondary:hover {
-    background: #d1d5db;
-  }
-
-  .btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
-  .error-message {
-    background-color: #fee2e2;
-    color: #991b1b;
-    padding: 0.75rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-  }
-
-  .close-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: white;
-  }
+const keyframes = `
+	@keyframes slideIn {
+		from {
+			opacity: 0;
+			transform: translateY(-50px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
 `;
 
-export default function CrearUsuarioModal({ isOpen, onClose, onSubmit }) {
+export default function CreateUserModal({ isOpen, onClose, onSubmit }) {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -186,7 +116,6 @@ export default function CrearUsuarioModal({ isOpen, onClose, onSubmit }) {
         throw new Error(result.message || 'Error al crear usuario');
       }
 
-      // Llamar al onSubmit original si existe
       if (onSubmit) {
         onSubmit(result.data);
       }
@@ -210,50 +139,48 @@ export default function CrearUsuarioModal({ isOpen, onClose, onSubmit }) {
 
   return (
     <>
-      <style>{styles}</style>
-      <div className="modal-overlay" onClick={onClose}>
-        <div className="modal-container" onClick={(e) => e.stopPropagation()}>
-          <div className="modal-header">
-            <h2>Crear Nuevo Usuario</h2>
+      <style>{keyframes}</style>
+      <div style={styles.modalOverlay} onClick={onClose}>
+        <div style={styles.modalContainer} onClick={(e) => e.stopPropagation()}>
+          <div style={styles.modalHeader}>
+            <h2 style={styles.modalHeaderH2}>Crear Nuevo Usuario</h2>
           </div>
 
           <form onSubmit={handleSubmit}>
-            <div className="modal-body">
-              {error && <div className="error-message">{error}</div>}
+            <div style={styles.modalBody}>
+              {error && <ErrorMessage message={error} />}
 
-              <div className="form-group">
-                <label htmlFor="username">Usuario *</label>
-                <input
-                  type="text"
+              <div style={{ marginBottom: '1.5rem' }}>
+                <Label htmlFor="username">Usuario *</Label>
+                <Input
                   id="username"
                   name="username"
+                  type="text"
+                  placeholder="usuario123"
                   value={formData.username}
                   onChange={handleChange}
-                  placeholder="usuario123"
-                  minLength={3}
-                  maxLength={50}
                   required
                   disabled={loading}
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="email">Email *</label>
-                <input
-                  type="email"
+              <div style={{ marginBottom: '1.5rem' }}>
+                <Label htmlFor="email">Email *</Label>
+                <Input
                   id="email"
                   name="email"
+                  type="email"
+                  placeholder="usuario@ejemplo.com"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="usuario@ejemplo.com"
                   required
                   disabled={loading}
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="role">Rol</label>
-                <select
+              <div style={{ marginBottom: '1.5rem' }}>
+                <Label htmlFor="role">Rol</Label>
+                <Select
                   id="role"
                   name="role"
                   value={formData.role}
@@ -263,23 +190,33 @@ export default function CrearUsuarioModal({ isOpen, onClose, onSubmit }) {
                   <option value="user">Usuario</option>
                   <option value="admin">Administrador</option>
                   <option value="moderator">Moderador</option>
-                </select>
+                </Select>
               </div>
             </div>
 
-            <div className="modal-footer">
+            <div style={styles.modalFooter}>
               <button
                 type="button"
-                className="btn btn-secondary"
+                style={{ ...styles.btn, ...styles.btnSecondary }}
                 onClick={onClose}
                 disabled={loading}
+                onMouseEnter={(e) => e.target.style.background = '#d1d5db'}
+                onMouseLeave={(e) => e.target.style.background = '#e5e7eb'}
               >
                 Cancelar
               </button>
               <button
                 type="submit"
-                className="btn btn-primary"
+                style={{ ...styles.btn, ...styles.btnPrimary }}
                 disabled={loading}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'translateY(-2px)';
+                  e.target.style.boxShadow = '0 6px 20px rgba(102, 126, 234, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 4px 15px rgba(102, 126, 234, 0.3)';
+                }}
               >
                 {loading ? 'Creando...' : 'Crear Usuario'}
               </button>

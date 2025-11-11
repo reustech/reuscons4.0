@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import LoginForm from '../../components/Login/LoginForm.jsx';
+import LoginLeftPanel from '../../components/Login/LoginLeftPanel.jsx';
 
 // Handle form submission on server side
 let errorMessage = '';
@@ -43,55 +45,127 @@ if (Astro.request.method === 'POST') {
 <Layout title="Login">
 	<style>
 		body {
-			background: var(--gradient-primary);
+			background: #000;
 			min-height: 100vh;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			padding: 2rem;
-		}
-
-		.login-container {
-			background: white;
-			border-radius: 16px;
-			box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-			max-width: 450px;
-			width: 100%;
+			padding: 0;
+			margin: 0;
 			overflow: hidden;
-			animation: slideIn 0.5s ease-out;
 		}
 
-		@keyframes slideIn {
-			from {
-				opacity: 0;
-				transform: translateY(30px);
+		.login-wrapper {
+			display: flex;
+			width: 100%;
+			height: 100vh;
+			max-height: 100vh;
+			overflow: hidden;
+		}
+
+		.login-left {
+			flex: 1;
+			background: linear-gradient(135deg, #1a0033 0%, #2d0052 25%, #3d0066 50%, #2d0052 75%, #1a0033 100%);
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 3rem;
+			overflow: hidden;
+		}
+
+		.login-left::before {
+			content: '';
+			position: absolute;
+			top: -50%;
+			right: -50%;
+			width: 200%;
+			height: 200%;
+			background:
+				radial-gradient(circle at 20% 50%, rgba(255, 0, 150, 0.4) 0%, transparent 50%),
+				radial-gradient(circle at 80% 80%, rgba(0, 100, 255, 0.3) 0%, transparent 50%);
+			animation: float 20s ease-in-out infinite;
+		}
+
+		@keyframes float {
+			0%, 100% {
+				transform: translate(0, 0);
 			}
-			to {
-				opacity: 1;
-				transform: translateY(0);
+			25% {
+				transform: translate(-20px, -20px);
+			}
+			50% {
+				transform: translate(20px, 20px);
+			}
+			75% {
+				transform: translate(-10px, 10px);
 			}
 		}
 
-		.login-header {
-			background: var(--gradient-primary);
-			padding: 2rem;
-			text-align: center;
+		.login-left-content {
+			position: relative;
+			z-index: 1;
 			color: white;
+			text-align: center;
+			max-width: 400px;
 		}
 
-		.login-header h1 {
-			font-size: 2rem;
-			margin-bottom: 0.5rem;
-			font-weight: 700;
-		}
-
-		.login-header p {
+		.login-left-content h2 {
 			font-size: 1rem;
-			opacity: 0.9;
+			letter-spacing: 3px;
+			text-transform: uppercase;
+			color: rgba(255, 255, 255, 0.6);
+			margin-bottom: 2rem;
+			font-weight: 400;
 		}
 
-		.login-body {
-			padding: 2rem;
+		.login-left-content h1 {
+			font-size: 4rem;
+			line-height: 1.2;
+			font-weight: 700;
+			margin-bottom: 2rem;
+			letter-spacing: -1px;
+		}
+
+		.login-left-content p {
+			font-size: 1rem;
+			line-height: 1.6;
+			opacity: 0.9;
+			margin: 0;
+			font-weight: 300;
+		}
+
+
+		.login-right {
+			flex: 1;
+			background: white;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 3rem;
+			position: relative;
+		}
+
+
+		.login-right-content {
+			width: 100%;
+			max-width: 380px;
+		}
+
+		.login-right h2 {
+			font-size: 2.5rem;
+			font-weight: 700;
+			color: #1f2937;
+			margin: 0 0 1rem 0;
+			line-height: 1.2;
+		}
+
+		.login-right-subtitle {
+			font-size: 0.95rem;
+			color: #6b7280;
+			margin-bottom: 2rem;
+			line-height: 1.5;
 		}
 
 		.error-message {
@@ -111,26 +185,28 @@ if (Astro.request.method === 'POST') {
 
 		.form-group label {
 			display: block;
-			font-size: 0.95rem;
+			font-size: 0.9rem;
 			font-weight: 600;
 			color: #1f2937;
-			margin-bottom: 0.5rem;
+			margin-bottom: 0.75rem;
 		}
 
 		.form-group input {
 			width: 100%;
-			padding: 0.75rem 1rem;
+			padding: 0.875rem 1rem;
 			border: 2px solid #e5e7eb;
 			border-radius: 8px;
-			font-size: 1rem;
+			font-size: 0.95rem;
 			font-family: inherit;
 			transition: all 0.3s ease;
 			box-sizing: border-box;
+			background: #f9fafb;
 		}
 
 		.form-group input:focus {
 			outline: none;
 			border-color: #667eea;
+			background: white;
 			box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 		}
 
@@ -138,100 +214,175 @@ if (Astro.request.method === 'POST') {
 			color: #9ca3af;
 		}
 
+		.form-options {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 2rem;
+			font-size: 0.9rem;
+		}
+
+		.form-options label {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			cursor: pointer;
+			color: #1f2937;
+		}
+
+		.form-options a {
+			color: #667eea;
+			text-decoration: none;
+			transition: color 0.3s ease;
+		}
+
+		.form-options a:hover {
+			color: #5568d3;
+		}
+
 		.btn-login {
 			width: 100%;
-			padding: 0.75rem 1rem;
-			background: var(--gradient-primary);
+			padding: 0.875rem 1rem;
+			background: #1f2937;
 			color: white;
 			border: none;
-			border-radius: var(--radius-md);
-			font-size: 1rem;
+			border-radius: 8px;
+			font-size: 0.95rem;
 			font-weight: 600;
 			cursor: pointer;
-			transition: var(--transition-normal);
-			box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+			transition: all 0.3s ease;
+			margin-bottom: 1rem;
 		}
 
 		.btn-login:hover {
-			transform: translateY(-2px);
-			box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+			background: #111827;
+			transform: translateY(-1px);
 		}
 
 		.btn-login:active {
 			transform: translateY(0);
 		}
 
-		.test-credentials {
+		.btn-social {
+			width: 100%;
+			padding: 0.875rem 1rem;
+			background: white;
+			border: 2px solid #e5e7eb;
+			border-radius: 8px;
+			font-size: 0.95rem;
+			font-weight: 600;
+			color: #1f2937;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.75rem;
+		}
+
+		.btn-social:hover {
+			background: #f9fafb;
+			border-color: #d1d5db;
+		}
+
+		.login-footer {
 			margin-top: 1.5rem;
-			padding-top: 1.5rem;
-			border-top: 1px solid #e5e7eb;
-			font-size: 0.85rem;
+			text-align: center;
+			font-size: 0.9rem;
 			color: #6b7280;
 		}
 
+		.login-footer a {
+			color: #667eea;
+			text-decoration: none;
+			font-weight: 600;
+			transition: color 0.3s ease;
+		}
+
+		.login-footer a:hover {
+			color: #5568d3;
+		}
+
+		.test-credentials {
+			margin-top: 2rem;
+			padding-top: 1.5rem;
+			border-top: 1px solid #e5e7eb;
+			font-size: 0.8rem;
+			color: #9ca3af;
+			text-align: center;
+		}
+
 		.test-credentials p {
-			margin: 0.5rem 0;
+			margin: 0.3rem 0;
 		}
 
 		.test-credentials strong {
-			color: #1f2937;
+			color: #667eea;
 		}
 
-		@media (max-width: 480px) {
-			.login-container {
-				max-width: 100%;
+		@media (max-width: 1024px) {
+			.login-wrapper {
+				flex-direction: column;
+				height: auto;
 			}
 
-			.login-header h1 {
-				font-size: 1.5rem;
+			.login-left {
+				min-height: 300px;
+				padding: 2rem;
 			}
 
-			.login-body,
-			.login-header {
+			.login-left-content h1 {
+				font-size: 2.5rem;
+			}
+
+			.login-right {
+				min-height: auto;
+				padding: 2rem;
+			}
+
+			.login-right h2 {
+				font-size: 2rem;
+			}
+		}
+
+		@media (max-width: 640px) {
+			.login-wrapper {
+				flex-direction: column;
+			}
+
+			.login-left {
+				min-height: 250px;
+				padding: 2rem 1rem;
+			}
+
+			.login-left-content h1 {
+				font-size: 2rem;
+			}
+
+			.login-left-content h2 {
+				font-size: 0.8rem;
+			}
+
+			.login-right {
 				padding: 1.5rem;
+			}
+
+			.login-right h2 {
+				font-size: 1.75rem;
 			}
 		}
 	</style>
 
-	<div class="login-container">
-		<div class="login-header">
-			<h1>Bienvenido</h1>
-			<p>Inicia sesión en Reuscons</p>
+	<div class="login-wrapper">
+		<div class="login-left">
+			<div class="login-left-content">
+				<LoginLeftPanel client:load />
+			</div>
 		</div>
 
-		<div class="login-body">
-			{errorMessage && <div class="error-message">{errorMessage}</div>}
-
-			<form method="POST">
-				<div class="form-group">
-					<label for="username">Usuario</label>
-					<input
-						type="text"
-						id="username"
-						name="username"
-						placeholder="tu_usuario"
-						required
-					/>
-				</div>
-
-				<div class="form-group">
-					<label for="password">Contraseña</label>
-					<input
-						type="password"
-						id="password"
-						name="password"
-						placeholder="••••••••"
-						required
-					/>
-				</div>
-
-				<button type="submit" class="btn-login">Iniciar Sesión</button>
-			</form>
-
-			<div class="test-credentials">
-				<p><strong>Credenciales de prueba:</strong></p>
-				<p>Admin: <strong>admin</strong> / <strong>admin</strong></p>
-				<p>Usuario: <strong>user</strong> / <strong>user</strong></p>
+		<div class="login-right">
+			<div class="login-right-content">
+				<LoginForm errorMessage={errorMessage} client:load />
 			</div>
 		</div>
 	</div>
