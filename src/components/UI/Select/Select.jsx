@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function Select({ id, name, value, onChange, children, required = false, disabled = false }) {
 	const styles = {
 		width: '100%',

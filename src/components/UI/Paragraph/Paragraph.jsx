@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function Paragraph({ children, color = 'inherit', fontSize = '0.95rem' }) {
 	const styles = {
 		fontSize: fontSize,

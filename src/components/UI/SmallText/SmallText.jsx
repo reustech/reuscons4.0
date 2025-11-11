@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function SmallText({ children, color = 'rgba(255, 255, 255, 0.6)' }) {
 	const styles = {
 		fontSize: '1rem',

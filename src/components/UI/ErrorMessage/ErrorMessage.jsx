@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function ErrorMessage({ message }) {
 	const styles = {
 		backgroundColor: '#fee2e2',

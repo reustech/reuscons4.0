@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function Label({ htmlFor, children }) {
 	const styles = {
 		display: 'block',

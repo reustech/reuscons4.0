@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function BigText({ children }) {
 	const styles = {
 		fontSize: '4rem',

@@ -1,3 +1,4 @@
+import React from 'react';
 import BigText from '../../UI/BigText/BigText.jsx';
 import SmallText from '../../UI/SmallText/SmallText.jsx';
 import Paragraph from '../../UI/Paragraph/Paragraph.jsx';

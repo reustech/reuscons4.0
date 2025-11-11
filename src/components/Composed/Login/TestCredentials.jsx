@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function TestCredentials() {
 	const containerStyles = {
 		marginTop: '2rem',

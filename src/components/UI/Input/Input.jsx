@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function Input({ id, name, type = 'text', placeholder, required = false }) {
 	const styles = {
 		width: '100%',

@@ -29,10 +29,10 @@ export { default as ErrorMessage } from './ErrorMessage/ErrorMessage.jsx';
 export { default as WarningMessage } from './Message/WarningMessage.jsx';
 
 // Modal
-export { default as BaseModal } from './Modal/BaseModal.jsx';
-export { default as ModalHeader } from './Modal/ModalHeader.jsx';
-export { default as ModalFooter } from './Modal/ModalFooter.jsx';
-export { default as ConfirmationModal } from './Modal/ConfirmationModal.jsx';
+export { default as BaseModal } from './BaseModal/BaseModal.jsx';
+export { default as ModalHeader } from './ModalHeader/ModalHeader.jsx';
+export { default as ModalFooter } from './ModalFooter/ModalFooter.jsx';
+export { default as ConfirmationModal } from './ConfirmationModal/ConfirmationModal.jsx';
 
 // Kanban
 export { default as TaskCard } from './TaskCard/TaskCard.jsx';

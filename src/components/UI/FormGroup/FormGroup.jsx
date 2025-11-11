@@ -1,3 +1,4 @@
+import React from 'react';
 import Label from '../Label/Label.jsx';
 import Input from '../Input/Input.jsx';
 
