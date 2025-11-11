@@ -11,7 +11,7 @@ export const onRequest = defineMiddleware((context, next) => {
   // Protected routes
   const protectedRoutes = {
     '/DashboardAdmin': 'admin',
-    '/Dashboard': 'user',
+    '/DashboardUser': 'user',
     '/Kanban': ['admin', 'user'],
     '/Archivos': ['admin', 'user'],
   };

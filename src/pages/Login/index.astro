@@ -4,33 +4,38 @@ import Layout from '../../layouts/Layout.astro';
 // Handle form submission on server side
 let errorMessage = '';
 if (Astro.request.method === 'POST') {
-	const formData = await Astro.request.formData();
-	const username = formData.get('username')?.toString().trim() || '';
-	const password = formData.get('password')?.toString().trim() || '';
+	try {
+		const data = await Astro.request.text();
+		const params = new URLSearchParams(data);
+		const username = params.get('username')?.trim() || '';
+		const password = params.get('password')?.trim() || '';
 
-	// Validate credentials
-	if (!username || !password) {
-		errorMessage = 'Por favor ingresa usuario y contraseña';
-	} else if (username === 'admin' && password === 'admin') {
-		// Set auth cookie for admin
-		Astro.cookies.set('auth', JSON.stringify({ role: 'admin', username: 'admin' }), {
-			secure: true,
-			httpOnly: true,
-			sameSite: 'strict',
-			maxAge: 60 * 60 * 24, // 24 hours
-		});
-		return Astro.redirect('/DashboardAdmin');
-	} else if (username === 'user' && password === 'user') {
-		// Set auth cookie for regular user
-		Astro.cookies.set('auth', JSON.stringify({ role: 'user', username: 'user' }), {
-			secure: true,
-			httpOnly: true,
-			sameSite: 'strict',
-			maxAge: 60 * 60 * 24, // 24 hours
-		});
-		return Astro.redirect('/Dashboard');
-	} else {
-		errorMessage = 'Usuario o contraseña incorrectos. Intenta con admin/admin o user/user';
+		// Validate credentials
+		if (!username || !password) {
+			errorMessage = 'Por favor ingresa usuario y contraseña';
+		} else if (username === 'admin' && password === 'admin') {
+			// Set auth cookie for admin
+			Astro.cookies.set('auth', JSON.stringify({ role: 'admin', username: 'admin' }), {
+				secure: true,
+				httpOnly: true,
+				sameSite: 'strict',
+				maxAge: 60 * 60 * 24, // 24 hours
+			});
+			return Astro.redirect('/DashboardAdmin');
+		} else if (username === 'user' && password === 'user') {
+			// Set auth cookie for regular user
+			Astro.cookies.set('auth', JSON.stringify({ role: 'user', username: 'user' }), {
+				secure: true,
+				httpOnly: true,
+				sameSite: 'strict',
+				maxAge: 60 * 60 * 24, // 24 hours
+			});
+			return Astro.redirect('/DashboardUser');
+		} else {
+			errorMessage = 'Usuario o contraseña incorrectos. Intenta con admin/admin o user/user';
+		}
+	} catch (error) {
+		errorMessage = 'Error procesando el formulario. Por favor intenta de nuevo.';
 	}
 }
 ---
