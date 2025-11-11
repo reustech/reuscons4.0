@@ -124,6 +124,20 @@ const styles = `
     background: #d1d5db;
   }
 
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .error-message {
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+
   .close-btn {
     position: absolute;
     top: 1rem;
@@ -140,30 +154,56 @@ export default function CrearUsuarioModal({ isOpen, onClose, onSubmit }) {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    password: '',
-    firstName: '',
-    lastName: '',
     role: 'user'
   });
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    setError('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (onSubmit) {
-      onSubmit(formData);
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('/api/usuarios', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Error al crear usuario');
+      }
+
+      // Llamar al onSubmit original si existe
+      if (onSubmit) {
+        onSubmit(result.data);
+      }
+
+      alert('Usuario creado exitosamente');
+      setFormData({
+        username: '',
+        email: '',
+        role: 'user'
+      });
+      onClose();
+    } catch (err) {
+      console.error('Error creando usuario:', err);
+      setError(err.message || 'Error al crear usuario');
+    } finally {
+      setLoading(false);
     }
-    setFormData({
-      username: '',
-      email: '',
-      password: '',
-      firstName: '',
-      lastName: '',
-      role: 'user'
-    });
   };
 
   if (!isOpen) return null;
@@ -179,34 +219,10 @@ export default function CrearUsuarioModal({ isOpen, onClose, onSubmit }) {
 
           <form onSubmit={handleSubmit}>
             <div className="modal-body">
-              <div className="form-group">
-                <label htmlFor="firstName">Nombre</label>
-                <input
-                  type="text"
-                  id="firstName"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  placeholder="Juan"
-                  required
-                />
-              </div>
+              {error && <div className="error-message">{error}</div>}
 
               <div className="form-group">
-                <label htmlFor="lastName">Apellido</label>
-                <input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  placeholder="Pérez"
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="username">Usuario</label>
+                <label htmlFor="username">Usuario *</label>
                 <input
                   type="text"
                   id="username"
@@ -214,12 +230,15 @@ export default function CrearUsuarioModal({ isOpen, onClose, onSubmit }) {
                   value={formData.username}
                   onChange={handleChange}
                   placeholder="usuario123"
+                  minLength={3}
+                  maxLength={50}
                   required
+                  disabled={loading}
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">Email *</label>
                 <input
                   type="email"
                   id="email"
@@ -228,19 +247,7 @@ export default function CrearUsuarioModal({ isOpen, onClose, onSubmit }) {
                   onChange={handleChange}
                   placeholder="usuario@ejemplo.com"
                   required
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="password">Contraseña</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="••••••••"
-                  required
+                  disabled={loading}
                 />
               </div>
 
@@ -251,6 +258,7 @@ export default function CrearUsuarioModal({ isOpen, onClose, onSubmit }) {
                   name="role"
                   value={formData.role}
                   onChange={handleChange}
+                  disabled={loading}
                 >
                   <option value="user">Usuario</option>
                   <option value="admin">Administrador</option>
@@ -260,11 +268,20 @@ export default function CrearUsuarioModal({ isOpen, onClose, onSubmit }) {
             </div>
 
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" onClick={onClose}>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={onClose}
+                disabled={loading}
+              >
                 Cancelar
               </button>
-              <button type="submit" className="btn btn-primary">
-                Crear Usuario
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={loading}
+              >
+                {loading ? 'Creando...' : 'Crear Usuario'}
               </button>
             </div>
           </form>

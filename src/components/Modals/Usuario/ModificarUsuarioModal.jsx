@@ -123,6 +123,20 @@ const styles = `
   .btn-secondary:hover {
     background: #d1d5db;
   }
+
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .error-message {
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
 `;
 
 export default function ModificarUsuarioModal({ isOpen, onClose, onSubmit }) {
@@ -130,29 +144,67 @@ export default function ModificarUsuarioModal({ isOpen, onClose, onSubmit }) {
     id: '',
     username: '',
     email: '',
-    firstName: '',
-    lastName: '',
     role: 'user'
   });
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    setError('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (onSubmit) {
-      onSubmit(formData);
+
+    if (!formData.id.trim()) {
+      setError('El ID del usuario es requerido');
+      return;
     }
-    setFormData({
-      id: '',
-      username: '',
-      email: '',
-      firstName: '',
-      lastName: '',
-      role: 'user'
-    });
+
+    setLoading(true);
+    setError('');
+
+    try {
+      const updateData = {};
+      if (formData.username.trim()) updateData.username = formData.username;
+      if (formData.email.trim()) updateData.email = formData.email;
+      if (formData.role) updateData.role = formData.role;
+
+      const response = await fetch(`/api/usuarios/${formData.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updateData)
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Error al actualizar usuario');
+      }
+
+      if (onSubmit) {
+        onSubmit(result.data);
+      }
+
+      alert('Usuario actualizado exitosamente');
+      setFormData({
+        id: '',
+        username: '',
+        email: '',
+        role: 'user'
+      });
+      onClose();
+    } catch (err) {
+      console.error('Error actualizando usuario:', err);
+      setError(err.message || 'Error al actualizar usuario');
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -168,6 +220,8 @@ export default function ModificarUsuarioModal({ isOpen, onClose, onSubmit }) {
 
           <form onSubmit={handleSubmit}>
             <div className="modal-body">
+              {error && <div className="error-message">{error}</div>}
+
               <div className="form-group">
                 <label htmlFor="id">ID del Usuario *</label>
                 <input
@@ -178,30 +232,7 @@ export default function ModificarUsuarioModal({ isOpen, onClose, onSubmit }) {
                   onChange={handleChange}
                   placeholder="ID del usuario a modificar"
                   required
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="firstName">Nombre</label>
-                <input
-                  type="text"
-                  id="firstName"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  placeholder="Juan"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="lastName">Apellido</label>
-                <input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  placeholder="Pérez"
+                  disabled={loading}
                 />
               </div>
 
@@ -214,6 +245,9 @@ export default function ModificarUsuarioModal({ isOpen, onClose, onSubmit }) {
                   value={formData.username}
                   onChange={handleChange}
                   placeholder="usuario123"
+                  minLength={3}
+                  maxLength={50}
+                  disabled={loading}
                 />
               </div>
 
@@ -226,6 +260,7 @@ export default function ModificarUsuarioModal({ isOpen, onClose, onSubmit }) {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="usuario@ejemplo.com"
+                  disabled={loading}
                 />
               </div>
 
@@ -236,6 +271,7 @@ export default function ModificarUsuarioModal({ isOpen, onClose, onSubmit }) {
                   name="role"
                   value={formData.role}
                   onChange={handleChange}
+                  disabled={loading}
                 >
                   <option value="user">Usuario</option>
                   <option value="admin">Administrador</option>
@@ -245,11 +281,20 @@ export default function ModificarUsuarioModal({ isOpen, onClose, onSubmit }) {
             </div>
 
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" onClick={onClose}>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={onClose}
+                disabled={loading}
+              >
                 Cancelar
               </button>
-              <button type="submit" className="btn btn-primary">
-                Guardar Cambios
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={loading}
+              >
+                {loading ? 'Actualizando...' : 'Guardar Cambios'}
               </button>
             </div>
           </form>

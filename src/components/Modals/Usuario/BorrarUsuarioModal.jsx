@@ -135,16 +135,74 @@ const styles = `
   .btn-secondary:hover {
     background: #d1d5db;
   }
+
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .error-message {
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
 `;
 
 export default function BorrarUsuarioModal({ isOpen, onClose, onSubmit }) {
   const [userId, setUserId] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    setUserId(e.target.value);
+    setError('');
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (onSubmit && userId.trim()) {
-      onSubmit({ id: userId });
+
+    if (!userId.trim()) {
+      setError('El ID del usuario es requerido');
+      return;
+    }
+
+    // Pedir confirmación
+    if (!confirm('¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.')) {
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch(`/api/usuarios/${userId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Error al eliminar usuario');
+      }
+
+      if (onSubmit) {
+        onSubmit({ id: userId });
+      }
+
+      alert('Usuario eliminado exitosamente');
       setUserId('');
+      onClose();
+    } catch (err) {
+      console.error('Error eliminando usuario:', err);
+      setError(err.message || 'Error al eliminar usuario');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -161,6 +219,8 @@ export default function BorrarUsuarioModal({ isOpen, onClose, onSubmit }) {
 
           <form onSubmit={handleSubmit}>
             <div className="modal-body">
+              {error && <div className="error-message">{error}</div>}
+
               <div className="warning-icon">⚠️</div>
               <p>
                 <strong>Esta acción no se puede deshacer.</strong>
@@ -175,19 +235,29 @@ export default function BorrarUsuarioModal({ isOpen, onClose, onSubmit }) {
                   type="text"
                   id="userId"
                   value={userId}
-                  onChange={(e) => setUserId(e.target.value)}
+                  onChange={handleChange}
                   placeholder="Ingresa el ID del usuario"
                   required
+                  disabled={loading}
                 />
               </div>
             </div>
 
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" onClick={onClose}>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={onClose}
+                disabled={loading}
+              >
                 Cancelar
               </button>
-              <button type="submit" className="btn btn-danger">
-                Eliminar Usuario
+              <button
+                type="submit"
+                className="btn btn-danger"
+                disabled={loading}
+              >
+                {loading ? 'Eliminando...' : 'Eliminar Usuario'}
               </button>
             </div>
           </form>
