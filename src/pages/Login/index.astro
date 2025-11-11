@@ -1,6 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
+// Handle form submission on server side
+let errorMessage = '';
+if (Astro.request.method === 'POST') {
+	const formData = await Astro.request.formData();
+	const username = formData.get('username')?.toString().trim() || '';
+	const password = formData.get('password')?.toString().trim() || '';
+
+	// Validate credentials
+	if (!username || !password) {
+		errorMessage = 'Por favor ingresa usuario y contraseña';
+	} else if (username === 'admin' && password === 'admin') {
+		// Set auth cookie for admin
+		Astro.cookies.set('auth', JSON.stringify({ role: 'admin', username: 'admin' }), {
+			secure: true,
+			httpOnly: true,
+			sameSite: 'strict',
+			maxAge: 60 * 60 * 24, // 24 hours
+		});
+		return Astro.redirect('/DashboardAdmin');
+	} else if (username === 'user' && password === 'user') {
+		// Set auth cookie for regular user
+		Astro.cookies.set('auth', JSON.stringify({ role: 'user', username: 'user' }), {
+			secure: true,
+			httpOnly: true,
+			sameSite: 'strict',
+			maxAge: 60 * 60 * 24, // 24 hours
+		});
+		return Astro.redirect('/Dashboard');
+	} else {
+		errorMessage = 'Usuario o contraseña incorrectos. Intenta con admin/admin o user/user';
+	}
+}
 ---
 
 <Layout title="Login">
@@ -57,6 +89,17 @@ import Layout from '../../layouts/Layout.astro';
 			padding: 2rem;
 		}
 
+		.error-message {
+			background-color: #fee2e2;
+			border: 1px solid #fecaca;
+			border-radius: 8px;
+			color: #dc2626;
+			padding: 1rem;
+			margin-bottom: 1.5rem;
+			font-size: 0.95rem;
+			font-weight: 500;
+		}
+
 		.form-group {
 			margin-bottom: 1.5rem;
 		}
@@ -77,6 +120,7 @@ import Layout from '../../layouts/Layout.astro';
 			font-size: 1rem;
 			font-family: inherit;
 			transition: all 0.3s ease;
+			box-sizing: border-box;
 		}
 
 		.form-group input:focus {
@@ -101,7 +145,6 @@ import Layout from '../../layouts/Layout.astro';
 			cursor: pointer;
 			transition: var(--transition-normal);
 			box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-			margin-bottom: 1rem;
 		}
 
 		.btn-login:hover {
@@ -111,6 +154,22 @@ import Layout from '../../layouts/Layout.astro';
 
 		.btn-login:active {
 			transform: translateY(0);
+		}
+
+		.test-credentials {
+			margin-top: 1.5rem;
+			padding-top: 1.5rem;
+			border-top: 1px solid #e5e7eb;
+			font-size: 0.85rem;
+			color: #6b7280;
+		}
+
+		.test-credentials p {
+			margin: 0.5rem 0;
+		}
+
+		.test-credentials strong {
+			color: #1f2937;
 		}
 
 		@media (max-width: 480px) {
@@ -133,13 +192,12 @@ import Layout from '../../layouts/Layout.astro';
 		<div class="login-header">
 			<h1>Bienvenido</h1>
 			<p>Inicia sesión en Reuscons</p>
-
-
-
 		</div>
 
 		<div class="login-body">
-			<form id="loginForm">
+			{errorMessage && <div class="error-message">{errorMessage}</div>}
+
+			<form method="POST">
 				<div class="form-group">
 					<label for="username">Usuario</label>
 					<input
@@ -164,37 +222,12 @@ import Layout from '../../layouts/Layout.astro';
 
 				<button type="submit" class="btn-login">Iniciar Sesión</button>
 			</form>
+
+			<div class="test-credentials">
+				<p><strong>Credenciales de prueba:</strong></p>
+				<p>Admin: <strong>admin</strong> / <strong>admin</strong></p>
+				<p>Usuario: <strong>user</strong> / <strong>user</strong></p>
+			</div>
 		</div>
 	</div>
-
-	<script>
-		const form = document.getElementById('loginForm');
-		if (form) {
-			form.addEventListener('submit', (e) => {
-				e.preventDefault();
-				const usernameInput = document.getElementById('username') as HTMLInputElement;
-				const passwordInput = document.getElementById('password') as HTMLInputElement;
-				if (usernameInput && passwordInput) {
-					const username = usernameInput.value;
-					const password = passwordInput.value;
-
-					// Validación básica
-					if (username.trim() && password.trim()) {
-						console.log('Login attempt:', { username, password });
-
-						// Verificar si es admin
-						if (username === 'admin' && password === 'admin') {
-							console.log('Admin login successful');
-							window.location.href = '/DashboardAdmin';
-						} else {
-							console.log('User login successful');
-							window.location.href = '/Dashboard';
-						}
-					} else {
-						alert('Por favor ingresa usuario y contraseña');
-					}
-				}
-			});
-		}
-	</script>
 </Layout>

@@ -727,26 +727,6 @@ export default function Kanban() {
           </div>
         ))}
       </div>
-
-      <AddTaskModal
-        isOpen={showAddModal}
-        columns={columns}
-        selectedColumn={selectedColumn}
-        modalInput={modalInput}
-        onColumnChange={setSelectedColumn}
-        onInputChange={setModalInput}
-        onAdd={handleAddTaskFromModal}
-        onClose={closeAddModal}
-      />
-
-      <TaskEditModal
-        isOpen={showEditModal}
-        task={editingTask}
-        columnKey={editingTaskColumn}
-        onClose={closeEditModal}
-        onSave={updateTask}
-        onDelete={deleteTask}
-      />
       </div>
     </>
   );
