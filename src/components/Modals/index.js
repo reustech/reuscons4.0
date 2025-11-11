@@ -1,4 +1,12 @@
 export { default as CrearUsuarioModal } from './Usuario/CrearUsuarioModal.jsx';
+export { default as ModificarUsuarioModal } from './Usuario/ModificarUsuarioModal.jsx';
 export { default as CrearTareaModal } from './Tarea/CrearTareaModal.jsx';
+export { default as ModificarTareaModal } from './Tarea/ModificarTareaModal.jsx';
 export { default as CrearObraModal } from './Obra/CrearObraModal.jsx';
+export { default as ModificarObraModal } from './Obra/ModificarObraModal.jsx';
 export { default as CrearKanbanModal } from './Kanban/CrearKanbanModal.jsx';
+export { default as ModificarKanbanModal } from './Kanban/ModificarKanbanModal.jsx';
+export { default as CrearColumnaModal } from './Columna/CrearColumnaModal.jsx';
+export { default as ModificarColumnaModal } from './Columna/ModificarColumnaModal.jsx';
+export { default as CrearArchivoModal } from './Archivo/CrearArchivoModal.jsx';
+export { default as ModificarArchivoModal } from './Archivo/ModificarArchivoModal.jsx';
