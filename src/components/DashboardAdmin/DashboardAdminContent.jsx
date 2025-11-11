@@ -1,27 +1,33 @@
 import React, { useState } from 'react';
 import {
-  CrearUsuarioModal, ModificarUsuarioModal,
-  CrearObraModal, ModificarObraModal,
-  CrearKanbanModal, ModificarKanbanModal,
-  CrearColumnaModal, ModificarColumnaModal,
-  CrearArchivoModal, ModificarArchivoModal,
-  CrearTareaModal, ModificarTareaModal
+  CrearUsuarioModal, ModificarUsuarioModal, BorrarUsuarioModal,
+  CrearObraModal, ModificarObraModal, BorrarObraModal,
+  CrearKanbanModal, ModificarKanbanModal, BorrarKanbanModal,
+  CrearColumnaModal, ModificarColumnaModal, BorrarColumnaModal,
+  CrearArchivoModal, ModificarArchivoModal, BorrarArchivoModal,
+  CrearTareaModal, ModificarTareaModal, BorrarTareaModal
 } from '../Modals';
 
 export default function DashboardAdminContent() {
   const [modals, setModals] = useState({
     crearUsuario: false,
     modificarUsuario: false,
+    borrarUsuario: false,
     crearObra: false,
     modificarObra: false,
+    borrarObra: false,
     crearKanban: false,
     modificarKanban: false,
+    borrarKanban: false,
     crearColumna: false,
     modificarColumna: false,
+    borrarColumna: false,
     crearArchivo: false,
     modificarArchivo: false,
+    borrarArchivo: false,
     crearTarea: false,
-    modificarTarea: false
+    modificarTarea: false,
+    borrarTarea: false
   });
 
   const openModal = (modalName) => {
@@ -45,6 +51,12 @@ export default function DashboardAdminContent() {
     closeModal('modificarUsuario');
   };
 
+  const handleBorrarUsuarioSubmit = (formData) => {
+    console.log('Usuario eliminado:', formData);
+    alert('Usuario eliminado: ' + formData.id);
+    closeModal('borrarUsuario');
+  };
+
   // Handlers Obra
   const handleCrearObraSubmit = (formData) => {
     console.log('Nueva obra:', formData);
@@ -56,6 +68,12 @@ export default function DashboardAdminContent() {
     console.log('Obra modificada:', formData);
     alert('Obra modificada: ' + formData.name);
     closeModal('modificarObra');
+  };
+
+  const handleBorrarObraSubmit = (formData) => {
+    console.log('Obra eliminada:', formData);
+    alert('Obra eliminada: ' + formData.id);
+    closeModal('borrarObra');
   };
 
   // Handlers Kanban
@@ -71,6 +89,12 @@ export default function DashboardAdminContent() {
     closeModal('modificarKanban');
   };
 
+  const handleBorrarKanbanSubmit = (formData) => {
+    console.log('Kanban eliminado:', formData);
+    alert('Kanban eliminado: ' + formData.id);
+    closeModal('borrarKanban');
+  };
+
   // Handlers Columna
   const handleCrearColumnaSubmit = (formData) => {
     console.log('Nueva columna:', formData);
@@ -82,6 +106,12 @@ export default function DashboardAdminContent() {
     console.log('Columna modificada:', formData);
     alert('Columna modificada: ' + formData.title);
     closeModal('modificarColumna');
+  };
+
+  const handleBorrarColumnaSubmit = (formData) => {
+    console.log('Columna eliminada:', formData);
+    alert('Columna eliminada: ' + formData.id);
+    closeModal('borrarColumna');
   };
 
   // Handlers Archivo
@@ -97,6 +127,12 @@ export default function DashboardAdminContent() {
     closeModal('modificarArchivo');
   };
 
+  const handleBorrarArchivoSubmit = (formData) => {
+    console.log('Archivo eliminado:', formData);
+    alert('Archivo eliminado: ' + formData.id);
+    closeModal('borrarArchivo');
+  };
+
   // Handlers Tarea
   const handleCrearTareaSubmit = (formData) => {
     console.log('Nueva tarea:', formData);
@@ -108,6 +144,12 @@ export default function DashboardAdminContent() {
     console.log('Tarea modificada:', formData);
     alert('Tarea modificada: ' + formData.title);
     closeModal('modificarTarea');
+  };
+
+  const handleBorrarTareaSubmit = (formData) => {
+    console.log('Tarea eliminada:', formData);
+    alert('Tarea eliminada: ' + formData.id);
+    closeModal('borrarTarea');
   };
 
   const styles = `
@@ -187,10 +229,12 @@ export default function DashboardAdminContent() {
       display: flex;
       gap: 0.75rem;
       width: 100%;
+      flex-wrap: wrap;
     }
 
     .action-button {
       flex: 1;
+      min-width: 80px;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       border: none;
@@ -214,6 +258,15 @@ export default function DashboardAdminContent() {
 
     .action-button.secondary {
       background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    }
+
+    .action-button.danger {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+    }
+
+    .action-button.danger:hover {
+      box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
     }
 
     @media (max-width: 768px) {
@@ -273,6 +326,12 @@ export default function DashboardAdminContent() {
               >
                 Modificar
               </button>
+              <button
+                className="action-button danger"
+                onClick={() => openModal('borrarUsuario')}
+              >
+                Borrar
+              </button>
             </div>
           </div>
 
@@ -293,6 +352,12 @@ export default function DashboardAdminContent() {
                 onClick={() => openModal('modificarObra')}
               >
                 Modificar
+              </button>
+              <button
+                className="action-button danger"
+                onClick={() => openModal('borrarObra')}
+              >
+                Borrar
               </button>
             </div>
           </div>
@@ -315,6 +380,12 @@ export default function DashboardAdminContent() {
               >
                 Modificar
               </button>
+              <button
+                className="action-button danger"
+                onClick={() => openModal('borrarKanban')}
+              >
+                Borrar
+              </button>
             </div>
           </div>
 
@@ -335,6 +406,12 @@ export default function DashboardAdminContent() {
                 onClick={() => openModal('modificarColumna')}
               >
                 Modificar
+              </button>
+              <button
+                className="action-button danger"
+                onClick={() => openModal('borrarColumna')}
+              >
+                Borrar
               </button>
             </div>
           </div>
@@ -357,6 +434,12 @@ export default function DashboardAdminContent() {
               >
                 Modificar
               </button>
+              <button
+                className="action-button danger"
+                onClick={() => openModal('borrarArchivo')}
+              >
+                Borrar
+              </button>
             </div>
           </div>
 
@@ -378,6 +461,12 @@ export default function DashboardAdminContent() {
               >
                 Modificar
               </button>
+              <button
+                className="action-button danger"
+                onClick={() => openModal('borrarTarea')}
+              >
+                Borrar
+              </button>
             </div>
           </div>
         </div>
@@ -396,6 +485,12 @@ export default function DashboardAdminContent() {
         onSubmit={handleModificarUsuarioSubmit}
       />
 
+      <BorrarUsuarioModal
+        isOpen={modals.borrarUsuario}
+        onClose={() => closeModal('borrarUsuario')}
+        onSubmit={handleBorrarUsuarioSubmit}
+      />
+
       {/* Modales Obra */}
       <CrearObraModal
         isOpen={modals.crearObra}
@@ -407,6 +502,12 @@ export default function DashboardAdminContent() {
         isOpen={modals.modificarObra}
         onClose={() => closeModal('modificarObra')}
         onSubmit={handleModificarObraSubmit}
+      />
+
+      <BorrarObraModal
+        isOpen={modals.borrarObra}
+        onClose={() => closeModal('borrarObra')}
+        onSubmit={handleBorrarObraSubmit}
       />
 
       {/* Modales Kanban */}
@@ -422,6 +523,12 @@ export default function DashboardAdminContent() {
         onSubmit={handleModificarKanbanSubmit}
       />
 
+      <BorrarKanbanModal
+        isOpen={modals.borrarKanban}
+        onClose={() => closeModal('borrarKanban')}
+        onSubmit={handleBorrarKanbanSubmit}
+      />
+
       {/* Modales Columna */}
       <CrearColumnaModal
         isOpen={modals.crearColumna}
@@ -433,6 +540,12 @@ export default function DashboardAdminContent() {
         isOpen={modals.modificarColumna}
         onClose={() => closeModal('modificarColumna')}
         onSubmit={handleModificarColumnaSubmit}
+      />
+
+      <BorrarColumnaModal
+        isOpen={modals.borrarColumna}
+        onClose={() => closeModal('borrarColumna')}
+        onSubmit={handleBorrarColumnaSubmit}
       />
 
       {/* Modales Archivo */}
@@ -448,6 +561,12 @@ export default function DashboardAdminContent() {
         onSubmit={handleModificarArchivoSubmit}
       />
 
+      <BorrarArchivoModal
+        isOpen={modals.borrarArchivo}
+        onClose={() => closeModal('borrarArchivo')}
+        onSubmit={handleBorrarArchivoSubmit}
+      />
+
       {/* Modales Tarea */}
       <CrearTareaModal
         isOpen={modals.crearTarea}
@@ -459,6 +578,12 @@ export default function DashboardAdminContent() {
         isOpen={modals.modificarTarea}
         onClose={() => closeModal('modificarTarea')}
         onSubmit={handleModificarTareaSubmit}
+      />
+
+      <BorrarTareaModal
+        isOpen={modals.borrarTarea}
+        onClose={() => closeModal('borrarTarea')}
+        onSubmit={handleBorrarTareaSubmit}
       />
     </>
   );
