@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
 import {
-  CrearUsuarioModal, ModificarUsuarioModal, BorrarUsuarioModal,
-  CrearObraModal, ModificarObraModal, BorrarObraModal,
-  CrearKanbanModal, ModificarKanbanModal, BorrarKanbanModal,
-  CrearColumnaModal, ModificarColumnaModal, BorrarColumnaModal,
-  CrearArchivoModal, ModificarArchivoModal, BorrarArchivoModal,
-  CrearTareaModal, ModificarTareaModal, BorrarTareaModal
+  CreateUserModal, EditUserModal, DeleteUserModal,
+  CreateWorksiteModal, EditWorksiteModal, DeleteWorksiteModal,
+  CreateKanbanModal, EditKanbanModal, DeleteKanbanModal,
+  CreateColumnModal, EditColumnModal, DeleteColumnModal,
+  CreateFileModal, EditFileModal, DeleteFileModal,
+  CreateTaskModal, EditTaskModal, DeleteTaskModal
 } from '../Modals';
 
 export default function DashboardAdminContent() {
   const [modals, setModals] = useState({
-    crearUsuario: false,
-    modificarUsuario: false,
-    borrarUsuario: false,
-    crearObra: false,
-    modificarObra: false,
-    borrarObra: false,
-    crearKanban: false,
-    modificarKanban: false,
-    borrarKanban: false,
-    crearColumna: false,
-    modificarColumna: false,
-    borrarColumna: false,
-    crearArchivo: false,
-    modificarArchivo: false,
-    borrarArchivo: false,
-    crearTarea: false,
-    modificarTarea: false,
-    borrarTarea: false
+    createUser: false,
+    editUser: false,
+    deleteUser: false,
+    createWorksite: false,
+    editWorksite: false,
+    deleteWorksite: false,
+    createKanban: false,
+    editKanban: false,
+    deleteKanban: false,
+    createColumn: false,
+    editColumn: false,
+    deleteColumn: false,
+    createFile: false,
+    editFile: false,
+    deleteFile: false,
+    createTask: false,
+    editTask: false,
+    deleteTask: false
   });
 
   const openModal = (modalName) => {
@@ -39,117 +39,117 @@ export default function DashboardAdminContent() {
   };
 
   // Handlers Usuario
-  const handleCrearUsuarioSubmit = (formData) => {
+  const handleCreateUserSubmit = (formData) => {
     console.log('Nuevo usuario:', formData);
     alert('Usuario creado: ' + formData.username);
-    closeModal('crearUsuario');
+    closeModal('createUser');
   };
 
-  const handleModificarUsuarioSubmit = (formData) => {
+  const handleEditUserSubmit = (formData) => {
     console.log('Usuario modificado:', formData);
     alert('Usuario modificado: ' + formData.username);
-    closeModal('modificarUsuario');
+    closeModal('editUser');
   };
 
-  const handleBorrarUsuarioSubmit = (formData) => {
+  const handleDeleteUserSubmit = (formData) => {
     console.log('Usuario eliminado:', formData);
     alert('Usuario eliminado: ' + formData.id);
-    closeModal('borrarUsuario');
+    closeModal('deleteUser');
   };
 
-  // Handlers Obra
-  const handleCrearObraSubmit = (formData) => {
+  // Handlers Worksite
+  const handleCreateWorksiteSubmit = (formData) => {
     console.log('Nueva obra:', formData);
-    alert('Obra creada: ' + formData.name);
-    closeModal('crearObra');
+    alert('Worksite creada: ' + formData.name);
+    closeModal('createWorksite');
   };
 
-  const handleModificarObraSubmit = (formData) => {
-    console.log('Obra modificada:', formData);
-    alert('Obra modificada: ' + formData.name);
-    closeModal('modificarObra');
+  const handleEditWorksiteSubmit = (formData) => {
+    console.log('Worksite modificada:', formData);
+    alert('Worksite modificada: ' + formData.name);
+    closeModal('editWorksite');
   };
 
-  const handleBorrarObraSubmit = (formData) => {
-    console.log('Obra eliminada:', formData);
-    alert('Obra eliminada: ' + formData.id);
-    closeModal('borrarObra');
+  const handleDeleteWorksiteSubmit = (formData) => {
+    console.log('Worksite eliminada:', formData);
+    alert('Worksite eliminada: ' + formData.id);
+    closeModal('deleteWorksite');
   };
 
   // Handlers Kanban
-  const handleCrearKanbanSubmit = (formData) => {
+  const handleCreateKanbanSubmit = (formData) => {
     console.log('Nuevo kanban:', formData);
     alert('Kanban creado: ' + formData.name);
-    closeModal('crearKanban');
+    closeModal('createKanban');
   };
 
-  const handleModificarKanbanSubmit = (formData) => {
+  const handleEditKanbanSubmit = (formData) => {
     console.log('Kanban modificado:', formData);
     alert('Kanban modificado: ' + formData.name);
-    closeModal('modificarKanban');
+    closeModal('editKanban');
   };
 
-  const handleBorrarKanbanSubmit = (formData) => {
+  const handleDeleteKanbanSubmit = (formData) => {
     console.log('Kanban eliminado:', formData);
     alert('Kanban eliminado: ' + formData.id);
-    closeModal('borrarKanban');
+    closeModal('deleteKanban');
   };
 
   // Handlers Columna
-  const handleCrearColumnaSubmit = (formData) => {
+  const handleCreateColumnSubmit = (formData) => {
     console.log('Nueva columna:', formData);
     alert('Columna creada: ' + formData.title);
-    closeModal('crearColumna');
+    closeModal('createColumn');
   };
 
-  const handleModificarColumnaSubmit = (formData) => {
+  const handleEditColumnSubmit = (formData) => {
     console.log('Columna modificada:', formData);
     alert('Columna modificada: ' + formData.title);
-    closeModal('modificarColumna');
+    closeModal('editColumn');
   };
 
-  const handleBorrarColumnaSubmit = (formData) => {
+  const handleDeleteColumnSubmit = (formData) => {
     console.log('Columna eliminada:', formData);
     alert('Columna eliminada: ' + formData.id);
-    closeModal('borrarColumna');
+    closeModal('deleteColumn');
   };
 
   // Handlers Archivo
-  const handleCrearArchivoSubmit = (formData) => {
+  const handleCreateFileSubmit = (formData) => {
     console.log('Nuevo archivo:', formData);
     alert('Archivo subido: ' + formData.filename);
-    closeModal('crearArchivo');
+    closeModal('createFile');
   };
 
-  const handleModificarArchivoSubmit = (formData) => {
+  const handleEditFileSubmit = (formData) => {
     console.log('Archivo modificado:', formData);
     alert('Archivo modificado: ' + formData.filename);
-    closeModal('modificarArchivo');
+    closeModal('editFile');
   };
 
-  const handleBorrarArchivoSubmit = (formData) => {
+  const handleDeleteFileSubmit = (formData) => {
     console.log('Archivo eliminado:', formData);
     alert('Archivo eliminado: ' + formData.id);
-    closeModal('borrarArchivo');
+    closeModal('deleteFile');
   };
 
   // Handlers Tarea
-  const handleCrearTareaSubmit = (formData) => {
+  const handleCreateTaskSubmit = (formData) => {
     console.log('Nueva tarea:', formData);
     alert('Tarea creada: ' + formData.title);
-    closeModal('crearTarea');
+    closeModal('createTask');
   };
 
-  const handleModificarTareaSubmit = (formData) => {
+  const handleEditTaskSubmit = (formData) => {
     console.log('Tarea modificada:', formData);
     alert('Tarea modificada: ' + formData.title);
-    closeModal('modificarTarea');
+    closeModal('editTask');
   };
 
-  const handleBorrarTareaSubmit = (formData) => {
+  const handleDeleteTaskSubmit = (formData) => {
     console.log('Tarea eliminada:', formData);
     alert('Tarea eliminada: ' + formData.id);
-    closeModal('borrarTarea');
+    closeModal('deleteTask');
   };
 
   const styles = `
@@ -316,46 +316,46 @@ export default function DashboardAdminContent() {
             <div className="button-group">
               <button
                 className="action-button"
-                onClick={() => openModal('crearUsuario')}
+                onClick={() => openModal('createUser')}
               >
                 Crear
               </button>
               <button
                 className="action-button secondary"
-                onClick={() => openModal('modificarUsuario')}
+                onClick={() => openModal('editUser')}
               >
                 Modificar
               </button>
               <button
                 className="action-button danger"
-                onClick={() => openModal('borrarUsuario')}
+                onClick={() => openModal('deleteUser')}
               >
                 Borrar
               </button>
             </div>
           </div>
 
-          {/* Obra */}
+          {/* Worksite */}
           <div className="action-card">
             <div className="action-icon">🏗️</div>
-            <h2>Obra</h2>
+            <h2>Worksite</h2>
             <p>Registra nuevos proyectos de construcción</p>
             <div className="button-group">
               <button
                 className="action-button"
-                onClick={() => openModal('crearObra')}
+                onClick={() => openModal('createWorksite')}
               >
                 Crear
               </button>
               <button
                 className="action-button secondary"
-                onClick={() => openModal('modificarObra')}
+                onClick={() => openModal('editWorksite')}
               >
                 Modificar
               </button>
               <button
                 className="action-button danger"
-                onClick={() => openModal('borrarObra')}
+                onClick={() => openModal('deleteWorksite')}
               >
                 Borrar
               </button>
@@ -370,19 +370,19 @@ export default function DashboardAdminContent() {
             <div className="button-group">
               <button
                 className="action-button"
-                onClick={() => openModal('crearKanban')}
+                onClick={() => openModal('createKanban')}
               >
                 Crear
               </button>
               <button
                 className="action-button secondary"
-                onClick={() => openModal('modificarKanban')}
+                onClick={() => openModal('editKanban')}
               >
                 Modificar
               </button>
               <button
                 className="action-button danger"
-                onClick={() => openModal('borrarKanban')}
+                onClick={() => openModal('deleteKanban')}
               >
                 Borrar
               </button>
@@ -397,19 +397,19 @@ export default function DashboardAdminContent() {
             <div className="button-group">
               <button
                 className="action-button"
-                onClick={() => openModal('crearColumna')}
+                onClick={() => openModal('createColumn')}
               >
                 Crear
               </button>
               <button
                 className="action-button secondary"
-                onClick={() => openModal('modificarColumna')}
+                onClick={() => openModal('editColumn')}
               >
                 Modificar
               </button>
               <button
                 className="action-button danger"
-                onClick={() => openModal('borrarColumna')}
+                onClick={() => openModal('deleteColumn')}
               >
                 Borrar
               </button>
@@ -424,19 +424,19 @@ export default function DashboardAdminContent() {
             <div className="button-group">
               <button
                 className="action-button"
-                onClick={() => openModal('crearArchivo')}
+                onClick={() => openModal('createFile')}
               >
                 Crear
               </button>
               <button
                 className="action-button secondary"
-                onClick={() => openModal('modificarArchivo')}
+                onClick={() => openModal('editFile')}
               >
                 Modificar
               </button>
               <button
                 className="action-button danger"
-                onClick={() => openModal('borrarArchivo')}
+                onClick={() => openModal('deleteFile')}
               >
                 Borrar
               </button>
@@ -451,21 +451,37 @@ export default function DashboardAdminContent() {
             <div className="button-group">
               <button
                 className="action-button"
-                onClick={() => openModal('crearTarea')}
+                onClick={() => openModal('createTask')}
               >
                 Crear
               </button>
               <button
                 className="action-button secondary"
-                onClick={() => openModal('modificarTarea')}
+                onClick={() => openModal('editTask')}
               >
                 Modificar
               </button>
               <button
                 className="action-button danger"
-                onClick={() => openModal('borrarTarea')}
+                onClick={() => openModal('deleteTask')}
               >
                 Borrar
+              </button>
+            </div>
+          </div>
+
+          {/* Kanban Board Access */}
+          <div className="action-card">
+            <div className="action-icon">📊</div>
+            <h2>Tablero Kanban</h2>
+            <p>Accede al tablero kanban para gestionar todas tus tareas</p>
+            <div className="button-group">
+              <button
+                className="action-button"
+                onClick={() => window.location.href = '/Kanban'}
+                style={{ flex: 1 }}
+              >
+                Ir al Kanban
               </button>
             </div>
           </div>
@@ -473,117 +489,117 @@ export default function DashboardAdminContent() {
       </div>
 
       {/* Modales Usuario */}
-      <CrearUsuarioModal
-        isOpen={modals.crearUsuario}
-        onClose={() => closeModal('crearUsuario')}
-        onSubmit={handleCrearUsuarioSubmit}
+      <CreateUserModal
+        isOpen={modals.createUser}
+        onClose={() => closeModal('createUser')}
+        onSubmit={handleCreateUserSubmit}
       />
 
-      <ModificarUsuarioModal
-        isOpen={modals.modificarUsuario}
-        onClose={() => closeModal('modificarUsuario')}
-        onSubmit={handleModificarUsuarioSubmit}
+      <EditUserModal
+        isOpen={modals.editUser}
+        onClose={() => closeModal('editUser')}
+        onSubmit={handleEditUserSubmit}
       />
 
-      <BorrarUsuarioModal
-        isOpen={modals.borrarUsuario}
-        onClose={() => closeModal('borrarUsuario')}
-        onSubmit={handleBorrarUsuarioSubmit}
+      <DeleteUserModal
+        isOpen={modals.deleteUser}
+        onClose={() => closeModal('deleteUser')}
+        onSubmit={handleDeleteUserSubmit}
       />
 
-      {/* Modales Obra */}
-      <CrearObraModal
-        isOpen={modals.crearObra}
-        onClose={() => closeModal('crearObra')}
-        onSubmit={handleCrearObraSubmit}
+      {/* Modales Worksite */}
+      <CreateWorksiteModal
+        isOpen={modals.createWorksite}
+        onClose={() => closeModal('createWorksite')}
+        onSubmit={handleCreateWorksiteSubmit}
       />
 
-      <ModificarObraModal
-        isOpen={modals.modificarObra}
-        onClose={() => closeModal('modificarObra')}
-        onSubmit={handleModificarObraSubmit}
+      <EditWorksiteModal
+        isOpen={modals.editWorksite}
+        onClose={() => closeModal('editWorksite')}
+        onSubmit={handleEditWorksiteSubmit}
       />
 
-      <BorrarObraModal
-        isOpen={modals.borrarObra}
-        onClose={() => closeModal('borrarObra')}
-        onSubmit={handleBorrarObraSubmit}
+      <DeleteWorksiteModal
+        isOpen={modals.deleteWorksite}
+        onClose={() => closeModal('deleteWorksite')}
+        onSubmit={handleDeleteWorksiteSubmit}
       />
 
       {/* Modales Kanban */}
-      <CrearKanbanModal
-        isOpen={modals.crearKanban}
-        onClose={() => closeModal('crearKanban')}
-        onSubmit={handleCrearKanbanSubmit}
+      <CreateKanbanModal
+        isOpen={modals.createKanban}
+        onClose={() => closeModal('createKanban')}
+        onSubmit={handleCreateKanbanSubmit}
       />
 
-      <ModificarKanbanModal
-        isOpen={modals.modificarKanban}
-        onClose={() => closeModal('modificarKanban')}
-        onSubmit={handleModificarKanbanSubmit}
+      <EditKanbanModal
+        isOpen={modals.editKanban}
+        onClose={() => closeModal('editKanban')}
+        onSubmit={handleEditKanbanSubmit}
       />
 
-      <BorrarKanbanModal
-        isOpen={modals.borrarKanban}
-        onClose={() => closeModal('borrarKanban')}
-        onSubmit={handleBorrarKanbanSubmit}
+      <DeleteKanbanModal
+        isOpen={modals.deleteKanban}
+        onClose={() => closeModal('deleteKanban')}
+        onSubmit={handleDeleteKanbanSubmit}
       />
 
       {/* Modales Columna */}
-      <CrearColumnaModal
-        isOpen={modals.crearColumna}
-        onClose={() => closeModal('crearColumna')}
-        onSubmit={handleCrearColumnaSubmit}
+      <CreateColumnModal
+        isOpen={modals.createColumn}
+        onClose={() => closeModal('createColumn')}
+        onSubmit={handleCreateColumnSubmit}
       />
 
-      <ModificarColumnaModal
-        isOpen={modals.modificarColumna}
-        onClose={() => closeModal('modificarColumna')}
-        onSubmit={handleModificarColumnaSubmit}
+      <EditColumnModal
+        isOpen={modals.editColumn}
+        onClose={() => closeModal('editColumn')}
+        onSubmit={handleEditColumnSubmit}
       />
 
-      <BorrarColumnaModal
-        isOpen={modals.borrarColumna}
-        onClose={() => closeModal('borrarColumna')}
-        onSubmit={handleBorrarColumnaSubmit}
+      <DeleteColumnModal
+        isOpen={modals.deleteColumn}
+        onClose={() => closeModal('deleteColumn')}
+        onSubmit={handleDeleteColumnSubmit}
       />
 
       {/* Modales Archivo */}
-      <CrearArchivoModal
-        isOpen={modals.crearArchivo}
-        onClose={() => closeModal('crearArchivo')}
-        onSubmit={handleCrearArchivoSubmit}
+      <CreateFileModal
+        isOpen={modals.createFile}
+        onClose={() => closeModal('createFile')}
+        onSubmit={handleCreateFileSubmit}
       />
 
-      <ModificarArchivoModal
-        isOpen={modals.modificarArchivo}
-        onClose={() => closeModal('modificarArchivo')}
-        onSubmit={handleModificarArchivoSubmit}
+      <EditFileModal
+        isOpen={modals.editFile}
+        onClose={() => closeModal('editFile')}
+        onSubmit={handleEditFileSubmit}
       />
 
-      <BorrarArchivoModal
-        isOpen={modals.borrarArchivo}
-        onClose={() => closeModal('borrarArchivo')}
-        onSubmit={handleBorrarArchivoSubmit}
+      <DeleteFileModal
+        isOpen={modals.deleteFile}
+        onClose={() => closeModal('deleteFile')}
+        onSubmit={handleDeleteFileSubmit}
       />
 
       {/* Modales Tarea */}
-      <CrearTareaModal
-        isOpen={modals.crearTarea}
-        onClose={() => closeModal('crearTarea')}
-        onSubmit={handleCrearTareaSubmit}
+      <CreateTaskModal
+        isOpen={modals.createTask}
+        onClose={() => closeModal('createTask')}
+        onSubmit={handleCreateTaskSubmit}
       />
 
-      <ModificarTareaModal
-        isOpen={modals.modificarTarea}
-        onClose={() => closeModal('modificarTarea')}
-        onSubmit={handleModificarTareaSubmit}
+      <EditTaskModal
+        isOpen={modals.editTask}
+        onClose={() => closeModal('editTask')}
+        onSubmit={handleEditTaskSubmit}
       />
 
-      <BorrarTareaModal
-        isOpen={modals.borrarTarea}
-        onClose={() => closeModal('borrarTarea')}
-        onSubmit={handleBorrarTareaSubmit}
+      <DeleteTaskModal
+        isOpen={modals.deleteTask}
+        onClose={() => closeModal('deleteTask')}
+        onSubmit={handleDeleteTaskSubmit}
       />
     </>
   );
