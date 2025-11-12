@@ -103,7 +103,7 @@ export default function DeleteUserModal({ isOpen, onClose, onSubmit }) {
     setError('');
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!userId.trim()) {
@@ -120,30 +120,40 @@ export default function DeleteUserModal({ isOpen, onClose, onSubmit }) {
     setError('');
 
     try {
-      const response = await fetch(`/api/usuarios/${userId}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
+      // Simulamos un pequeño delay para mejor UX
+      setTimeout(() => {
+        // Obtener usuarios del localStorage
+        const users = typeof window !== 'undefined'
+          ? JSON.parse(localStorage.getItem('usuarios') || '[]')
+          : [];
+
+        // Buscar el índice del usuario a eliminar
+        const userIndex = users.findIndex(u => u.id === userId);
+        if (userIndex === -1) {
+          setError('Usuario no encontrado');
+          setLoading(false);
+          return;
         }
-      });
 
-      const result = await response.json();
+        // Eliminar usuario
+        const deletedUser = users[userIndex];
+        users.splice(userIndex, 1);
 
-      if (!response.ok) {
-        throw new Error(result.message || 'Error al eliminar usuario');
-      }
+        // Guardar en localStorage
+        localStorage.setItem('usuarios', JSON.stringify(users));
 
-      if (onSubmit) {
-        onSubmit({ id: userId });
-      }
+        if (onSubmit) {
+          onSubmit({ id: userId });
+        }
 
-      alert('Usuario eliminado exitosamente');
-      setUserId('');
-      onClose();
+        alert('Usuario eliminado exitosamente');
+        setUserId('');
+        onClose();
+        setLoading(false);
+      }, 300);
     } catch (err) {
       console.error('Error eliminando usuario:', err);
       setError(err.message || 'Error al eliminar usuario');
-    } finally {
       setLoading(false);
     }
   };

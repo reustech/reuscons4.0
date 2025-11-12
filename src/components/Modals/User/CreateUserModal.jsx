@@ -100,41 +100,63 @@ export default function CreateUserModal({ isOpen, onClose, onSubmit }) {
     setError('');
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
     try {
-      const response = await fetch('/api/usuarios', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || 'Error al crear usuario');
+      // Validación de campos requeridos
+      if (!formData.username.trim()) {
+        throw new Error('El usuario es requerido');
+      }
+      if (!formData.email.trim()) {
+        throw new Error('El email es requerido');
       }
 
-      if (onSubmit) {
-        onSubmit(result.data);
-      }
+      // Simulamos un pequeño delay para mejor UX
+      setTimeout(() => {
+        // Crear nuevo usuario con ID único
+        const newUser = {
+          id: Date.now().toString(),
+          username: formData.username,
+          email: formData.email,
+          role: formData.role,
+          createdAt: new Date().toISOString()
+        };
 
-      alert('Usuario creado exitosamente');
-      setFormData({
-        username: '',
-        email: '',
-        role: 'user'
-      });
-      onClose();
+        // Obtener usuarios existentes del localStorage
+        const existingUsers = typeof window !== 'undefined'
+          ? JSON.parse(localStorage.getItem('usuarios') || '[]')
+          : [];
+
+        // Verificar duplicados
+        if (existingUsers.some(u => u.username === newUser.username)) {
+          setError('El usuario ya existe');
+          setLoading(false);
+          return;
+        }
+
+        // Agregar nuevo usuario
+        const updatedUsers = [...existingUsers, newUser];
+        localStorage.setItem('usuarios', JSON.stringify(updatedUsers));
+
+        if (onSubmit) {
+          onSubmit(newUser);
+        }
+
+        alert('Usuario creado exitosamente');
+        setFormData({
+          username: '',
+          email: '',
+          role: 'user'
+        });
+        onClose();
+        setLoading(false);
+      }, 300);
     } catch (err) {
       console.error('Error creando usuario:', err);
       setError(err.message || 'Error al crear usuario');
-    } finally {
       setLoading(false);
     }
   };

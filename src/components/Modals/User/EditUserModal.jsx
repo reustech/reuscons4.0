@@ -101,7 +101,7 @@ export default function EditUserModal({ isOpen, onClose, onSubmit }) {
     setError('');
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!formData.id.trim()) {
@@ -113,41 +113,51 @@ export default function EditUserModal({ isOpen, onClose, onSubmit }) {
     setError('');
 
     try {
-      const updateData = {};
-      if (formData.username.trim()) updateData.username = formData.username;
-      if (formData.email.trim()) updateData.email = formData.email;
-      if (formData.role) updateData.role = formData.role;
+      // Simulamos un pequeño delay para mejor UX
+      setTimeout(() => {
+        // Obtener usuarios del localStorage
+        const users = typeof window !== 'undefined'
+          ? JSON.parse(localStorage.getItem('usuarios') || '[]')
+          : [];
 
-      const response = await fetch(`/api/usuarios/${formData.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updateData)
-      });
+        // Buscar el usuario a actualizar
+        const userIndex = users.findIndex(u => u.id === formData.id);
+        if (userIndex === -1) {
+          setError('Usuario no encontrado');
+          setLoading(false);
+          return;
+        }
 
-      const result = await response.json();
+        // Preparar datos a actualizar
+        const updateData = {};
+        if (formData.username.trim()) updateData.username = formData.username;
+        if (formData.email.trim()) updateData.email = formData.email;
+        if (formData.role) updateData.role = formData.role;
 
-      if (!response.ok) {
-        throw new Error(result.message || 'Error al actualizar usuario');
-      }
+        // Actualizar usuario
+        const updatedUser = { ...users[userIndex], ...updateData };
+        users[userIndex] = updatedUser;
 
-      if (onSubmit) {
-        onSubmit(result.data);
-      }
+        // Guardar en localStorage
+        localStorage.setItem('usuarios', JSON.stringify(users));
 
-      alert('Usuario actualizado exitosamente');
-      setFormData({
-        id: '',
-        username: '',
-        email: '',
-        role: 'user'
-      });
-      onClose();
+        if (onSubmit) {
+          onSubmit(updatedUser);
+        }
+
+        alert('Usuario actualizado exitosamente');
+        setFormData({
+          id: '',
+          username: '',
+          email: '',
+          role: 'user'
+        });
+        onClose();
+        setLoading(false);
+      }, 300);
     } catch (err) {
       console.error('Error actualizando usuario:', err);
       setError(err.message || 'Error al actualizar usuario');
-    } finally {
       setLoading(false);
     }
   };
