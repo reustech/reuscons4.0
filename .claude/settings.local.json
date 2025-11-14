@@ -1,18 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(mkdir:*)",
-      "Bash(npm run build:*)",
-      "Bash(find:*)",
-      "Bash(while read file)",
-      "Bash(do if ! grep -q \"import React\" \"$file\")",
-      "Bash(then sed -i '1s/^/import React from ''''react'''';\\n\\n/' \"$file\" fi done echo \"React imports added to all UI components\")"
+      "Bash(pkill:*)"
     ],
     "deny": [],
     "ask": []
   },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "shadcn"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }
