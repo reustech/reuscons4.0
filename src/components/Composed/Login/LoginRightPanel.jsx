@@ -1,11 +1,25 @@
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 export default function LoginRightPanel() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      username: '',
+      password: '',
+    },
+  });
+
+  const onSubmit = (data) => {
+    console.log('Datos del formulario:', data);
+    // Aquí iría la lógica de autenticación
+    if (data.username === 'admin' && data.password === 'admin') {
+      window.location.href = '/DashboardAdmin';
+    } else {
+      window.location.href = '/Dashboard';
+    }
+  };
 
   return (
     <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-8 md:px-16">
@@ -16,7 +30,7 @@ export default function LoginRightPanel() {
 
 
         {/* Login Form */}
-        <form className="flex flex-col gap-10">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-10">
 
           {/* Username Field */}
           <div className="flex flex-col gap-2">
@@ -27,11 +41,18 @@ export default function LoginRightPanel() {
               id="username"
               type="text"
               placeholder="your username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              {...register('username', {
+                required: 'El usuario es requerido',
+                minLength: {
+                  value: 3,
+                  message: 'Mínimo 3 caracteres',
+                },
+              })}
               className="h-12 bg-white/95 text-gray-900 placeholder:text-gray-400 focus:bg-white focus:ring-2 focus:ring-orange-400 px-4!"
-              required
             />
+            {errors.username && (
+              <span className="text-red-400 text-xs">{errors.username.message}</span>
+            )}
           </div>
 
           {/* Password Field */}
@@ -43,11 +64,18 @@ export default function LoginRightPanel() {
               id="password"
               type="password"
               placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              {...register('password', {
+                required: 'La contraseña es requerida',
+                minLength: {
+                  value: 3,
+                  message: 'Mínimo 3 caracteres',
+                },
+              })}
               className="h-12 bg-white/95 text-gray-900 placeholder:text-gray-400 focus:bg-white focus:ring-2 focus:ring-orange-400 px-4!"
-              required
             />
+            {errors.password && (
+              <span className="text-red-400 text-xs">{errors.password.message}</span>
+            )}
           </div>
 
           {/* Sign In Button */}
