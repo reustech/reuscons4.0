@@ -2,7 +2,7 @@ export default function LoginLeftPanel() {
   return (
     <div className="relative z-10 flex-1 flex items-center justify-center px-8 md:px-16">
       <div className="text-white max-w-md text-center md:text-left">
-        <h1 className="text-5xl md:text-6xl font-bold mb-4 leading-tight">
+        <h1 className="text-3xl md:text-8xl font-bold mb-4 leading-tight">
           Welcome<br />Back
         </h1>
         <p className="text-base font-light leading-relaxed mb-8 opacity-95">
