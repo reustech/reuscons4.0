@@ -1,8 +1,81 @@
 ---
-return new Response(null, {
-  status: 301,
-  headers: {
-    Location: '/login'
-  }
-});
+import Layout from '../layouts/Layout.astro';
+import IndexCard from '../components/IndexCard.jsx';
+
+import {
+  SquareKanban,
+  FileText,
+  Building2,
+  Zap,
+  BarChart3,
+  Calendar,
+  MessageSquare,
+  TrendingUp,
+  Bell,
+  Lock,
+  Settings,
+  Smartphone,
+  BookOpen,
+  CheckCircle,
+  Target
+} from 'lucide-react';
 ---
+
+<Layout title="Home - Reuscons">
+
+	<main class="container">
+		<section style={{ textAlign: 'center', marginBottom: '3rem' }}>
+			<h1>Bienvenido a Reuscons 4.0</h1>
+			<p style={{ fontSize: '1.125rem', marginBottom: '2rem' }}>
+				Gestiona tus proyectos, tareas y archivos de forma eficiente
+			</p>
+			<a href="/login" role="button">Iniciar Sesión</a>
+		</section>
+
+		<section style={{
+			display: 'grid',
+			gridTemplateColumns: 'repeat(3, 1fr)',
+			gap: '1rem',
+			marginTop: '3rem'
+		}} client:load>
+			<IndexCard Icon={SquareKanban} title="Kanban" description="Organiza tus tareas con un tablero Kanban interactivo. Arrastra y suelta tareas entre columnas." />
+			<IndexCard Icon={FileText} title="Gestor de Archivos" description="Sube, descarga y gestiona tus archivos fácilmente. Almacenamiento seguro y accesible." />
+			<IndexCard Icon={Building2} title="Gestión de Obras" description="Organiza tus proyectos y obras. Asigna equipos y realiza seguimiento del progreso." />
+			<IndexCard Icon={Zap} title="Rápido y Eficiente" description="Interfaz moderna construida con Astro y React. Experiencia de usuario optimizada." />
+			<IndexCard Icon={BarChart3} title="Reportes y Análisis" description="Genera reportes detallados de tus proyectos. Visualiza métricas y estadísticas en tiempo real." />
+			<IndexCard Icon={Calendar} title="Calendario de Eventos" description="Gestiona fechas importantes, hitos y plazos. Sincroniza con tu calendario personal." />
+			<IndexCard Icon={MessageSquare} title="Comunicación en Equipo" description="Colabora con tu equipo mediante comentarios y notificaciones. Mantente conectado en todo momento." />
+			<IndexCard Icon={TrendingUp} title="Seguimiento de Progreso" description="Visualiza el avance de tus proyectos. Identifica cuellos de botella y áreas de mejora." />
+			<IndexCard Icon={Bell} title="Notificaciones Inteligentes" description="Recibe alertas personalizadas sobre cambios importantes. Nunca te pierdas una actualización crítica." />
+			<IndexCard Icon={Lock} title="Seguridad y Privacidad" description="Protección de datos de nivel empresarial. Control de acceso granular por usuario y rol." />
+			<IndexCard Icon={Settings} title="Personalizaciones" description="Personaliza tu interfaz según tus necesidades. Temas, layouts y vistas personalizables." />
+			<IndexCard Icon={Smartphone} title="Acceso Multiplataforma" description="Accede desde cualquier dispositivo. Sincronización automática en todos tus aparatos." />
+			<IndexCard Icon={BookOpen} title="Documentación y Ayuda" description="Guías completas y tutoriales. Centro de ayuda 24/7 con soporte técnico." />
+			<IndexCard Icon={CheckCircle} title="Validación de Datos" description="Validación automática de información. Reducción de errores e inconsistencias." />
+			<IndexCard Icon={Target} title="Metas y Objetivos" description="Establece objetivos claros para tus proyectos. Monitorea el cumplimiento en tiempo real." />
+		</section>
+
+		<section style={{ marginTop: '4rem', textAlign: 'center' }}>
+			<h2>¿Listo para comenzar?</h2>
+			<p style={{ marginBottom: '1.5rem' }}>
+				Inicia sesión con las credenciales de prueba para explorar todas las funcionalidades
+			</p>
+			<div style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+				gap: '1rem'
+			}}>
+				<article>
+					<h4>Admin</h4>
+					<p>Usuario: <strong>admin</strong></p>
+					<p>Contraseña: <strong>admin</strong></p>
+				</article>
+				<article>
+					<h4>Usuario Regular</h4>
+					<p>Usuario: <strong>cualquiera</strong></p>
+					<p>Contraseña: <strong>cualquiera</strong></p>
+				</article>
+			</div>
+		</section>
+	</main>
+</Layout>

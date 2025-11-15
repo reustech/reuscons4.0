@@ -1,5 +1,69 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import "@picocss/pico";
+
+/* Variables personalizadas de Reuscons */
+:root {
+  /* Colores Primarios */
+  --primary-color: #f97316;
+  --primary-dark: #ea580c;
+  --primary-light: #fbae17;
+
+  /* Colores de Texto */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.9);
+  --text-muted: rgba(255, 255, 255, 0.7);
+
+  /* Colores de Borde */
+  --border-light: rgba(255, 255, 255, 0.4);
+  --border-hover: rgba(255, 255, 255, 0.7);
+
+  /* Colores de Fondo para Overlay */
+  --overlay-bg: rgba(0, 0, 0, 0.2);
+
+  /* Espaciado */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+
+  /* Transiciones */
+  --transition-fast: 0.2s;
+  --transition-normal: 0.3s;
+}
+
+/* Tema Oscuro - Fondo Negro */
+[data-theme="dark"] {
+  --body-bg-color: #0a0a0a;
+  --body-color: #ffffff;
+  --card-background-color: #1a1a1a;
+  --form-element-bg-color: #1a1a1a;
+  --form-element-border-color: #333333;
+  --button-box-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
+  --article-background-color: #1a1a1a;
+  --article-border-color: #333333;
+}
+
+/* Estilos adicionales para tarjetas (article) en tema oscuro */
+[data-theme="dark"] article {
+  background-color: var(--article-background-color);
+  border-color: var(--article-border-color);
+  color: var(--body-color);
+}
+
+/* Estilos para bordes de tarjetas */
+[data-theme="dark"] article:has(h3) {
+  border: 1px solid var(--article-border-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Tema Oscuro por preferencia del SO */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #fbae17;
+    --primary-dark: #f97316;
+    --primary-light: #ffc857;
+  }
+}
 
 * {
   margin: 0;

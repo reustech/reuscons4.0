@@ -1,7 +1,4 @@
 import { useForm } from 'react-hook-form';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 
 export default function LoginRightPanel() {
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -22,22 +19,56 @@ export default function LoginRightPanel() {
   };
 
   return (
-    <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-8 md:px-16">
-      <div className="w-full max-w-md flex flex-col">
+    <div style={{
+      position: 'relative',
+      zIndex: 10,
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 'var(--spacing-lg)'
+    }}>
+      <div style={{
+        width: '100%',
+        maxWidth: '28rem',
+        display: 'flex',
+        flexDirection: 'column'
+      }}>
 
         {/* Sign In Title */}
-        <h2 className="text-4xl md:text-5xl h-20 font-bold text-white text-center mb-10">Sign in</h2>
-
+        <h2 style={{
+          fontSize: 'clamp(2rem, 5vw, 3rem)',
+          fontWeight: 'bold',
+          color: 'var(--text-primary)',
+          textAlign: 'center',
+          marginBottom: 'var(--spacing-xl)'
+        }}>
+          Sign in
+        </h2>
 
         {/* Login Form */}
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-10">
+        <form onSubmit={handleSubmit(onSubmit)} style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 'var(--spacing-xl)'
+        }}>
 
           {/* Username Field */}
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="username" className="text-white/90 text-sm font-medium block">
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 'var(--spacing-xs)'
+          }}>
+            <label htmlFor="username" style={{
+              color: 'var(--text-secondary)',
+              fontSize: '0.875rem',
+              fontWeight: '500',
+              display: 'block'
+            }}>
               Username
-            </Label>
-            <Input
+            </label>
+            <input
               id="username"
               type="text"
               placeholder="your username"
@@ -48,19 +79,41 @@ export default function LoginRightPanel() {
                   message: 'Mínimo 3 caracteres',
                 },
               })}
-              className="h-12 bg-white/95 text-gray-900 placeholder:text-gray-400 focus:bg-white focus:ring-2 focus:ring-orange-400 px-4!"
+              style={{
+                padding: '0.75rem 1rem',
+                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                color: '#111827',
+                borderRadius: '0.375rem',
+                border: '1px solid #e5e7eb',
+                fontSize: '1rem',
+                fontFamily: 'inherit'
+              }}
             />
             {errors.username && (
-              <span className="text-red-400 text-xs">{errors.username.message}</span>
+              <span style={{
+                color: '#f87171',
+                fontSize: '0.75rem'
+              }}>
+                {errors.username.message}
+              </span>
             )}
           </div>
 
           {/* Password Field */}
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="password" className="text-white/90 text-sm font-medium block">
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 'var(--spacing-xs)'
+          }}>
+            <label htmlFor="password" style={{
+              color: 'var(--text-secondary)',
+              fontSize: '0.875rem',
+              fontWeight: '500',
+              display: 'block'
+            }}>
               Password
-            </Label>
-            <Input
+            </label>
+            <input
               id="password"
               type="password"
               placeholder="••••••••"
@@ -71,20 +124,46 @@ export default function LoginRightPanel() {
                   message: 'Mínimo 3 caracteres',
                 },
               })}
-              className="h-12 bg-white/95 text-gray-900 placeholder:text-gray-400 focus:bg-white focus:ring-2 focus:ring-orange-400 px-4!"
+              style={{
+                padding: '0.75rem 1rem',
+                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                color: '#111827',
+                borderRadius: '0.375rem',
+                border: '1px solid #e5e7eb',
+                fontSize: '1rem',
+                fontFamily: 'inherit'
+              }}
             />
             {errors.password && (
-              <span className="text-red-400 text-xs">{errors.password.message}</span>
+              <span style={{
+                color: '#f87171',
+                fontSize: '0.75rem'
+              }}>
+                {errors.password.message}
+              </span>
             )}
           </div>
 
           {/* Sign In Button */}
-          <Button
+          <button
             type="submit"
-            className="w-1/2 h-12 bg-orange-500 hover:bg-orange-600 text-white font-semibold text-base transition-colors rounded-md"
+            style={{
+              width: '100%',
+              padding: '0.75rem 2rem',
+              backgroundColor: 'var(--primary-color)',
+              color: 'var(--text-primary)',
+              fontWeight: '600',
+              fontSize: '1rem',
+              border: 'none',
+              borderRadius: '0.375rem',
+              cursor: 'pointer',
+              transition: `background-color var(--transition-fast)`
+            }}
+            onMouseEnter={(e) => e.target.style.backgroundColor = 'var(--primary-dark)'}
+            onMouseLeave={(e) => e.target.style.backgroundColor = 'var(--primary-color)'}
           >
             Sign in now
-          </Button>
+          </button>
         </form>
       </div>
     </div>

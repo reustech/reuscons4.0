@@ -1,43 +1,149 @@
 export default function LoginLeftPanel() {
   return (
-    <div className="relative z-10 flex-1 flex items-center justify-center px-8 md:px-16">
-      <div className="text-white max-w-md text-center md:text-left">
-        <h1 className="text-3xl md:text-8xl font-bold mb-4 leading-tight">
+    <div style={{
+      position: 'relative',
+      zIndex: 10,
+      flex: 1,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 'var(--spacing-lg)'
+    }}>
+      <div style={{
+        color: 'var(--text-primary)',
+        maxWidth: '28rem',
+        textAlign: 'left'
+      }}>
+        <h1 style={{
+          fontSize: 'clamp(2rem, 8vw, 3.5rem)',
+          fontWeight: 'bold',
+          marginBottom: 'var(--spacing-sm)',
+          lineHeight: 1.2
+        }}>
           Welcome<br />Back
         </h1>
-        <p className="text-base font-light leading-relaxed mb-8 opacity-95">
+        <p style={{
+          fontSize: '1rem',
+          fontWeight: 300,
+          lineHeight: 1.6,
+          marginBottom: 'var(--spacing-lg)',
+          opacity: 0.95,
+          color: 'var(--text-secondary)'
+        }}>
           It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point using.
         </p>
 
         {/* Social Icons */}
-        <div className="flex gap-4 justify-center md:justify-start">
+        <div style={{
+          display: 'flex',
+          gap: 'var(--spacing-sm)',
+          justifyContent: 'flex-start'
+        }}>
           <a
             href="#"
-            className="w-10 h-10 rounded-full border-2 border-white/40 flex items-center justify-center hover:bg-white/10 transition-all hover:border-white/70 text-white"
+            style={{
+              width: '2.5rem',
+              height: '2.5rem',
+              borderRadius: '50%',
+              border: `2px solid var(--border-light)`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--text-primary)',
+              transition: `all var(--transition-normal)`,
+              textDecoration: 'none'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+              e.currentTarget.style.borderColor = 'var(--border-hover)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.borderColor = 'var(--border-light)';
+            }}
             aria-label="Facebook"
           >
-            <i className="fab fa-facebook-f text-sm" />
+            f
           </a>
           <a
             href="#"
-            className="w-10 h-10 rounded-full border-2 border-white/40 flex items-center justify-center hover:bg-white/10 transition-all hover:border-white/70 text-white"
+            style={{
+              width: '2.5rem',
+              height: '2.5rem',
+              borderRadius: '50%',
+              border: `2px solid var(--border-light)`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--text-primary)',
+              transition: `all var(--transition-normal)`,
+              textDecoration: 'none'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+              e.currentTarget.style.borderColor = 'var(--border-hover)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.borderColor = 'var(--border-light)';
+            }}
             aria-label="Twitter"
           >
-            <i className="fab fa-twitter text-sm" />
+            𝕏
           </a>
           <a
             href="#"
-            className="w-10 h-10 rounded-full border-2 border-white/40 flex items-center justify-center hover:bg-white/10 transition-all hover:border-white/70 text-white"
+            style={{
+              width: '2.5rem',
+              height: '2.5rem',
+              borderRadius: '50%',
+              border: `2px solid var(--border-light)`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--text-primary)',
+              transition: `all var(--transition-normal)`,
+              textDecoration: 'none',
+              fontSize: '0.8rem'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+              e.currentTarget.style.borderColor = 'var(--border-hover)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.borderColor = 'var(--border-light)';
+            }}
             aria-label="Instagram"
           >
-            <i className="fab fa-instagram text-sm" />
+            📷
           </a>
           <a
             href="#"
-            className="w-10 h-10 rounded-full border-2 border-white/40 flex items-center justify-center hover:bg-white/10 transition-all hover:border-white/70 text-white"
+            style={{
+              width: '2.5rem',
+              height: '2.5rem',
+              borderRadius: '50%',
+              border: `2px solid var(--border-light)`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--text-primary)',
+              transition: `all var(--transition-normal)`,
+              textDecoration: 'none',
+              fontSize: '0.8rem'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+              e.currentTarget.style.borderColor = 'var(--border-hover)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.borderColor = 'var(--border-light)';
+            }}
             aria-label="YouTube"
           >
-            <i className="fab fa-youtube text-sm" />
+            ▶️
           </a>
         </div>
       </div>

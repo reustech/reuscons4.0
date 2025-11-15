@@ -4,16 +4,25 @@ import LoginRightPanel from './LoginRightPanel';
 export default function LoginForm() {
   return (
     <div
-      className="w-full h-screen flex overflow-hidden"
       style={{
-        backgroundImage: 'url(/login-bg.jpg)',
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        overflow: 'hidden',
+        //backgroundImage: 'url(/login-bg.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
+        position: 'relative'
       }}
     >
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/20" />
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        zIndex: 1
+      }} />
 
       <LoginLeftPanel />
       <LoginRightPanel />

@@ -1,13 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(pkill:*)"
+      "Bash(pkill:*)",
+      "Bash(dir:*)"
     ],
     "deny": [],
     "ask": []
   },
-  "enableAllProjectMcpServers": true,
-  "enabledMcpjsonServers": [
-    "shadcn"
-  ]
+  "enableAllProjectMcpServers": false,
+  "enabledMcpjsonServers": []
 }
