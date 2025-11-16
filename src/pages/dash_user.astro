@@ -1,10 +1,243 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import IndexCard from '../components/IndexCard.jsx';
 
+import {
+  SquareKanban,
+  FileText,
+  Building2,
+  CheckCircle,
+  Calendar,
+  Users,
+  BarChart3,
+  Clock,
+  Zap,
+  MessageSquare,
+  Bell,
+  Eye,
+  Download,
+  Upload,
+  Edit,
+  Trash2,
+  Share2,
+  Lock,
+  Settings,
+  Bookmark,
+  Archive,
+  AlertCircle,
+  TrendingUp,
+  Inbox,
+  Phone,
+  HelpCircle,
+  Filter,
+  Search,
+  MapPin,
+  Activity,
+  Briefcase,
+  Award,
+  GitBranch
+} from 'lucide-react';
 ---
 
-<Layout title="Dashboard User">
+<Layout title="Dashboard de Usuario - Reuscons">
 
-    <h1>Dashboard User</h1>
+	<main class="container">
+		<section style={{ textAlign: 'center', marginBottom: '3rem' }}>
+			<h1>Mi Dashboard</h1>
+			<p style={{ fontSize: '1.125rem', marginBottom: '2rem' }}>
+				Acceso rápido a tus herramientas y proyectos
+			</p>
+		</section>
 
+		<!-- MIS TAREAS Y PROYECTOS -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				📋 Mis Tareas y Proyectos
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<IndexCard Icon={SquareKanban} title="Mis Tableros" description="Ver todos mis tableros Kanban personales. Acceder rápidamente a mis proyectos." />
+				<IndexCard Icon={CheckCircle} title="Mis Tareas" description="Listar mis tareas pendientes y completadas. Filtrar por estado y fecha." />
+				<IndexCard Icon={Clock} title="Tareas Urgentes" description="Ver tareas próximas a vencer. Alertas de tareas críticas." />
+				<IndexCard Icon={Building2} title="Mis Proyectos" description="Proyectos en los que participo. Ver avance y detalles." />
+				<IndexCard Icon={TrendingUp} title="Mi Progreso" description="Estadísticas personales de productividad. Gráficos de desempeño." />
+				<IndexCard Icon={Calendar} title="Cronograma Personal" description="Calendario de mis tareas y eventos. Recordatorios automáticos." />
+			</section>
+		</section>
+
+		<!-- MIS ARCHIVOS Y DOCUMENTOS -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				📎 Mis Archivos y Documentos
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<IndexCard Icon={FileText} title="Mis Archivos" description="Acceder a mis archivos personales. Organizados por proyecto." />
+				<IndexCard Icon={Upload} title="Subir Archivo" description="Compartir nuevo archivo con el equipo. Control de versiones." />
+				<IndexCard Icon={Download} title="Descargar" description="Descargar archivos compartidos. Historial de descargas." />
+				<IndexCard Icon={Bookmark} title="Favoritos" description="Mis archivos y documentos favoritos. Acceso rápido." />
+				<IndexCard Icon={Archive} title="Archivados" description="Archivos archivados por mí. Recuperar si es necesario." />
+				<IndexCard Icon={Share2} title="Compartidos Conmigo" description="Archivos compartidos por otros. Ver permisos y propietario." />
+			</section>
+		</section>
+
+		<!-- COLABORACIÓN Y COMUNICACIÓN -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				💬 Colaboración y Comunicación
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<IndexCard Icon={MessageSquare} title="Mis Mensajes" description="Conversaciones con compañeros de equipo. Chats y comentarios." />
+				<IndexCard Icon={Inbox} title="Notificaciones" description="Ver todas mis notificaciones. Marcar como leído o importante." />
+				<IndexCard Icon={Bell} title="Preferencias de Alertas" description="Configurar mis notificaciones. Qué quiero que me avisen." />
+				<IndexCard Icon={Users} title="Mi Equipo" description="Miembros de mi equipo y proyecto. Contactos y perfiles." />
+				<IndexCard Icon={Phone} title="Solicitar Soporte" description="Contactar con el equipo de soporte. Abrir ticket de ayuda." />
+				<IndexCard Icon={MessageSquare} title="Comentarios" description="Comentarios en tareas y archivos. Discusiones en equipo." />
+			</section>
+		</section>
+
+		<!-- MI CUENTA Y PERFIL -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				👤 Mi Cuenta y Perfil
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<IndexCard Icon={Eye} title="Mi Perfil" description="Ver y editar mi perfil personal. Foto, información de contacto." />
+				<IndexCard Icon={Lock} title="Cambiar Contraseña" description="Cambiar mi contraseña de manera segura. Validaciones de seguridad." />
+				<IndexCard Icon={Settings} title="Preferencias" description="Configurar mis preferencias personales. Idioma, zona horaria." />
+				<IndexCard Icon={Activity} title="Mi Actividad" description="Ver mi historial de actividades. Auditoría personal." />
+				<IndexCard Icon={Briefcase} title="Mi Rol" description="Ver mi rol y responsabilidades. Permisos asignados." />
+				<IndexCard Icon={Award} title="Mis Logros" description="Badges y reconocimientos obtenidos. Metas alcanzadas." />
+			</section>
+		</section>
+
+		<!-- REPORTES Y ANALYTICS PERSONALES -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				📊 Reportes y Analytics Personales
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<IndexCard Icon={BarChart3} title="Mi Reporte" description="Reporte personal de desempeño. KPIs y métricas clave." />
+				<IndexCard Icon={TrendingUp} title="Tendencias" description="Análisis de mis tendencias de trabajo. Gráficos históricos." />
+				<IndexCard Icon={Clock} title="Tiempo Invertido" description="Análisis de tiempo dedicado a tareas y proyectos." />
+				<IndexCard Icon={CheckCircle} title="Tareas Completadas" description="Historial de tareas completadas. Estadísticas de productividad." />
+				<IndexCard Icon={BarChart3} title="Estimaciones vs Real" description="Comparar tiempo estimado con tiempo real invertido." />
+				<IndexCard Icon={Award} title="Rendimiento" description="Indicadores de rendimiento personal. Comparativas de equipo." />
+			</section>
+		</section>
+
+		<!-- BÚSQUEDA Y FILTROS -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				🔍 Búsqueda y Filtros
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<IndexCard Icon={Search} title="Búsqueda Global" description="Buscar en tareas, archivos y proyectos. Búsqueda avanzada." />
+				<IndexCard Icon={Filter} title="Mis Filtros" description="Guardar filtros personalizados. Vistas guardadas." />
+				<IndexCard Icon={AlertCircle} title="Alertas Personales" description="Configurar alertas de palabras clave. Notificaciones inteligentes." />
+				<IndexCard Icon={Bookmark} title="Guardados" description="Guardar tareas y archivos para leer después. Colecciones." />
+				<IndexCard Icon={Eye} title="Ver Recientes" description="Elementos que ves frecuentemente. Historial de acceso." />
+				<IndexCard Icon={GitBranch} title="Cambios Recientes" description="Últimas actualizaciones en mis proyectos. Feed de actividad." />
+			</section>
+		</section>
+
+		<!-- APRENDIZAJE Y RECURSOS -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				📚 Aprendizaje y Recursos
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<IndexCard Icon={HelpCircle} title="Centro de Ayuda" description="Documentación y tutoriales. FAQs y solución de problemas." />
+				<IndexCard Icon={MessageSquare} title="Preguntas Frecuentes" description="Respuestas a preguntas comunes. Troubleshooting." />
+				<IndexCard Icon={Zap} title="Tips y Trucos" description="Consejos para mejorar productividad. Atajos y funciones ocultas." />
+				<IndexCard Icon={AlertCircle} title="Anuncios" description="Noticias del sistema. Actualizaciones y cambios importantes." />
+				<IndexCard Icon={FileText} title="Documentación" description="Acceder a la documentación completa. Manuales y guías." />
+				<IndexCard Icon={Inbox} title="Feedback" description="Enviar feedback y sugerencias. Reportar problemas." />
+			</section>
+		</section>
+
+		<!-- INTEGRACIONES Y HERRAMIENTAS -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				🔗 Integraciones y Herramientas
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<IndexCard Icon={Zap} title="Mis Integraciones" description="Integraciones que he configurado. Conectar con otras apps." />
+				<IndexCard Icon={Calendar} title="Calendario Sincronizado" description="Mi calendario personal sincronizado. Importar/exportar eventos." />
+				<IndexCard Icon={Download} title="Exportar Datos" description="Descargar mis datos personales. Backup de información." />
+				<IndexCard Icon={Share2} title="Compartir" description="Compartir tareas, archivos y proyectos. Generar enlaces." />
+				<IndexCard Icon={Lock} title="Seguridad" description="Verificación de dos factores. Sesiones activas." />
+				<IndexCard Icon={Settings} title="Configuración Avanzada" description="Ajustes técnicos personales. Tokens y API keys." />
+			</section>
+		</section>
+
+		<!-- EQUIPO Y COLABORADORES -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				👥 Equipo y Colaboradores
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<IndexCard Icon={Users} title="Mi Red de Contactos" description="Personas con las que trabajo. Directorio de colegas." />
+				<IndexCard Icon={Briefcase} title="Proyectos Compartidos" description="Proyectos donde soy colaborador. Mis roles y responsabilidades." />
+				<IndexCard Icon={MapPin} title="Ubicaciones" description="Ubicaciones de equipo. Oficinas y espacios de trabajo." />
+				<IndexCard Icon={Award} title="Reconocimientos de Pares" description="Reconocimientos recibidos de colegas. Endorsements." />
+				<IndexCard Icon={MessageSquare} title="Menciones" description="Mensajes donde fui mencionado. Notificaciones de @." />
+				<IndexCard Icon={Activity} title="Actividad del Equipo" description="Ver actividad de mi equipo. Timeline de eventos." />
+			</section>
+		</section>
+
+		<!-- OBJETIVOS Y METAS -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				🎯 Objetivos y Metas
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<IndexCard Icon={Award} title="Mis Objetivos" description="Objetivos personales establecidos. Seguimiento de progreso." />
+				<IndexCard Icon={CheckCircle} title="OKRs" description="Objetivos y Resultados Clave. Alineación de metas." />
+				<IndexCard Icon={TrendingUp} title="Progreso General" description="Avance general de objetivos. Indicadores visuales." />
+				<IndexCard Icon={Calendar} title="Hitos" description="Hitos importantes identificados. Fechas clave." />
+				<IndexCard Icon={AlertCircle} title="Alertas de Metas" description="Notificaciones de objetivos. Recordatorios de plazos." />
+				<IndexCard Icon={BarChart3} title="Comparativa" description="Comparar mis objetivos con el equipo. Benchmarks." />
+			</section>
+		</section>
+
+	</main>
 </Layout>

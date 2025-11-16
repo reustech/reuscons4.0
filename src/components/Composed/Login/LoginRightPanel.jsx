@@ -14,9 +14,9 @@ export default function LoginRightPanel() {
     console.log('Datos del formulario:', data);
     // Aquí iría la lógica de autenticación
     if (data.username === 'admin' && data.password === 'admin') {
-      window.location.href = '/DashboardAdmin';
+      window.location.href = '/dash_admin';
     } else {
-      window.location.href = '/Dashboard';
+      window.location.href = '/dash_user';
     }
   };
 

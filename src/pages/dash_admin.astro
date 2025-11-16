@@ -1,8 +1,226 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import DashboardAdmin from '../components/composed/DashboardAdmin/DashboardAdmin.jsx';
+import IndexCard from '../components/IndexCard.jsx';
+import AdminDashboard from '../components/composed/DashboardAdmin/AdminDashboard.jsx';
+import ClickableCard from '../components/composed/DashboardAdmin/ClickableCard.jsx';
+
+import {
+  Users,
+  SquareKanban,
+  FileText,
+  Building2,
+  BarChart3,
+  Settings,
+  Shield,
+  AlertCircle,
+  TrendingUp,
+  Lock,
+  Trash2,
+  Zap,
+  Database,
+  Users2,
+  CheckCircle,
+  Calendar,
+  MessageSquare,
+  ClipboardList,
+  PieChart,
+  Activity,
+  Download,
+  Upload,
+  Inbox,
+  BookOpen,
+  Mail,
+  Phone,
+  MapPin,
+  Eye,
+  Edit,
+  ToggleLeft,
+  Archive
+} from 'lucide-react';
 ---
 
-<Layout title="Dashboard Admin">
-	<DashboardAdmin client:load />
+<Layout title="Dashboard Administrativo - Reuscons">
+
+	<AdminDashboard client:load />
+
+	<main class="container">
+		<section style={{ textAlign: 'center', marginBottom: '3rem' }}>
+			<h1>Panel Administrativo</h1>
+			<p style={{ fontSize: '1.125rem', marginBottom: '2rem' }}>
+				Gestión completa del sistema - Todas las opciones disponibles
+			</p>
+		</section>
+
+		<!-- GESTIÓN DE USUARIOS -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				👥 Gestión de Usuarios
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<ClickableCard client:load iconName="Users" title="Ver Usuarios" description="Listar todos los usuarios del sistema. Ver detalles, roles y estados." onCardClick={() => window.dispatchEvent(new CustomEvent('openUserModal', { detail: { type: 'list' } }))} />
+				<ClickableCard client:load iconName="Users2" title="Crear Usuario" description="Agregar nuevos usuarios al sistema. Asignar roles y permisos iniciales." onCardClick={() => window.dispatchEvent(new CustomEvent('openUserModal', { detail: { type: 'create' } }))} />
+				<ClickableCard client:load iconName="Edit" title="Editar Usuarios" description="Modificar datos de usuarios. Cambiar roles y asignaciones de equipo." onCardClick={() => window.dispatchEvent(new CustomEvent('openUserModal', { detail: { type: 'edit' } }))} />
+				<ClickableCard client:load iconName="Trash2" title="Eliminar Usuarios" description="Remover usuarios del sistema. Gestionar el acceso y datos históricos." onCardClick={() => window.dispatchEvent(new CustomEvent('openUserModal', { detail: { type: 'delete' } }))} />
+				<IndexCard Icon={Shield} title="Gestión de Permisos" description="Asignar y revoke permisos por usuario. Control granular de acceso." />
+				<IndexCard Icon={Eye} title="Auditoría de Usuarios" description="Ver actividad de usuarios. Registros de acceso y cambios realizados." />
+			</section>
+		</section>
+
+		<!-- GESTIÓN DE PROYECTOS Y OBRAS -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				🏗️ Gestión de Proyectos y Obras
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<ClickableCard client:load iconName="Building2" title="Ver Proyectos" description="Listar todos los proyectos activos. Ver estados y progreso general." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'project', action: 'list' } }))} />
+				<ClickableCard client:load iconName="Building2" title="Crear Proyecto" description="Crear nuevo proyecto. Asignar equipos y presupuestos iniciales." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'project', action: 'create' } }))} />
+				<ClickableCard client:load iconName="Edit" title="Editar Proyectos" description="Modificar información de proyectos. Actualizar plazos y objetivos." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'project', action: 'edit' } }))} />
+				<ClickableCard client:load iconName="Trash2" title="Eliminar Proyectos" description="Remover proyectos del sistema. Gestionar datos históricos." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'project', action: 'delete' } }))} />
+				<IndexCard Icon={Calendar} title="Cronograma" description="Ver y gestionar calendario de proyectos. Hitos y fechas clave." />
+				<IndexCard Icon={Users2} title="Asignar Equipos" description="Asignar personas a proyectos. Gestionar roles dentro del equipo." />
+			</section>
+		</section>
+
+		<!-- GESTIÓN DE TAREAS Y KANBAN -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				✅ Gestión de Tareas y Kanban
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<ClickableCard client:load iconName="SquareKanban" title="Ver Tableros" description="Listar todos los tableros Kanban disponibles. Ver estados y configuración." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'kanban', action: 'list' } }))} />
+				<ClickableCard client:load iconName="SquareKanban" title="Crear Tablero" description="Crear nuevo tablero Kanban personalizado. Definir columnas y flujos de trabajo." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'kanban', action: 'create' } }))} />
+				<ClickableCard client:load iconName="Edit" title="Editar Tablero" description="Modificar configuración de tableros. Renombrar y reordenar columnas." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'kanban', action: 'edit' } }))} />
+				<IndexCard Icon={ClipboardList} title="Gestionar Tareas" description="Ver y editar todas las tareas. Cambiar estados y asignaciones." />
+				<IndexCard Icon={CheckCircle} title="Validar Tareas" description="Revisar y aprobar tareas completadas. Control de calidad." />
+				<IndexCard Icon={TrendingUp} title="Seguimiento de Tareas" description="Análisis de productividad. Métricas de completitud y rendimiento." />
+			</section>
+		</section>
+
+		<!-- GESTIÓN DE ARCHIVOS -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				📎 Gestión de Archivos
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<ClickableCard client:load iconName="FileText" title="Ver Archivos" description="Listar todos los archivos del sistema. Filtrar por tipo, fecha y usuario." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'file', action: 'list' } }))} />
+				<ClickableCard client:load iconName="Upload" title="Subir Archivo" description="Agregar nuevos archivos al servidor. Control de versiones." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'file', action: 'upload' } }))} />
+				<ClickableCard client:load iconName="Download" title="Descargar Archivos" description="Descargar archivos del sistema. Gestionar descargas por usuario." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'file', action: 'download' } }))} />
+				<ClickableCard client:load iconName="Edit" title="Editar Metadatos" description="Modificar información de archivos. Renombrar y reclasificar." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'file', action: 'edit' } }))} />
+				<ClickableCard client:load iconName="Trash2" title="Eliminar Archivos" description="Remover archivos del sistema. Gestionar espacio de almacenamiento." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'file', action: 'delete' } }))} />
+				<IndexCard Icon={Archive} title="Archivar Archivos" description="Archivar archivos antiguos. Mantener espacio disponible." />
+			</section>
+		</section>
+
+		<!-- REPORTES Y ANÁLISIS -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				📊 Reportes y Análisis
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<IndexCard Icon={BarChart3} title="Reportes Generales" description="Generar reportes del sistema. Estadísticas y KPIs principales." />
+				<IndexCard Icon={PieChart} title="Análisis de Proyectos" description="Visualizar datos de proyectos. Gráficos de avance y presupuesto." />
+				<IndexCard Icon={TrendingUp} title="Tendencias" description="Análisis de tendencias en el tiempo. Proyecciones y forecasting." />
+				<IndexCard Icon={Activity} title="Actividad del Sistema" description="Monitoreo de actividad en tiempo real. Eventos y cambios recientes." />
+				<IndexCard Icon={Database} title="Exportar Datos" description="Exportar información en diferentes formatos. CSV, Excel, PDF." />
+				<IndexCard Icon={BarChart3} title="Estadísticas de Uso" description="Análisis de uso del sistema. Usuarios activos y accesos." />
+			</section>
+		</section>
+
+		<!-- GESTIÓN DE SEGURIDAD Y CONFIGURACIÓN -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				🔐 Seguridad y Configuración
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<IndexCard Icon={Lock} title="Control de Acceso" description="Gestionar permisos y roles. Contraseñas y autenticación." />
+				<IndexCard Icon={Shield} title="Auditoría y Logs" description="Ver registros del sistema. Auditoría de cambios y accesos." />
+				<IndexCard Icon={AlertCircle} title="Alertas de Seguridad" description="Configurar alertas. Notificaciones de eventos anormales." />
+				<IndexCard Icon={Settings} title="Configuración General" description="Ajustes del sistema. Personalización global de la aplicación." />
+				<IndexCard Icon={Zap} title="Respaldos" description="Crear y gestionar backups. Recuperación de datos." />
+				<IndexCard Icon={Eye} title="Monitoreo" description="Monitoreo del sistema en tiempo real. Métricas de rendimiento." />
+			</section>
+		</section>
+
+		<!-- COMUNICACIÓN Y NOTIFICACIONES -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				💬 Comunicación y Notificaciones
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<IndexCard Icon={MessageSquare} title="Mensajes" description="Gestionar mensajes del sistema. Comunicación interna entre usuarios." />
+				<IndexCard Icon={Inbox} title="Notificaciones" description="Configurar y ver notificaciones. Canales de comunicación." />
+				<IndexCard Icon={Mail} title="Correos" description="Gestionar envíos de email. Templates y configuración." />
+				<IndexCard Icon={AlertCircle} title="Alertas" description="Configurar alertas personalizadas. Reglas de notificación." />
+				<IndexCard Icon={Phone} title="Soporte" description="Gestionar tickets de soporte. Seguimiento de incidencias." />
+				<IndexCard Icon={BookOpen} title="Anuncios" description="Publicar anuncios al sistema. Comunicados importantes." />
+			</section>
+		</section>
+
+		<!-- MANTENIMIENTO Y HERRAMIENTAS -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				🔧 Mantenimiento y Herramientas
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<IndexCard Icon={Zap} title="Optimización" description="Optimizar base de datos. Limpiar caché y archivos temporales." />
+				<IndexCard Icon={Database} title="Gestión de BD" description="Gestionar base de datos. Backups automáticos y restauración." />
+				<IndexCard Icon={ToggleLeft} title="Mantenimiento" description="Modo mantenimiento. Pausar operaciones y actualizar sistema." />
+				<IndexCard Icon={Eye} title="Diagnóstico" description="Herramientas de diagnóstico. Detectar y solucionar problemas." />
+				<IndexCard Icon={Settings} title="Configuración Avanzada" description="Configuración técnica del sistema. Parámetros y variables de entorno." />
+				<IndexCard Icon={MapPin} title="Estados del Sistema" description="Ver estado de servicios. Disponibilidad y latencia." />
+			</section>
+		</section>
+
+		<!-- INTEGRACIONES Y EXTRAS -->
+		<section style={{ marginBottom: '4rem' }}>
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
+				🔗 Integraciones y Extras
+			</h2>
+			<section style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '1rem'
+			}}>
+				<IndexCard Icon={Zap} title="Integraciones" description="Configurar integraciones externas. APIs y webhooks." />
+				<IndexCard Icon={Calendar} title="Calendario Unificado" description="Sincronizar calendarios. Eventos y reuniones." />
+				<IndexCard Icon={Users} title="Directorio" description="Gestionar directorio de usuarios. Contactos y ubicaciones." />
+				<IndexCard Icon={BarChart3} title="Dashboard Personalizado" description="Crear dashboards personalizados. Widgets y gráficos." />
+				<IndexCard Icon={Download} title="Importación" description="Importar datos del sistema. Cargas masivas." />
+				<IndexCard Icon={Lock} title="Cumplimiento Legal" description="Gestionar GDPR, privacidad. Consentimientos y políticas." />
+			</section>
+		</section>
+
+	</main>
 </Layout>
