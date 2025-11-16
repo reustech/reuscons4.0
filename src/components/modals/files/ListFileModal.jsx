@@ -19,9 +19,9 @@ export default function ListFileModal({ onClose }) {
 
   return (
     <div className="modal-overlay">
-      <div style={{ ...styles.modalContent, maxWidth: '700px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-md)' }}>
-          <h3>Archivos del Sistema</h3>
+      <div className="modal-content" style={{ maxWidth: '700px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-sm)' }}>
+          <h3 style={{ fontSize: '1.1rem', margin: 0 }}>Archivos del Sistema</h3>
           <button
             onClick={onClose}
             style={{
@@ -31,32 +31,32 @@ export default function ListFileModal({ onClose }) {
               color: 'var(--text-primary)',
             }}
           >
-            <X size={24} />
+            <X size={20} />
           </button>
         </div>
 
         {files.length === 0 ? (
-          <p style={{ textAlign: 'center', opacity: 0.6 }}>No hay archivos</p>
+          <p style={{ textAlign: 'center', opacity: 0.6, fontSize: '0.875rem' }}>No hay archivos</p>
         ) : (
           <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.875rem' }}>
               <thead>
                 <tr style={{ backgroundColor: 'var(--form-element-bg-color)' }}>
-                  <th style={{ padding: 'var(--spacing-sm)', textAlign: 'left', borderBottom: '1px solid var(--border-color)' }}>Nombre</th>
-                  <th style={{ padding: 'var(--spacing-sm)', textAlign: 'left', borderBottom: '1px solid var(--border-color)' }}>Tipo</th>
-                  <th style={{ padding: 'var(--spacing-sm)', textAlign: 'left', borderBottom: '1px solid var(--border-color)' }}>Tamaño</th>
-                  <th style={{ padding: 'var(--spacing-sm)', textAlign: 'left', borderBottom: '1px solid var(--border-color)' }}>Fecha</th>
+                  <th style={{ padding: 'var(--spacing-xs) var(--spacing-sm)', textAlign: 'left', borderBottom: '1px solid var(--border-color)', fontSize: '0.8rem' }}>Nombre</th>
+                  <th style={{ padding: 'var(--spacing-xs) var(--spacing-sm)', textAlign: 'left', borderBottom: '1px solid var(--border-color)', fontSize: '0.8rem' }}>Tipo</th>
+                  <th style={{ padding: 'var(--spacing-xs) var(--spacing-sm)', textAlign: 'left', borderBottom: '1px solid var(--border-color)', fontSize: '0.8rem' }}>Tamaño</th>
+                  <th style={{ padding: 'var(--spacing-xs) var(--spacing-sm)', textAlign: 'left', borderBottom: '1px solid var(--border-color)', fontSize: '0.8rem' }}>Fecha</th>
                 </tr>
               </thead>
               <tbody>
                 {files.map((file) => (
                   <tr key={file.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                    <td style={{ padding: 'var(--spacing-sm)' }}>{file.name}</td>
-                    <td style={{ padding: 'var(--spacing-sm)', fontSize: '0.875rem', opacity: 0.8 }}>{file.type}</td>
-                    <td style={{ padding: 'var(--spacing-sm)', fontSize: '0.875rem', opacity: 0.8 }}>
+                    <td style={{ padding: 'var(--spacing-xs) var(--spacing-sm)', fontSize: '0.875rem' }}>{file.name}</td>
+                    <td style={{ padding: 'var(--spacing-xs) var(--spacing-sm)', fontSize: '0.75rem', opacity: 0.8 }}>{file.type}</td>
+                    <td style={{ padding: 'var(--spacing-xs) var(--spacing-sm)', fontSize: '0.75rem', opacity: 0.8 }}>
                       {file.size ? formatFileSize(file.size) : 'N/A'}
                     </td>
-                    <td style={{ padding: 'var(--spacing-sm)', fontSize: '0.875rem', opacity: 0.8 }}>
+                    <td style={{ padding: 'var(--spacing-xs) var(--spacing-sm)', fontSize: '0.75rem', opacity: 0.8 }}>
                       {file.uploadedAt ? new Date(file.uploadedAt).toLocaleDateString('es-ES') : 'N/A'}
                     </td>
                   </tr>
@@ -66,33 +66,12 @@ export default function ListFileModal({ onClose }) {
           </div>
         )}
 
-        <button
-          onClick={onClose}
-          style={{
-            width: '100%',
-            marginTop: 'var(--spacing-md)',
-            padding: 'var(--spacing-sm) var(--spacing-md)',
-            borderRadius: 'var(--border-radius)',
-            border: 'none',
-            backgroundColor: 'var(--primary-color)',
-            color: 'white',
-            cursor: 'pointer',
-            fontWeight: 600,
-          }}
-        >
-          Cerrar
-        </button>
+        <div className="modal-button-group">
+          <button onClick={onClose} className="modal-btn">
+            Cerrar
+          </button>
+        </div>
       </div>
     </div>
   );
 }
-
-const styles = {
-  modalContent: {
-    backgroundColor: 'var(--bg-secondary)',
-    border: '1px solid var(--border-color)',
-    borderRadius: 'var(--border-radius)',
-    padding: 'var(--spacing-lg)',
-    width: '90%',
-  },
-};

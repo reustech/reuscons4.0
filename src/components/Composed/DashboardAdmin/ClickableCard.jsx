@@ -4,12 +4,23 @@ const iconMap = {
   Users, Users2, Edit, Trash2, Shield, Eye, SquareKanban, Building2, FileText, Calendar, CheckCircle, TrendingUp, ClipboardList, PieChart, Activity, Database, BarChart3, Download, Upload, Inbox, BookOpen, Mail, Phone, MapPin, ToggleLeft, Archive, Lock, Zap, AlertCircle, Settings, MessageSquare
 };
 
-export default function ClickableCard({ iconName, title, description, onCardClick }) {
+export default function ClickableCard({ iconName, title, description, ...attrs }) {
   const Icon = iconMap[iconName];
+
+  const handleClick = () => {
+    const modalType = attrs['data-modal-type'];
+    const modalAction = attrs['data-modal-action'];
+
+    if (modalType && modalAction) {
+      window.dispatchEvent(new CustomEvent('openModal', {
+        detail: { type: modalType, action: modalAction }
+      }));
+    }
+  };
 
   return (
     <article
-      onClick={onCardClick}
+      onClick={handleClick}
       style={{
         textAlign: 'center',
         padding: 'var(--spacing-md)',

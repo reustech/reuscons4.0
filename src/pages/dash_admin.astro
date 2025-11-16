@@ -61,10 +61,10 @@ import {
 				gridTemplateColumns: 'repeat(3, 1fr)',
 				gap: '1rem'
 			}}>
-				<ClickableCard client:load iconName="Users" title="Ver Usuarios" description="Listar todos los usuarios del sistema. Ver detalles, roles y estados." onCardClick={() => window.dispatchEvent(new CustomEvent('openUserModal', { detail: { type: 'list' } }))} />
-				<ClickableCard client:load iconName="Users2" title="Crear Usuario" description="Agregar nuevos usuarios al sistema. Asignar roles y permisos iniciales." onCardClick={() => window.dispatchEvent(new CustomEvent('openUserModal', { detail: { type: 'create' } }))} />
-				<ClickableCard client:load iconName="Edit" title="Editar Usuarios" description="Modificar datos de usuarios. Cambiar roles y asignaciones de equipo." onCardClick={() => window.dispatchEvent(new CustomEvent('openUserModal', { detail: { type: 'edit' } }))} />
-				<ClickableCard client:load iconName="Trash2" title="Eliminar Usuarios" description="Remover usuarios del sistema. Gestionar el acceso y datos históricos." onCardClick={() => window.dispatchEvent(new CustomEvent('openUserModal', { detail: { type: 'delete' } }))} />
+				<ClickableCard client:load iconName="Users" title="Ver Usuarios" description="Listar todos los usuarios del sistema. Ver detalles, roles y estados." data-modal-type="user" data-modal-action="list" />
+				<ClickableCard client:load iconName="Users2" title="Crear Usuario" description="Agregar nuevos usuarios al sistema. Asignar roles y permisos iniciales." data-modal-type="user" data-modal-action="create" />
+				<ClickableCard client:load iconName="Edit" title="Editar Usuarios" description="Modificar datos de usuarios. Cambiar roles y asignaciones de equipo." data-modal-type="user" data-modal-action="edit" />
+				<ClickableCard client:load iconName="Trash2" title="Eliminar Usuarios" description="Remover usuarios del sistema. Gestionar el acceso y datos históricos." data-modal-type="user" data-modal-action="delete" />
 				<IndexCard Icon={Shield} title="Gestión de Permisos" description="Asignar y revoke permisos por usuario. Control granular de acceso." />
 				<IndexCard Icon={Eye} title="Auditoría de Usuarios" description="Ver actividad de usuarios. Registros de acceso y cambios realizados." />
 			</section>
@@ -80,10 +80,10 @@ import {
 				gridTemplateColumns: 'repeat(3, 1fr)',
 				gap: '1rem'
 			}}>
-				<ClickableCard client:load iconName="Building2" title="Ver Proyectos" description="Listar todos los proyectos activos. Ver estados y progreso general." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'project', action: 'list' } }))} />
-				<ClickableCard client:load iconName="Building2" title="Crear Proyecto" description="Crear nuevo proyecto. Asignar equipos y presupuestos iniciales." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'project', action: 'create' } }))} />
-				<ClickableCard client:load iconName="Edit" title="Editar Proyectos" description="Modificar información de proyectos. Actualizar plazos y objetivos." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'project', action: 'edit' } }))} />
-				<ClickableCard client:load iconName="Trash2" title="Eliminar Proyectos" description="Remover proyectos del sistema. Gestionar datos históricos." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'project', action: 'delete' } }))} />
+				<ClickableCard client:load iconName="Building2" title="Ver Proyectos" description="Listar todos los proyectos activos. Ver estados y progreso general." data-modal-type="project" data-modal-action="list" />
+				<ClickableCard client:load iconName="Building2" title="Crear Proyecto" description="Crear nuevo proyecto. Asignar equipos y presupuestos iniciales." data-modal-type="project" data-modal-action="create" />
+				<ClickableCard client:load iconName="Edit" title="Editar Proyectos" description="Modificar información de proyectos. Actualizar plazos y objetivos." data-modal-type="project" data-modal-action="edit" />
+				<ClickableCard client:load iconName="Trash2" title="Eliminar Proyectos" description="Remover proyectos del sistema. Gestionar datos históricos." data-modal-type="project" data-modal-action="delete" />
 				<IndexCard Icon={Calendar} title="Cronograma" description="Ver y gestionar calendario de proyectos. Hitos y fechas clave." />
 				<IndexCard Icon={Users2} title="Asignar Equipos" description="Asignar personas a proyectos. Gestionar roles dentro del equipo." />
 			</section>
@@ -99,9 +99,9 @@ import {
 				gridTemplateColumns: 'repeat(3, 1fr)',
 				gap: '1rem'
 			}}>
-				<ClickableCard client:load iconName="SquareKanban" title="Ver Tableros" description="Listar todos los tableros Kanban disponibles. Ver estados y configuración." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'kanban', action: 'list' } }))} />
-				<ClickableCard client:load iconName="SquareKanban" title="Crear Tablero" description="Crear nuevo tablero Kanban personalizado. Definir columnas y flujos de trabajo." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'kanban', action: 'create' } }))} />
-				<ClickableCard client:load iconName="Edit" title="Editar Tablero" description="Modificar configuración de tableros. Renombrar y reordenar columnas." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'kanban', action: 'edit' } }))} />
+				<ClickableCard client:load iconName="SquareKanban" title="Ver Tableros" description="Listar todos los tableros Kanban disponibles. Ver estados y configuración." data-modal-type="kanban" data-modal-action="list" />
+				<ClickableCard client:load iconName="SquareKanban" title="Crear Tablero" description="Crear nuevo tablero Kanban personalizado. Definir columnas y flujos de trabajo." data-modal-type="kanban" data-modal-action="create" />
+				<ClickableCard client:load iconName="Edit" title="Editar Tablero" description="Modificar configuración de tableros. Renombrar y reordenar columnas." data-modal-type="kanban" data-modal-action="edit" />
 				<IndexCard Icon={ClipboardList} title="Gestionar Tareas" description="Ver y editar todas las tareas. Cambiar estados y asignaciones." />
 				<IndexCard Icon={CheckCircle} title="Validar Tareas" description="Revisar y aprobar tareas completadas. Control de calidad." />
 				<IndexCard Icon={TrendingUp} title="Seguimiento de Tareas" description="Análisis de productividad. Métricas de completitud y rendimiento." />
@@ -118,11 +118,11 @@ import {
 				gridTemplateColumns: 'repeat(3, 1fr)',
 				gap: '1rem'
 			}}>
-				<ClickableCard client:load iconName="FileText" title="Ver Archivos" description="Listar todos los archivos del sistema. Filtrar por tipo, fecha y usuario." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'file', action: 'list' } }))} />
-				<ClickableCard client:load iconName="Upload" title="Subir Archivo" description="Agregar nuevos archivos al servidor. Control de versiones." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'file', action: 'upload' } }))} />
-				<ClickableCard client:load iconName="Download" title="Descargar Archivos" description="Descargar archivos del sistema. Gestionar descargas por usuario." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'file', action: 'download' } }))} />
-				<ClickableCard client:load iconName="Edit" title="Editar Metadatos" description="Modificar información de archivos. Renombrar y reclasificar." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'file', action: 'edit' } }))} />
-				<ClickableCard client:load iconName="Trash2" title="Eliminar Archivos" description="Remover archivos del sistema. Gestionar espacio de almacenamiento." onCardClick={() => window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'file', action: 'delete' } }))} />
+				<ClickableCard client:load iconName="FileText" title="Ver Archivos" description="Listar todos los archivos del sistema. Filtrar por tipo, fecha y usuario." data-modal-type="file" data-modal-action="list" />
+				<ClickableCard client:load iconName="Upload" title="Subir Archivo" description="Agregar nuevos archivos al servidor. Control de versiones." data-modal-type="file" data-modal-action="upload" />
+				<ClickableCard client:load iconName="Download" title="Descargar Archivos" description="Descargar archivos del sistema. Gestionar descargas por usuario." data-modal-type="file" data-modal-action="download" />
+				<ClickableCard client:load iconName="Edit" title="Editar Metadatos" description="Modificar información de archivos. Renombrar y reclasificar." data-modal-type="file" data-modal-action="edit" />
+				<ClickableCard client:load iconName="Trash2" title="Eliminar Archivos" description="Remover archivos del sistema. Gestionar espacio de almacenamiento." data-modal-type="file" data-modal-action="delete" />
 				<IndexCard Icon={Archive} title="Archivar Archivos" description="Archivar archivos antiguos. Mantener espacio disponible." />
 			</section>
 		</section>

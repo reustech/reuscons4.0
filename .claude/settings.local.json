@@ -3,7 +3,15 @@
     "allow": [
       "Bash(pkill:*)",
       "Bash(dir:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(netstat:*)",
+      "Bash(lsof:*)",
+      "Bash(findstr:*)",
+      "Bash(npm run dev:*)",
+      "Bash(timeout 10 echo:*)",
+      "Bash(for file in \"CreateFileModal\" \"ListFileModal\" \"UploadFileModal\" \"EditFileModal\" \"DeleteFileModal\" \"DownloadFileModal\")",
+      "Bash(do echo \"=== $file.jsx ===\")",
+      "Bash(done)"
     ],
     "deny": [],
     "ask": []

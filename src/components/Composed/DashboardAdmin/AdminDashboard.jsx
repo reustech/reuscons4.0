@@ -7,23 +7,28 @@ import { EditFileModal, DeleteFileModal, ListFileModal, UploadFileModal, Downloa
 export default function AdminDashboard() {
   const [modalState, setModalState] = useState({ type: null, action: null });
 
-  // Escuchar eventos de abrir modal genéricos
+  // Escuchar eventos de abrir modal
   useEffect(() => {
     const handleOpenModal = (event) => {
       const { type, action } = event.detail;
-      setModalState({ type, action });
+      if (type && action) {
+        setModalState({ type, action });
+      }
     };
 
-    // Escuchar ambos eventos para compatibilidad
-    window.addEventListener('openModal', handleOpenModal);
-    window.addEventListener('openUserModal', (event) => {
+    const handleOpenUserModal = (event) => {
       const { type } = event.detail;
-      setModalState({ type: 'user', action: type });
-    });
+      if (type) {
+        setModalState({ type: 'user', action: type });
+      }
+    };
+
+    window.addEventListener('openModal', handleOpenModal);
+    window.addEventListener('openUserModal', handleOpenUserModal);
 
     return () => {
       window.removeEventListener('openModal', handleOpenModal);
-      window.removeEventListener('openUserModal', handleOpenModal);
+      window.removeEventListener('openUserModal', handleOpenUserModal);
     };
   }, []);
 

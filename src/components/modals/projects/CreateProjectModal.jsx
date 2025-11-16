@@ -30,8 +30,8 @@ export default function CreateProjectModal({ onClose, onProjectCreated }) {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-md)' }}>
-          <h3>Crear Nuevo Proyecto</h3>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+          <h3 style={{ fontSize: '1.1rem', margin: 0 }}>Crear Nuevo Proyecto</h3>
           <button
             onClick={onClose}
             style={{
@@ -41,140 +41,76 @@ export default function CreateProjectModal({ onClose, onProjectCreated }) {
               color: 'var(--text-primary)',
             }}
           >
-            <X size={24} />
+            <X size={20} />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div style={{ marginBottom: 'var(--spacing-md)' }}>
-            <label style={{ display: 'block', marginBottom: 'var(--spacing-xs)', fontWeight: 600 }}>
-              Nombre del Proyecto *
-            </label>
-            <input
-              {...register('name')}
-              type="text"
-              placeholder="Ej: Sistema de Gestión"
-              style={{
-                width: '100%',
-                padding: 'var(--spacing-sm)',
-                borderRadius: 'var(--border-radius)',
-                border: '1px solid var(--form-element-border-color)',
-                backgroundColor: 'var(--form-element-bg-color)',
-                color: 'var(--text-primary)',
-              }}
-            />
-            {errors.name && <p style={{ color: '#ef4444', fontSize: '0.875rem', marginTop: '0.25rem' }}>{errors.name.message}</p>}
+        <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+          <div className="modal-form-columns">
+            <div className="form-group modal-form-columns-full">
+              <label>Nombre del Proyecto *</label>
+              <input
+                {...register('name')}
+                type="text"
+                placeholder="Ej: Sistema de Gestión"
+              />
+              {errors.name && <span className="error-message">{errors.name.message}</span>}
+            </div>
+
+            <div className="form-group modal-form-columns-full">
+              <label>Descripción</label>
+              <textarea
+                {...register('description')}
+                placeholder="Descripción del proyecto..."
+                style={{ minHeight: '60px' }}
+              />
+              {errors.description && <span className="error-message">{errors.description.message}</span>}
+            </div>
+
+            <div className="form-group">
+              <label>Estado</label>
+              <select {...register('status')}>
+                <option value="Activo">Activo</option>
+                <option value="Pausado">Pausado</option>
+                <option value="Completado">Completado</option>
+                <option value="Cancelado">Cancelado</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label>Presupuesto</label>
+              <input
+                {...register('budget', { valueAsNumber: true })}
+                type="number"
+                placeholder="0"
+              />
+            </div>
+
+            <div className="form-group modal-form-columns-full">
+              <label>Gerente del Proyecto</label>
+              <input
+                {...register('manager')}
+                type="text"
+                placeholder="Nombre del gerente"
+              />
+            </div>
           </div>
 
-          <div style={{ marginBottom: 'var(--spacing-md)' }}>
-            <label style={{ display: 'block', marginBottom: 'var(--spacing-xs)', fontWeight: 600 }}>
-              Descripción
-            </label>
-            <textarea
-              {...register('description')}
-              placeholder="Descripción del proyecto..."
-              style={{
-                width: '100%',
-                padding: 'var(--spacing-sm)',
-                borderRadius: 'var(--border-radius)',
-                border: '1px solid var(--form-element-border-color)',
-                backgroundColor: 'var(--form-element-bg-color)',
-                color: 'var(--text-primary)',
-                minHeight: '80px',
-                fontFamily: 'inherit',
-              }}
-            />
-            {errors.description && <p style={{ color: '#ef4444', fontSize: '0.875rem', marginTop: '0.25rem' }}>{errors.description.message}</p>}
-          </div>
-
-          <div style={{ marginBottom: 'var(--spacing-md)' }}>
-            <label style={{ display: 'block', marginBottom: 'var(--spacing-xs)', fontWeight: 600 }}>
-              Estado
-            </label>
-            <select
-              {...register('status')}
-              style={{
-                width: '100%',
-                padding: 'var(--spacing-sm)',
-                borderRadius: 'var(--border-radius)',
-                border: '1px solid var(--form-element-border-color)',
-                backgroundColor: 'var(--form-element-bg-color)',
-                color: 'var(--text-primary)',
-              }}
-            >
-              <option value="Activo">Activo</option>
-              <option value="Pausado">Pausado</option>
-              <option value="Completado">Completado</option>
-              <option value="Cancelado">Cancelado</option>
-            </select>
-          </div>
-
-          <div style={{ marginBottom: 'var(--spacing-md)' }}>
-            <label style={{ display: 'block', marginBottom: 'var(--spacing-xs)', fontWeight: 600 }}>
-              Presupuesto
-            </label>
-            <input
-              {...register('budget', { valueAsNumber: true })}
-              type="number"
-              placeholder="0"
-              style={{
-                width: '100%',
-                padding: 'var(--spacing-sm)',
-                borderRadius: 'var(--border-radius)',
-                border: '1px solid var(--form-element-border-color)',
-                backgroundColor: 'var(--form-element-bg-color)',
-                color: 'var(--text-primary)',
-              }}
-            />
-          </div>
-
-          <div style={{ marginBottom: 'var(--spacing-md)' }}>
-            <label style={{ display: 'block', marginBottom: 'var(--spacing-xs)', fontWeight: 600 }}>
-              Gerente del Proyecto
-            </label>
-            <input
-              {...register('manager')}
-              type="text"
-              placeholder="Nombre del gerente"
-              style={{
-                width: '100%',
-                padding: 'var(--spacing-sm)',
-                borderRadius: 'var(--border-radius)',
-                border: '1px solid var(--form-element-border-color)',
-                backgroundColor: 'var(--form-element-bg-color)',
-                color: 'var(--text-primary)',
-              }}
-            />
-          </div>
-
-          <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+          <div className="modal-button-group">
             <button
               type="button"
               onClick={onClose}
-              style={{
-                flex: 1,
-                padding: 'var(--spacing-sm) var(--spacing-md)',
-                borderRadius: 'var(--border-radius)',
-                border: '1px solid var(--border-color)',
-                backgroundColor: 'transparent',
-                color: 'var(--text-primary)',
-                cursor: 'pointer',
-              }}
+              className="modal-btn modal-btn-secondary"
             >
               Cancelar
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
+              className="modal-btn"
               style={{
-                flex: 1,
-                padding: 'var(--spacing-sm) var(--spacing-md)',
-                borderRadius: 'var(--border-radius)',
-                border: 'none',
                 backgroundColor: isSubmitting ? 'rgba(249, 115, 22, 0.5)' : 'var(--primary-color)',
-                color: 'white',
                 cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                fontWeight: 600,
               }}
             >
               {isSubmitting ? 'Creando...' : 'Crear Proyecto'}

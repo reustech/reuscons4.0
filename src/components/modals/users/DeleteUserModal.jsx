@@ -57,19 +57,14 @@ export default function DeleteUserModal({ user, onClose, onUserDeleted }) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Icon y Title */}
-        <div style={{ textAlign: 'center', marginBottom: 'var(--spacing-lg)' }}>
-          <div
-            style={{
-              fontSize: '3rem',
-              marginBottom: 'var(--spacing-md)',
-            }}
-          >
+        <div style={{ textAlign: 'center', marginBottom: 'var(--spacing-md)' }}>
+          <div style={{ fontSize: '2.5rem', marginBottom: 'var(--spacing-sm)' }}>
             ⚠️
           </div>
-          <h2 style={{ color: 'var(--text-primary)', marginBottom: 'var(--spacing-md)' }}>
+          <h3 style={{ color: 'var(--text-primary)', marginBottom: 'var(--spacing-sm)', fontSize: '1.1rem' }}>
             Eliminar Usuario
-          </h2>
-          <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--spacing-lg)' }}>
+          </h3>
+          <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--spacing-md)', fontSize: '0.875rem' }}>
             ¿Estás seguro de que deseas eliminar a <strong>{user?.username}</strong>?
             <br />
             Esta acción <strong>no se puede deshacer</strong>.
@@ -80,36 +75,37 @@ export default function DeleteUserModal({ user, onClose, onUserDeleted }) {
         <div
           style={{
             backgroundColor: 'var(--bg-primary)',
-            padding: 'var(--spacing-md)',
+            padding: 'var(--spacing-sm)',
             borderRadius: 'var(--border-radius)',
-            marginBottom: 'var(--spacing-lg)',
+            marginBottom: 'var(--spacing-md)',
             border: '1px solid var(--form-element-border-color)',
+            fontSize: '0.8rem',
           }}
         >
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--spacing-md)', fontSize: '0.9rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--spacing-sm)' }}>
             <div>
-              <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Usuario:</span>
+              <span style={{ color: 'var(--text-muted)' }}>Usuario:</span>
               <p style={{ color: 'var(--text-primary)', fontWeight: 500, margin: '0.25rem 0 0 0' }}>
                 {user?.username}
               </p>
             </div>
             <div>
-              <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Email:</span>
+              <span style={{ color: 'var(--text-muted)' }}>Email:</span>
               <p style={{ color: 'var(--text-primary)', fontWeight: 500, margin: '0.25rem 0 0 0' }}>
                 {user?.profile?.email}
               </p>
             </div>
             <div>
-              <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Nombre:</span>
+              <span style={{ color: 'var(--text-muted)' }}>Nombre:</span>
               <p style={{ color: 'var(--text-primary)', fontWeight: 500, margin: '0.25rem 0 0 0' }}>
                 {user?.profile?.firstName} {user?.profile?.lastName}
               </p>
             </div>
             <div>
-              <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Estado:</span>
+              <span style={{ color: 'var(--text-muted)' }}>Estado:</span>
               <p
                 style={{
-                  color: user?.active ? '#4ade80' : '#ff6b6b',
+                  color: user?.active ? '#4ade80' : '#ef4444',
                   fontWeight: 500,
                   margin: '0.25rem 0 0 0',
                 }}
@@ -121,50 +117,25 @@ export default function DeleteUserModal({ user, onClose, onUserDeleted }) {
         </div>
 
         {/* Buttons */}
-        <div style={{ display: 'flex', gap: 'var(--spacing-md)' }}>
+        <div className="modal-button-group">
           <button
             onClick={handleDelete}
             disabled={isDeleting}
+            className="modal-btn-danger"
             style={{
-              flex: 1,
-              padding: 'var(--spacing-xs) var(--spacing-md)',
-              backgroundColor: isDeleting ? '#999' : '#ff6b6b',
-              color: 'var(--text-primary)',
-              border: 'none',
-              borderRadius: 'var(--border-radius)',
-              fontWeight: 600,
+              backgroundColor: isDeleting ? '#999' : undefined,
               cursor: isDeleting ? 'not-allowed' : 'pointer',
-              transition: 'background-color var(--transition-fast)',
-            }}
-            onMouseEnter={(e) => {
-              if (!isDeleting) e.target.style.backgroundColor = '#ff5252';
-            }}
-            onMouseLeave={(e) => {
-              if (!isDeleting) e.target.style.backgroundColor = '#ff6b6b';
             }}
           >
-            {isDeleting ? 'Eliminando...' : 'Sí, Eliminar Usuario'}
+            {isDeleting ? 'Eliminando...' : 'Sí, Eliminar'}
           </button>
           <button
             onClick={onClose}
             disabled={isDeleting}
+            className="modal-btn-secondary"
             style={{
-              flex: 1,
-              padding: 'var(--spacing-xs) var(--spacing-md)',
-              backgroundColor: 'var(--form-element-bg-color)',
-              color: 'var(--text-primary)',
-              border: '1px solid var(--form-element-border-color)',
-              borderRadius: 'var(--border-radius)',
-              fontWeight: 600,
-              cursor: isDeleting ? 'not-allowed' : 'pointer',
-              transition: 'background-color var(--transition-fast)',
               opacity: isDeleting ? 0.6 : 1,
-            }}
-            onMouseEnter={(e) => {
-              if (!isDeleting) e.target.style.backgroundColor = 'var(--border-hover)';
-            }}
-            onMouseLeave={(e) => {
-              if (!isDeleting) e.target.style.backgroundColor = 'var(--form-element-bg-color)';
+              cursor: isDeleting ? 'not-allowed' : 'pointer',
             }}
           >
             Cancelar

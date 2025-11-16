@@ -52,36 +52,26 @@ export default function EditFileModal({ onClose, onFileUpdated }) {
 
   return (
     <div className="modal-overlay">
-      <div style={{ ...styles.modalContent, maxWidth: '500px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-md)' }}>
-          <h3>Editar Archivo</h3>
+      <div className="modal-content" style={{ maxWidth: '500px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-sm)' }}>
+          <h3 style={{ fontSize: '1.1rem', margin: 0 }}>Editar Archivo</h3>
           <button
             onClick={onClose}
             style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-primary)' }}
           >
-            <X size={24} />
+            <X size={20} />
           </button>
         </div>
 
         {files.length === 0 ? (
-          <p style={{ textAlign: 'center', opacity: 0.6 }}>No hay archivos para editar</p>
+          <p style={{ textAlign: 'center', opacity: 0.6, fontSize: '0.875rem' }}>No hay archivos para editar</p>
         ) : (
           <>
-            <div style={{ marginBottom: 'var(--spacing-md)' }}>
-              <label style={{ display: 'block', marginBottom: 'var(--spacing-xs)', fontWeight: 600 }}>
-                Seleccionar Archivo *
-              </label>
+            <div className="form-group">
+              <label>Seleccionar Archivo *</label>
               <select
                 value={selectedFileId}
                 onChange={(e) => setSelectedFileId(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: 'var(--spacing-sm)',
-                  borderRadius: 'var(--border-radius)',
-                  border: '1px solid var(--form-element-border-color)',
-                  backgroundColor: 'var(--form-element-bg-color)',
-                  color: 'var(--text-primary)',
-                }}
               >
                 <option value="">-- Seleccionar --</option>
                 {files.map((f) => (
@@ -94,61 +84,30 @@ export default function EditFileModal({ onClose, onFileUpdated }) {
 
             {selectedFile && (
               <>
-                <div style={{ marginBottom: 'var(--spacing-md)' }}>
-                  <label style={{ display: 'block', marginBottom: 'var(--spacing-xs)', fontWeight: 600 }}>
-                    Nombre *
-                  </label>
+                <div className="form-group">
+                  <label>Nombre *</label>
                   <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    style={{
-                      width: '100%',
-                      padding: 'var(--spacing-sm)',
-                      borderRadius: 'var(--border-radius)',
-                      border: '1px solid var(--form-element-border-color)',
-                      backgroundColor: 'var(--form-element-bg-color)',
-                      color: 'var(--text-primary)',
-                    }}
                   />
-                  {errors.name && <p style={{ color: '#ef4444', fontSize: '0.875rem', marginTop: '0.25rem' }}>{errors.name}</p>}
+                  {errors.name && <span className="error-message">{errors.name}</span>}
                 </div>
 
-                <div style={{ marginBottom: 'var(--spacing-md)' }}>
-                  <label style={{ display: 'block', marginBottom: 'var(--spacing-xs)', fontWeight: 600 }}>
-                    Descripción
-                  </label>
+                <div className="form-group">
+                  <label>Descripción</label>
                   <textarea
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    style={{
-                      width: '100%',
-                      padding: 'var(--spacing-sm)',
-                      borderRadius: 'var(--border-radius)',
-                      border: '1px solid var(--form-element-border-color)',
-                      backgroundColor: 'var(--form-element-bg-color)',
-                      color: 'var(--text-primary)',
-                      minHeight: '60px',
-                      fontFamily: 'inherit',
-                    }}
+                    style={{ minHeight: '60px' }}
                   />
                 </div>
 
-                <div style={{ marginBottom: 'var(--spacing-md)' }}>
-                  <label style={{ display: 'block', marginBottom: 'var(--spacing-xs)', fontWeight: 600 }}>
-                    Tipo
-                  </label>
+                <div className="form-group">
+                  <label>Tipo</label>
                   <select
                     value={type}
                     onChange={(e) => setType(e.target.value)}
-                    style={{
-                      width: '100%',
-                      padding: 'var(--spacing-sm)',
-                      borderRadius: 'var(--border-radius)',
-                      border: '1px solid var(--form-element-border-color)',
-                      backgroundColor: 'var(--form-element-bg-color)',
-                      color: 'var(--text-primary)',
-                    }}
                   >
                     <option value="Documento">Documento</option>
                     <option value="Imagen">Imagen</option>
@@ -158,33 +117,16 @@ export default function EditFileModal({ onClose, onFileUpdated }) {
                   </select>
                 </div>
 
-                <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+                <div className="modal-button-group">
                   <button
                     onClick={onClose}
-                    style={{
-                      flex: 1,
-                      padding: 'var(--spacing-sm) var(--spacing-md)',
-                      borderRadius: 'var(--border-radius)',
-                      border: '1px solid var(--border-color)',
-                      backgroundColor: 'transparent',
-                      color: 'var(--text-primary)',
-                      cursor: 'pointer',
-                    }}
+                    className="modal-btn modal-btn-secondary"
                   >
                     Cancelar
                   </button>
                   <button
                     onClick={handleSubmit}
-                    style={{
-                      flex: 1,
-                      padding: 'var(--spacing-sm) var(--spacing-md)',
-                      borderRadius: 'var(--border-radius)',
-                      border: 'none',
-                      backgroundColor: 'var(--primary-color)',
-                      color: 'white',
-                      cursor: 'pointer',
-                      fontWeight: 600,
-                    }}
+                    className="modal-btn"
                   >
                     Actualizar
                   </button>
@@ -197,13 +139,3 @@ export default function EditFileModal({ onClose, onFileUpdated }) {
     </div>
   );
 }
-
-const styles = {
-  modalContent: {
-    backgroundColor: 'var(--bg-secondary)',
-    border: '1px solid var(--border-color)',
-    borderRadius: 'var(--border-radius)',
-    padding: 'var(--spacing-lg)',
-    width: '90%',
-  },
-};

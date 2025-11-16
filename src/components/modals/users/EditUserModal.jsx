@@ -108,212 +108,179 @@ export default function EditUserModal({ user, onClose, onUserUpdated }) {
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 style={{ marginBottom: 'var(--spacing-lg)', color: 'var(--text-primary)' }}>
+        <h3 style={{ marginBottom: '0.5rem', color: 'var(--text-primary)', fontSize: '1.1rem' }}>
           Editar Usuario: {user?.username}
-        </h2>
+        </h3>
 
-        <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
-          {/* Username */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <label style={{ color: 'var(--text-primary)', fontWeight: 500 }}>
-              Nombre de Usuario *
-            </label>
-            <input
-              {...register('username')}
-              placeholder="john_doe"
-              style={{
-                padding: 'var(--spacing-xs)',
-                backgroundColor: 'var(--bg-primary)',
-                color: 'var(--text-primary)',
-                border: errors.username ? '1px solid #ff6b6b' : '1px solid var(--form-element-border-color)',
-                borderRadius: 'var(--border-radius)',
-              }}
-            />
-            {errors.username && (
-              <span style={{ color: '#ff6b6b', fontSize: '0.85rem' }}>
-                {errors.username.message}
-              </span>
-            )}
-          </div>
+        <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+          <div className="modal-form-columns">
+            {/* Username */}
+            <div className="form-group">
+              <label style={{ color: 'var(--text-primary)' }}>
+                Nombre de Usuario *
+              </label>
+              <input
+                {...register('username')}
+                type="text"
+                placeholder="john_doe"
+                style={{
+                  borderColor: errors.username ? '#ef4444' : undefined,
+                }}
+              />
+              {errors.username && (
+                <span className="error-message">
+                  {errors.username.message}
+                </span>
+              )}
+            </div>
 
-          {/* Password (opcional en edición) */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <label style={{ color: 'var(--text-primary)', fontWeight: 500 }}>
-              Contraseña (Dejar vacío para no cambiar)
-            </label>
-            <input
-              {...register('password')}
-              type="password"
-              placeholder="••••••••"
-              style={{
-                padding: 'var(--spacing-xs)',
-                backgroundColor: 'var(--bg-primary)',
-                color: 'var(--text-primary)',
-                border: errors.password ? '1px solid #ff6b6b' : '1px solid var(--form-element-border-color)',
-                borderRadius: 'var(--border-radius)',
-              }}
-            />
-            {errors.password && (
-              <span style={{ color: '#ff6b6b', fontSize: '0.85rem' }}>
-                {errors.password.message}
-              </span>
-            )}
-          </div>
+            {/* Password (opcional en edición) */}
+            <div className="form-group">
+              <label style={{ color: 'var(--text-primary)' }}>
+                Contraseña
+              </label>
+              <input
+                {...register('password')}
+                type="password"
+                placeholder="••••••••"
+                style={{
+                  borderColor: errors.password ? '#ef4444' : undefined,
+                }}
+              />
+              {errors.password && (
+                <span className="error-message">
+                  {errors.password.message}
+                </span>
+              )}
+            </div>
 
-          {/* First Name */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <label style={{ color: 'var(--text-primary)', fontWeight: 500 }}>
-              Nombre *
-            </label>
-            <input
-              {...register('profile.firstName')}
-              placeholder="John"
-              style={{
-                padding: 'var(--spacing-xs)',
-                backgroundColor: 'var(--bg-primary)',
-                color: 'var(--text-primary)',
-                border: errors.profile?.firstName ? '1px solid #ff6b6b' : '1px solid var(--form-element-border-color)',
-                borderRadius: 'var(--border-radius)',
-              }}
-            />
-            {errors.profile?.firstName && (
-              <span style={{ color: '#ff6b6b', fontSize: '0.85rem' }}>
-                {errors.profile.firstName.message}
-              </span>
-            )}
-          </div>
+            {/* First Name */}
+            <div className="form-group">
+              <label style={{ color: 'var(--text-primary)' }}>
+                Nombre *
+              </label>
+              <input
+                {...register('profile.firstName')}
+                type="text"
+                placeholder="John"
+                style={{
+                  borderColor: errors.profile?.firstName ? '#ef4444' : undefined,
+                }}
+              />
+              {errors.profile?.firstName && (
+                <span className="error-message">
+                  {errors.profile.firstName.message}
+                </span>
+              )}
+            </div>
 
-          {/* Last Name */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <label style={{ color: 'var(--text-primary)', fontWeight: 500 }}>
-              Apellido *
-            </label>
-            <input
-              {...register('profile.lastName')}
-              placeholder="Doe"
-              style={{
-                padding: 'var(--spacing-xs)',
-                backgroundColor: 'var(--bg-primary)',
-                color: 'var(--text-primary)',
-                border: errors.profile?.lastName ? '1px solid #ff6b6b' : '1px solid var(--form-element-border-color)',
-                borderRadius: 'var(--border-radius)',
-              }}
-            />
-            {errors.profile?.lastName && (
-              <span style={{ color: '#ff6b6b', fontSize: '0.85rem' }}>
-                {errors.profile.lastName.message}
-              </span>
-            )}
-          </div>
+            {/* Last Name */}
+            <div className="form-group">
+              <label style={{ color: 'var(--text-primary)' }}>
+                Apellido *
+              </label>
+              <input
+                {...register('profile.lastName')}
+                type="text"
+                placeholder="Doe"
+                style={{
+                  borderColor: errors.profile?.lastName ? '#ef4444' : undefined,
+                }}
+              />
+              {errors.profile?.lastName && (
+                <span className="error-message">
+                  {errors.profile.lastName.message}
+                </span>
+              )}
+            </div>
 
-          {/* Email */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <label style={{ color: 'var(--text-primary)', fontWeight: 500 }}>
-              Email *
-            </label>
-            <input
-              {...register('profile.email')}
-              type="email"
-              placeholder="john@example.com"
-              style={{
-                padding: 'var(--spacing-xs)',
-                backgroundColor: 'var(--bg-primary)',
-                color: 'var(--text-primary)',
-                border: errors.profile?.email ? '1px solid #ff6b6b' : '1px solid var(--form-element-border-color)',
-                borderRadius: 'var(--border-radius)',
-              }}
-            />
-            {errors.profile?.email && (
-              <span style={{ color: '#ff6b6b', fontSize: '0.85rem' }}>
-                {errors.profile.email.message}
-              </span>
-            )}
-          </div>
+            {/* Email */}
+            <div className="form-group">
+              <label style={{ color: 'var(--text-primary)' }}>
+                Email *
+              </label>
+              <input
+                {...register('profile.email')}
+                type="email"
+                placeholder="john@example.com"
+                style={{
+                  borderColor: errors.profile?.email ? '#ef4444' : undefined,
+                }}
+              />
+              {errors.profile?.email && (
+                <span className="error-message">
+                  {errors.profile.email.message}
+                </span>
+              )}
+            </div>
 
-          {/* Phone */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <label style={{ color: 'var(--text-primary)', fontWeight: 500 }}>
-              Teléfono
-            </label>
-            <input
-              {...register('profile.phone')}
-              placeholder="+1-555-1234"
-              style={{
-                padding: 'var(--spacing-xs)',
-                backgroundColor: 'var(--bg-primary)',
-                color: 'var(--text-primary)',
-                border: errors.profile?.phone ? '1px solid #ff6b6b' : '1px solid var(--form-element-border-color)',
-                borderRadius: 'var(--border-radius)',
-              }}
-            />
-            {errors.profile?.phone && (
-              <span style={{ color: '#ff6b6b', fontSize: '0.85rem' }}>
-                {errors.profile.phone.message}
-              </span>
-            )}
-          </div>
+            {/* Phone */}
+            <div className="form-group">
+              <label style={{ color: 'var(--text-primary)' }}>
+                Teléfono
+              </label>
+              <input
+                {...register('profile.phone')}
+                type="text"
+                placeholder="+1-555-1234"
+                style={{
+                  borderColor: errors.profile?.phone ? '#ef4444' : undefined,
+                }}
+              />
+              {errors.profile?.phone && (
+                <span className="error-message">
+                  {errors.profile.phone.message}
+                </span>
+              )}
+            </div>
 
-          {/* Mobile */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <label style={{ color: 'var(--text-primary)', fontWeight: 500 }}>
-              Móvil
-            </label>
-            <input
-              {...register('profile.mobile')}
-              placeholder="+1-555-5678"
-              style={{
-                padding: 'var(--spacing-xs)',
-                backgroundColor: 'var(--bg-primary)',
-                color: 'var(--text-primary)',
-                border: errors.profile?.mobile ? '1px solid #ff6b6b' : '1px solid var(--form-element-border-color)',
-                borderRadius: 'var(--border-radius)',
-              }}
-            />
-            {errors.profile?.mobile && (
-              <span style={{ color: '#ff6b6b', fontSize: '0.85rem' }}>
-                {errors.profile.mobile.message}
-              </span>
-            )}
-          </div>
+            {/* Mobile */}
+            <div className="form-group">
+              <label style={{ color: 'var(--text-primary)' }}>
+                Móvil
+              </label>
+              <input
+                {...register('profile.mobile')}
+                type="text"
+                placeholder="+1-555-5678"
+                style={{
+                  borderColor: errors.profile?.mobile ? '#ef4444' : undefined,
+                }}
+              />
+              {errors.profile?.mobile && (
+                <span className="error-message">
+                  {errors.profile.mobile.message}
+                </span>
+              )}
+            </div>
 
-          {/* Company */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <label style={{ color: 'var(--text-primary)', fontWeight: 500 }}>
-              Empresa
-            </label>
-            <input
-              {...register('profile.company')}
-              placeholder="TechCorp"
-              style={{
-                padding: 'var(--spacing-xs)',
-                backgroundColor: 'var(--bg-primary)',
-                color: 'var(--text-primary)',
-                border: errors.profile?.company ? '1px solid #ff6b6b' : '1px solid var(--form-element-border-color)',
-                borderRadius: 'var(--border-radius)',
-              }}
-            />
-          </div>
+            {/* Company */}
+            <div className="form-group">
+              <label style={{ color: 'var(--text-primary)' }}>
+                Empresa
+              </label>
+              <input
+                {...register('profile.company')}
+                type="text"
+                placeholder="TechCorp"
+              />
+            </div>
 
-          {/* Position */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <label style={{ color: 'var(--text-primary)', fontWeight: 500 }}>
-              Puesto
-            </label>
-            <input
-              {...register('profile.position')}
-              placeholder="Developer"
-              style={{
-                padding: 'var(--spacing-xs)',
-                backgroundColor: 'var(--bg-primary)',
-                color: 'var(--text-primary)',
-                border: errors.profile?.position ? '1px solid #ff6b6b' : '1px solid var(--form-element-border-color)',
-                borderRadius: 'var(--border-radius)',
-              }}
-            />
+            {/* Position */}
+            <div className="form-group">
+              <label style={{ color: 'var(--text-primary)' }}>
+                Puesto
+              </label>
+              <input
+                {...register('profile.position')}
+                type="text"
+                placeholder="Developer"
+              />
+            </div>
           </div>
 
           {/* Active Status */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-sm)', fontSize: '0.875rem' }}>
             <input
               {...register('active')}
               type="checkbox"
@@ -324,32 +291,20 @@ export default function EditUserModal({ user, onClose, onUserUpdated }) {
                 cursor: 'pointer',
               }}
             />
-            <label htmlFor="active" style={{ color: 'var(--text-primary)', fontWeight: 500, cursor: 'pointer' }}>
+            <label htmlFor="active" style={{ color: 'var(--text-primary)', cursor: 'pointer', marginBottom: 0 }}>
               Usuario Activo
             </label>
           </div>
 
           {/* Buttons */}
-          <div style={{ display: 'flex', gap: 'var(--spacing-md)', marginTop: 'var(--spacing-lg)' }}>
+          <div className="modal-button-group">
             <button
               type="submit"
               disabled={isSubmitting}
+              className="modal-btn"
               style={{
-                flex: 1,
-                padding: 'var(--spacing-xs) var(--spacing-md)',
-                backgroundColor: isSubmitting ? '#999' : 'var(--primary-color)',
-                color: 'var(--text-primary)',
-                border: 'none',
-                borderRadius: 'var(--border-radius)',
-                fontWeight: 600,
+                backgroundColor: isSubmitting ? '#999' : undefined,
                 cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                transition: 'background-color var(--transition-fast)',
-              }}
-              onMouseEnter={(e) => {
-                if (!isSubmitting) e.target.style.backgroundColor = 'var(--primary-dark)';
-              }}
-              onMouseLeave={(e) => {
-                if (!isSubmitting) e.target.style.backgroundColor = 'var(--primary-color)';
               }}
             >
               {isSubmitting ? 'Actualizando...' : 'Guardar Cambios'}
@@ -357,23 +312,7 @@ export default function EditUserModal({ user, onClose, onUserUpdated }) {
             <button
               type="button"
               onClick={onClose}
-              style={{
-                flex: 1,
-                padding: 'var(--spacing-xs) var(--spacing-md)',
-                backgroundColor: 'var(--form-element-bg-color)',
-                color: 'var(--text-primary)',
-                border: '1px solid var(--form-element-border-color)',
-                borderRadius: 'var(--border-radius)',
-                fontWeight: 600,
-                cursor: 'pointer',
-                transition: 'background-color var(--transition-fast)',
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = 'var(--border-hover)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = 'var(--form-element-bg-color)';
-              }}
+              className="modal-btn-secondary"
             >
               Cancelar
             </button>

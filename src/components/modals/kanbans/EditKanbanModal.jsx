@@ -79,9 +79,9 @@ export default function EditKanbanModal({ onClose, onKanbanUpdated }) {
 
   return (
     <div className="modal-overlay">
-      <div style={{ ...styles.modalContent, maxWidth: '550px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-md)' }}>
-          <h3>Editar Tablero Kanban</h3>
+      <div className="modal-content" style={{ maxWidth: '550px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+          <h3 style={{ fontSize: '1.1rem', margin: 0 }}>Editar Tablero Kanban</h3>
           <button
             onClick={onClose}
             style={{
@@ -91,29 +91,19 @@ export default function EditKanbanModal({ onClose, onKanbanUpdated }) {
               color: 'var(--text-primary)',
             }}
           >
-            <X size={24} />
+            <X size={20} />
           </button>
         </div>
 
         {kanbans.length === 0 ? (
-          <p style={{ textAlign: 'center', opacity: 0.6 }}>No hay tableros para editar</p>
+          <p style={{ textAlign: 'center', opacity: 0.6, fontSize: '0.875rem' }}>No hay tableros para editar</p>
         ) : (
-          <>
-            <div style={{ marginBottom: 'var(--spacing-md)' }}>
-              <label style={{ display: 'block', marginBottom: 'var(--spacing-xs)', fontWeight: 600 }}>
-                Seleccionar Tablero *
-              </label>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+            <div className="form-group">
+              <label>Seleccionar Tablero *</label>
               <select
                 value={selectedKanbanId}
                 onChange={(e) => setSelectedKanbanId(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: 'var(--spacing-sm)',
-                  borderRadius: 'var(--border-radius)',
-                  border: '1px solid var(--form-element-border-color)',
-                  backgroundColor: 'var(--form-element-bg-color)',
-                  color: 'var(--text-primary)',
-                }}
               >
                 <option value="">-- Seleccionar --</option>
                 {kanbans.map((k) => (
@@ -126,51 +116,28 @@ export default function EditKanbanModal({ onClose, onKanbanUpdated }) {
 
             {selectedKanban && (
               <>
-                <div style={{ marginBottom: 'var(--spacing-md)' }}>
-                  <label style={{ display: 'block', marginBottom: 'var(--spacing-xs)', fontWeight: 600 }}>
-                    Nombre del Tablero *
-                  </label>
+                <div className="form-group">
+                  <label>Nombre del Tablero *</label>
                   <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    style={{
-                      width: '100%',
-                      padding: 'var(--spacing-sm)',
-                      borderRadius: 'var(--border-radius)',
-                      border: '1px solid var(--form-element-border-color)',
-                      backgroundColor: 'var(--form-element-bg-color)',
-                      color: 'var(--text-primary)',
-                    }}
                   />
-                  {errors.name && <p style={{ color: '#ef4444', fontSize: '0.875rem', marginTop: '0.25rem' }}>{errors.name}</p>}
+                  {errors.name && <span className="error-message">{errors.name}</span>}
                 </div>
 
-                <div style={{ marginBottom: 'var(--spacing-md)' }}>
-                  <label style={{ display: 'block', marginBottom: 'var(--spacing-xs)', fontWeight: 600 }}>
-                    Descripción
-                  </label>
+                <div className="form-group">
+                  <label>Descripción</label>
                   <textarea
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    style={{
-                      width: '100%',
-                      padding: 'var(--spacing-sm)',
-                      borderRadius: 'var(--border-radius)',
-                      border: '1px solid var(--form-element-border-color)',
-                      backgroundColor: 'var(--form-element-bg-color)',
-                      color: 'var(--text-primary)',
-                      minHeight: '60px',
-                      fontFamily: 'inherit',
-                    }}
+                    style={{ minHeight: '60px' }}
                   />
                 </div>
 
-                <div style={{ marginBottom: 'var(--spacing-md)' }}>
-                  <label style={{ display: 'block', marginBottom: 'var(--spacing-xs)', fontWeight: 600 }}>
-                    Columnas ({columns.length})
-                  </label>
-                  <div style={{ maxHeight: '200px', overflowY: 'auto', marginBottom: 'var(--spacing-sm)' }}>
+                <div className="form-group">
+                  <label>Columnas ({columns.length})</label>
+                  <div style={{ maxHeight: '200px', overflowY: 'auto', marginBottom: 'var(--spacing-xs)' }}>
                     {columns.map((column) => (
                       <div
                         key={column.id}
@@ -178,11 +145,12 @@ export default function EditKanbanModal({ onClose, onKanbanUpdated }) {
                           display: 'flex',
                           justifyContent: 'space-between',
                           alignItems: 'center',
-                          padding: 'var(--spacing-sm)',
+                          padding: 'var(--spacing-xs) var(--spacing-sm)',
                           backgroundColor: 'var(--form-element-bg-color)',
                           marginBottom: 'var(--spacing-xs)',
                           borderRadius: 'var(--border-radius)',
                           border: '1px solid var(--border-color)',
+                          fontSize: '0.875rem',
                         }}
                       >
                         <span>{column.name}</span>
@@ -197,7 +165,7 @@ export default function EditKanbanModal({ onClose, onKanbanUpdated }) {
                             opacity: columns.length <= 1 ? 0.5 : 1,
                           }}
                         >
-                          <Trash2 size={18} />
+                          <Trash2 size={16} />
                         </button>
                       </div>
                     ))}
@@ -211,17 +179,18 @@ export default function EditKanbanModal({ onClose, onKanbanUpdated }) {
                       placeholder="Nueva columna..."
                       style={{
                         flex: 1,
-                        padding: 'var(--spacing-sm)',
+                        padding: 'var(--spacing-xs) var(--spacing-sm)',
                         borderRadius: 'var(--border-radius)',
                         border: '1px solid var(--form-element-border-color)',
                         backgroundColor: 'var(--form-element-bg-color)',
                         color: 'var(--text-primary)',
+                        fontSize: '0.875rem',
                       }}
                     />
                     <button
                       onClick={addColumn}
                       style={{
-                        padding: 'var(--spacing-sm) var(--spacing-md)',
+                        padding: 'var(--spacing-xs) var(--spacing-sm)',
                         borderRadius: 'var(--border-radius)',
                         border: 'none',
                         backgroundColor: 'var(--primary-color)',
@@ -232,57 +201,30 @@ export default function EditKanbanModal({ onClose, onKanbanUpdated }) {
                         gap: '4px',
                       }}
                     >
-                      <Plus size={18} />
+                      <Plus size={16} />
                     </button>
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+                <div className="modal-button-group">
                   <button
                     onClick={onClose}
-                    style={{
-                      flex: 1,
-                      padding: 'var(--spacing-sm) var(--spacing-md)',
-                      borderRadius: 'var(--border-radius)',
-                      border: '1px solid var(--border-color)',
-                      backgroundColor: 'transparent',
-                      color: 'var(--text-primary)',
-                      cursor: 'pointer',
-                    }}
+                    className="modal-btn modal-btn-secondary"
                   >
                     Cancelar
                   </button>
                   <button
                     onClick={handleSubmit}
-                    style={{
-                      flex: 1,
-                      padding: 'var(--spacing-sm) var(--spacing-md)',
-                      borderRadius: 'var(--border-radius)',
-                      border: 'none',
-                      backgroundColor: 'var(--primary-color)',
-                      color: 'white',
-                      cursor: 'pointer',
-                      fontWeight: 600,
-                    }}
+                    className="modal-btn"
                   >
                     Actualizar
                   </button>
                 </div>
               </>
             )}
-          </>
+          </div>
         )}
       </div>
     </div>
   );
 }
-
-const styles = {
-  modalContent: {
-    backgroundColor: 'var(--bg-secondary)',
-    border: '1px solid var(--border-color)',
-    borderRadius: 'var(--border-radius)',
-    padding: 'var(--spacing-lg)',
-    width: '90%',
-  },
-};
