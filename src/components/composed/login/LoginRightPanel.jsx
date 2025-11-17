@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
-import FormField from '../../FormField.jsx';
-import Button from '../../Button.jsx';
+import FormField from '../../ui/FormField.jsx';
+import Button from '../../ui/Button.jsx';
 
 export default function LoginRightPanel() {
   const { register, handleSubmit, formState: { errors } } = useForm({

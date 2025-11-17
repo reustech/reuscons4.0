@@ -222,12 +222,123 @@ Características:
 - **Autenticación**: ✅ Cliente-side con cookies
 - **Componentes**: ✅ Todos funcionales con estado local
 
+## 📅 Cambios Recientes - Sesión Actual (Refactorización y Limpieza)
+
+### ✨ Simplificación del Dashboard Administrativo
+- **Refactorizado**: `AdminDashboard.jsx` - Un único componente unificado
+- **Eliminados**:
+  - `DashboardAdmin.jsx` (versión antigua con sistema de eventos)
+  - `AdminCard.jsx` (componente redundante)
+  - `UsersTable.jsx` (componente de tabla antigua)
+- **Mejoras**:
+  - Configuración centralizada en array `DASHBOARD_CONFIG`
+  - Lógica de modales interna (sin eventos personalizados)
+  - 90% menos código en `dash_admin.astro`
+  - Componente `Card` embebido para simplicidad
+
+### ✨ Eliminación de Componentes Antiguos No Utilizados
+- **Eliminados componentes estatísticos**:
+  - `StatCard.jsx` - No se usaba en ningún lado
+  - `ChartComponent.jsx` - No se usaba en ningún lado
+
+- **Eliminadas carpetas de modelos (Backend)**:
+  - `src/models/` (completa con 6 archivos Mongoose)
+  - `.temp/Kanban/` (archivos de respaldo antiguos)
+
+### ✨ Reorganización de Schemas de Validación
+- **Nueva estructura en `src/schemas/`**:
+  - `user.schema.js` - Schemas de usuario (userSchema, userEditSchema, userQuickSchema)
+  - `project.schema.js` - Schema de proyecto
+  - `kanban.schema.js` - Schema de kanban
+  - `file.schema.js` - Schema de archivo
+  - `index.js` - Centralizado para compatibilidad
+  - `validation.schemas.js` - Legacy (re-exporta desde index)
+
+- **Ventajas**:
+  - Modularidad por dominio
+  - Fácil mantenimiento
+  - Importaciones flexibles
+  - Compatibilidad con código existente
+
+## 🎯 Tareas Pendientes para Completar
+
+### 🔴 Funcionalidades que faltan implementar
+
+#### 1. **Modales vacíos o incompletos**
+- [ ] `EditFileModal` - Editar metadatos de archivo
+- [ ] `EditKanbanModal` - Editar configuración de tablero
+- [ ] `EditProjectModal` - Editar proyectos existentes
+- [ ] `EditUserModal` - Editar usuarios (necesita integración completa)
+- [ ] `DeleteProjectModal` - Eliminar proyectos con confirmación
+- [ ] `ListProjectModal` - Listar todos los proyectos
+- [ ] `ListKanbanModal` - Listar todos los tableros
+
+#### 2. **Dashboards incompletos**
+- [ ] `DashboardUser` - Dashboard para usuarios regulares (no implementado)
+- [ ] Mostrar datos reales de proyectos, tareas, archivos en dashboard
+
+#### 3. **Funcionalidades del Kanban**
+- [ ] Arrastrar tareas entre columnas
+- [ ] Editar/eliminar tareas (botones funcionales)
+- [ ] Crear nuevas columnas (modal completo)
+- [ ] Persistencia correcta de columnas en localStorage
+
+#### 4. **Gestor de Archivos**
+- [ ] Upload real de archivos (actualmente solo localStorage)
+- [ ] Download de archivos
+- [ ] Eliminar archivos confirmación
+- [ ] Previsualización de archivos
+
+#### 5. **Validación y Feedback**
+- [ ] Mensajes de error más descriptivos en modales
+- [ ] Toast/notificaciones para acciones exitosas
+- [ ] Validación mejorada con Zod (actualmente instalado pero poco usado)
+- [ ] Loading states en operaciones CRUD
+
+#### 6. **Estilos y UX**
+- [ ] Responsive design completo
+- [ ] Tema oscuro/claro
+- [ ] Animaciones en transiciones
+- [ ] Mejora visual de modales
+- [ ] Página de error 404
+
+#### 7. **Características de Seguridad**
+- [ ] Restricciones de permisos por rol (admin vs usuario)
+- [ ] Sanitizar inputs para prevenir XSS
+- [ ] Validación server-side (cuando se implemente backend)
+- [ ] Rate limiting en operaciones CRUD
+
+#### 8. **Rendimiento**
+- [ ] Lazy loading de componentes
+- [ ] Code splitting automático
+- [ ] Caché de datos con Service Workers
+- [ ] Optimización de imágenes
+
+#### 9. **Documentación**
+- [ ] JSDoc en componentes principales
+- [ ] README con instrucciones de setup
+- [ ] Guía de contribución
+- [ ] Ejemplos de uso de componentes
+
+#### 10. **Testing**
+- [ ] Unit tests para modales
+- [ ] Integration tests para modales y dashboard
+- [ ] E2E tests para flujos completos
+
+### 📊 Prioridad de Implementación (Recomendada)
+1. **ALTA**: Completar modales vacíos (proyectos, kanban, usuario edit)
+2. **ALTA**: Implementar validación completa con Zod
+3. **MEDIA**: Agregar notificaciones/toasts
+4. **MEDIA**: Responsive design y estilos
+5. **BAJA**: Testing y documentación
+6. **BAJA**: Tema oscuro/claro
+
 ## 🎯 Próximas Mejoras Potenciales
 - Exportación de datos (CSV, JSON)
 - Temas oscuro/claro
 - Búsqueda y filtrado avanzado
 - Historial de cambios
 - Sincronización con servidor (cuando se agregue backend)
-- Validación de datos mejorada
+- Validación de datos mejorada con Zod completo
 - Caché de aplicación con Service Workers
 - Soporte para múltiples idiomas
