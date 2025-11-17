@@ -1,0 +1,28 @@
+---
+// ListFileModal.astro
+---
+
+<div class="modal" id="listFileModal">
+  <article>
+    <a href="#close" aria-label="Close" class="close"></a>
+    <h3>Archivos del Sistema</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Tamaño</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody id="allFilesList">
+        <!-- Files will be populated here -->
+      </tbody>
+    </table>
+
+    <div>
+      <a href="#close" role="button">Cerrar</a>
+    </div>
+  </article>
+</div>

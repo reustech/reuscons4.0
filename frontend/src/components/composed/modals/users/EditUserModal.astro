@@ -1,0 +1,123 @@
+---
+// EditUserModal.astro
+---
+
+<div class="modal" id="editUserModal">
+  <article>
+    <a href="#close" aria-label="Close" class="close"></a>
+    <h3>Editar Usuario</h3>
+
+    <form>
+      <div>
+        <label for="editUsername">Nombre de Usuario *</label>
+        <input
+          id="editUsername"
+          name="username"
+          type="text"
+          placeholder="john_doe"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="editPassword">Contraseña</label>
+        <input
+          id="editPassword"
+          name="password"
+          type="password"
+          placeholder="••••••••"
+        />
+      </div>
+
+      <div>
+        <label for="editFirstName">Nombre *</label>
+        <input
+          id="editFirstName"
+          name="firstName"
+          type="text"
+          placeholder="John"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="editLastName">Apellido *</label>
+        <input
+          id="editLastName"
+          name="lastName"
+          type="text"
+          placeholder="Doe"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="editEmail">Email *</label>
+        <input
+          id="editEmail"
+          name="email"
+          type="email"
+          placeholder="john@example.com"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="editPhone">Teléfono</label>
+        <input
+          id="editPhone"
+          name="phone"
+          type="text"
+          placeholder="+1-555-1234"
+        />
+      </div>
+
+      <div>
+        <label for="editMobile">Móvil</label>
+        <input
+          id="editMobile"
+          name="mobile"
+          type="text"
+          placeholder="+1-555-5678"
+        />
+      </div>
+
+      <div>
+        <label for="editCompany">Empresa</label>
+        <input
+          id="editCompany"
+          name="company"
+          type="text"
+          placeholder="TechCorp"
+        />
+      </div>
+
+      <div>
+        <label for="editPosition">Puesto</label>
+        <input
+          id="editPosition"
+          name="position"
+          type="text"
+          placeholder="Developer"
+        />
+      </div>
+
+      <div>
+        <label for="editActiveUser">
+          <input
+            id="editActiveUser"
+            name="active"
+            type="checkbox"
+            checked
+          />
+          Usuario Activo
+        </label>
+      </div>
+
+      <div>
+        <a href="#close" role="button" class="secondary">Cancelar</a>
+        <button type="submit">Guardar Cambios</button>
+      </div>
+    </form>
+  </article>
+</div>

@@ -1,0 +1,30 @@
+---
+// DeleteFileModal.astro
+---
+
+<div class="modal" id="deleteFileModal">
+  <article>
+    <a href="#close" aria-label="Close" class="close"></a>
+    <h3>Eliminar Archivo</h3>
+
+    <form>
+      <div>
+        <label for="selectFileDelete">Seleccionar Archivo *</label>
+        <select id="selectFileDelete" name="fileId" required>
+          <option value="">-- Seleccionar --</option>
+        </select>
+      </div>
+
+      <p style="color: var(--form-element-invalid-border-color);">
+        ⚠️ Esta acción no se puede deshacer
+      </p>
+
+      <div>
+        <a href="#close" role="button" class="secondary">Cancelar</a>
+        <button type="submit" style="background-color: var(--form-element-invalid-border-color);">
+          Eliminar
+        </button>
+      </div>
+    </form>
+  </article>
+</div>

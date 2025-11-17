@@ -1,0 +1,52 @@
+---
+// EditProjectModal.astro
+---
+
+<div class="modal" id="editProjectModal">
+  <article>
+    <a href="#close" aria-label="Close" class="close"></a>
+    <h3>Editar Proyecto</h3>
+
+    <form>
+      <div>
+        <label for="selectProject">Seleccionar Proyecto *</label>
+        <select id="selectProject" name="projectId" required>
+          <option value="">-- Seleccionar --</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="editProjectName">Nombre del Proyecto *</label>
+        <input
+          id="editProjectName"
+          name="name"
+          type="text"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="editProjectDescription">Descripción</label>
+        <textarea
+          id="editProjectDescription"
+          name="description"
+        ></textarea>
+      </div>
+
+      <div>
+        <label for="editProjectStatus">Estado</label>
+        <select id="editProjectStatus" name="status">
+          <option value="Activo">Activo</option>
+          <option value="Pausado">Pausado</option>
+          <option value="Completado">Completado</option>
+          <option value="Cancelado">Cancelado</option>
+        </select>
+      </div>
+
+      <div>
+        <a href="#close" role="button" class="secondary">Cancelar</a>
+        <button type="submit">Actualizar</button>
+      </div>
+    </form>
+  </article>
+</div>

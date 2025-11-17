@@ -1,0 +1,62 @@
+---
+// EditFileModal.astro
+---
+
+<div class="modal" id="editFileModal">
+  <article>
+    <a href="#close" aria-label="Close" class="close"></a>
+    <h3>Editar Archivo</h3>
+
+    <form>
+      <div>
+        <label for="selectFileEdit">Seleccionar Archivo *</label>
+        <select id="selectFileEdit" name="fileId" required>
+          <option value="">-- Seleccionar --</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="editFileName">Nombre del Archivo</label>
+        <input
+          id="editFileName"
+          name="fileName"
+          type="text"
+        />
+      </div>
+
+      <div>
+        <label for="editFileDescription">Descripción</label>
+        <textarea
+          id="editFileDescription"
+          name="description"
+        ></textarea>
+      </div>
+
+      <div>
+        <label for="editFileType">Tipo</label>
+        <select id="editFileType" name="type">
+          <option value="Documento">Documento</option>
+          <option value="Imagen">Imagen</option>
+          <option value="Video">Video</option>
+          <option value="Audio">Audio</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="editFileTags">Etiquetas</label>
+        <input
+          id="editFileTags"
+          name="tags"
+          type="text"
+          placeholder="Separadas por comas"
+        />
+      </div>
+
+      <div>
+        <a href="#close" role="button" class="secondary">Cancelar</a>
+        <button type="submit">Actualizar</button>
+      </div>
+    </form>
+  </article>
+</div>

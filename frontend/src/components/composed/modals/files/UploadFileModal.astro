@@ -1,0 +1,46 @@
+---
+// UploadFileModal.astro
+---
+
+<div class="modal" id="uploadFileModal">
+  <article>
+    <a href="#close" aria-label="Close" class="close"></a>
+    <h3>Subir Archivo</h3>
+
+    <form>
+      <div>
+        <label for="fileInput">Seleccionar Archivo *</label>
+        <input
+          id="fileInput"
+          name="file"
+          type="file"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="fileName">Nombre del Archivo</label>
+        <input
+          id="fileName"
+          name="fileName"
+          type="text"
+          placeholder="Nombre del archivo"
+        />
+      </div>
+
+      <div>
+        <label for="fileDescription">Descripción</label>
+        <textarea
+          id="fileDescription"
+          name="description"
+          placeholder="Descripción del archivo..."
+        ></textarea>
+      </div>
+
+      <div>
+        <a href="#close" role="button" class="secondary">Cancelar</a>
+        <button type="submit">Subir Archivo</button>
+      </div>
+    </form>
+  </article>
+</div>

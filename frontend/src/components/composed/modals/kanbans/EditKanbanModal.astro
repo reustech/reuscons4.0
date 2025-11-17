@@ -1,0 +1,56 @@
+---
+// EditKanbanModal.astro
+---
+
+<div class="modal" id="editKanbanModal">
+  <article>
+    <a href="#close" aria-label="Close" class="close"></a>
+    <h3>Editar Tablero Kanban</h3>
+
+    <form>
+      <div>
+        <label for="selectKanban">Seleccionar Tablero *</label>
+        <select id="selectKanban" name="kanbanId" required>
+          <option value="">-- Seleccionar --</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="editKanbanName">Nombre del Tablero *</label>
+        <input
+          id="editKanbanName"
+          name="name"
+          type="text"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="editKanbanDescription">Descripción</label>
+        <textarea
+          id="editKanbanDescription"
+          name="description"
+        ></textarea>
+      </div>
+
+      <div>
+        <label for="newColumnName">Agregar Nueva Columna</label>
+        <input
+          id="newColumnName"
+          name="newColumn"
+          type="text"
+          placeholder="Nombre de la columna"
+        />
+      </div>
+
+      <div id="columnsList">
+        <!-- Columns will be populated here -->
+      </div>
+
+      <div>
+        <a href="#close" role="button" class="secondary">Cancelar</a>
+        <button type="submit">Actualizar</button>
+      </div>
+    </form>
+  </article>
+</div>

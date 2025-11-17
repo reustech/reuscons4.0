@@ -1,0 +1,27 @@
+---
+// ListKanbanModal.astro
+---
+
+<div class="modal" id="listKanbanModal">
+  <article>
+    <a href="#close" aria-label="Close" class="close"></a>
+    <h3>Tableros Kanban</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Columnas</th>
+        </tr>
+      </thead>
+      <tbody id="kanbansList">
+        <!-- Kanbans will be populated here -->
+      </tbody>
+    </table>
+
+    <div>
+      <a href="#close" role="button">Cerrar</a>
+    </div>
+  </article>
+</div>

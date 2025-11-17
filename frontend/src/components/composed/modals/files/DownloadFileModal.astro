@@ -1,0 +1,27 @@
+---
+// DownloadFileModal.astro
+---
+
+<div class="modal" id="downloadFileModal">
+  <article>
+    <a href="#close" aria-label="Close" class="close"></a>
+    <h3>Descargar Archivos</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Tamaño</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody id="filesList">
+        <!-- Files will be populated here -->
+      </tbody>
+    </table>
+
+    <div>
+      <a href="#close" role="button">Cerrar</a>
+    </div>
+  </article>
+</div>
