@@ -1,0 +1,28 @@
+---
+// ListUserModal.astro
+---
+
+<div class="modal" id="listUserModal">
+  <article>
+    <a href="#close" aria-label="Close" class="close"></a>
+    <h3>Usuarios del Sistema</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody id="usersList">
+        <!-- Users will be populated here -->
+      </tbody>
+    </table>
+
+    <div>
+      <a href="#close" role="button">Cerrar</a>
+    </div>
+  </article>
+</div>

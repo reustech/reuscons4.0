@@ -1,8 +1,244 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import AdminDashboard from '../components/composed/DashboardAdmin/AdminDashboard.jsx';
+import { Users, Users2, Edit, Trash2, Building2, SquareKanban, FileText, Upload, Download } from 'lucide-react';
+
+import CreateUserModal from '../components/Composed/modals/users/CreateUserModal.astro';
+import EditUserModal from '../components/Composed/modals/users/EditUserModal.astro';
+import DeleteUserModal from '../components/Composed/modals/users/DeleteUserModal.astro';
+import ListUserModal from '../components/Composed/modals/users/ListUserModal.astro';
+
+import CreateProjectModal from '../components/Composed/modals/projects/CreateProjectModal.astro';
+import EditProjectModal from '../components/Composed/modals/projects/EditProjectModal.astro';
+import DeleteProjectModal from '../components/Composed/modals/projects/DeleteProjectModal.astro';
+import ListProjectModal from '../components/Composed/modals/projects/ListProjectModal.astro';
+
+import CreateKanbanModal from '../components/Composed/modals/kanbans/CreateKanbanModal.astro';
+import EditKanbanModal from '../components/Composed/modals/kanbans/EditKanbanModal.astro';
+import ListKanbanModal from '../components/Composed/modals/kanbans/ListKanbanModal.astro';
+
+import UploadFileModal from '../components/Composed/modals/files/UploadFileModal.astro';
+import EditFileModal from '../components/Composed/modals/files/EditFileModal.astro';
+import DeleteFileModal from '../components/Composed/modals/files/DeleteFileModal.astro';
+import ListFileModal from '../components/Composed/modals/files/ListFileModal.astro';
+import DownloadFileModal from '../components/Composed/modals/files/DownloadFileModal.astro';
+
+const sections = [
+  {
+    title: 'Gestión de Usuarios',
+    cards: [
+      { icon: Users2, title: 'Crear Usuario', description: 'Agregar nuevos usuarios al sistema. Asignar roles y permisos iniciales.', modalId: 'createUserModal' },
+      { icon: Users, title: 'Ver Usuarios', description: 'Listar todos los usuarios del sistema. Ver detalles, roles y estados.', modalId: 'listUserModal' },
+      { icon: Edit, title: 'Editar Usuarios', description: 'Modificar datos de usuarios. Cambiar roles y asignaciones de equipo.', modalId: 'editUserModal' },
+      { icon: Trash2, title: 'Eliminar Usuarios', description: 'Remover usuarios del sistema. Gestionar el acceso y datos históricos.', modalId: 'deleteUserModal' },
+    ]
+  },
+  {
+    title: 'Gestión de Proyectos y Obras',
+    cards: [
+      { icon: Building2, title: 'Crear Proyecto', description: 'Crear nuevo proyecto. Asignar equipos y presupuestos iniciales.', modalId: 'createProjectModal' },
+      { icon: Building2, title: 'Ver Proyectos', description: 'Listar todos los proyectos activos. Ver estados y progreso general.', modalId: 'listProjectModal' },
+      { icon: Edit, title: 'Editar Proyectos', description: 'Modificar información de proyectos. Actualizar plazos y objetivos.', modalId: 'editProjectModal' },
+      { icon: Trash2, title: 'Eliminar Proyectos', description: 'Remover proyectos del sistema. Gestionar datos históricos.', modalId: 'deleteProjectModal' },
+    ]
+  },
+  {
+    title: 'Gestión de Tareas y Kanban',
+    cards: [
+      { icon: SquareKanban, title: 'Crear Tablero', description: 'Crear nuevo tablero Kanban personalizado. Definir columnas y flujos de trabajo.', modalId: 'createKanbanModal' },
+      { icon: SquareKanban, title: 'Ver Tableros', description: 'Listar todos los tableros Kanban disponibles. Ver estados y configuración.', modalId: 'listKanbanModal' },
+      { icon: Edit, title: 'Editar Tablero', description: 'Modificar configuración de tableros. Renombrar y reordenar columnas.', modalId: 'editKanbanModal' },
+    ]
+  },
+  {
+    title: 'Gestión de Archivos',
+    cards: [
+      { icon: Upload, title: 'Subir Archivo', description: 'Agregar nuevos archivos al servidor. Control de versiones.', modalId: 'uploadFileModal' },
+      { icon: FileText, title: 'Ver Archivos', description: 'Listar todos los archivos del sistema. Filtrar por tipo, fecha y usuario.', modalId: 'listFileModal' },
+      { icon: Download, title: 'Descargar Archivos', description: 'Descargar archivos del sistema. Gestionar descargas por usuario.', modalId: 'downloadFileModal' },
+      { icon: Edit, title: 'Editar Metadatos', description: 'Modificar información de archivos. Renombrar y reclasificar.', modalId: 'editFileModal' },
+      { icon: Trash2, title: 'Eliminar Archivos', description: 'Remover archivos del sistema. Gestionar espacio de almacenamiento.', modalId: 'deleteFileModal' },
+    ]
+  }
+];
 ---
 
 <Layout title="Dashboard Administrativo - Reuscons">
-	<AdminDashboard client:load />
+	<main class="admin-dashboard">
+		<!-- Modales -->
+		<CreateUserModal />
+		<EditUserModal />
+		<DeleteUserModal />
+		<ListUserModal />
+
+		<CreateProjectModal />
+		<EditProjectModal />
+		<DeleteProjectModal />
+		<ListProjectModal />
+
+		<CreateKanbanModal />
+		<EditKanbanModal />
+		<ListKanbanModal />
+
+		<UploadFileModal />
+		<EditFileModal />
+		<DeleteFileModal />
+		<ListFileModal />
+		<DownloadFileModal />
+
+		<!-- Dashboard Header -->
+		<section class="dashboard-header">
+			<h1>Panel Administrativo</h1>
+		</section>
+
+		<!-- Dashboard Sections -->
+		{sections.map((section) => (
+			<section class="dashboard-section">
+				<h2 class="section-title">{section.title}</h2>
+				<section class="cards-grid">
+					{section.cards.map((card) => (
+						<article class="dashboard-card" data-modal={card.modalId}>
+							<div class="card-icon">
+								<card.icon size={48} />
+							</div>
+							<h3 class="card-title">{card.title}</h3>
+							<p class="card-description">{card.description}</p>
+						</article>
+					))}
+				</section>
+			</section>
+		))}
+	</main>
 </Layout>
+
+<script>
+  // Manejo de click en tarjetas del dashboard
+  document.querySelectorAll('.dashboard-card').forEach((card) => {
+    card.addEventListener('click', () => {
+      const modalId = card.getAttribute('data-modal');
+      if (modalId) {
+        const modal = document.getElementById(modalId) as HTMLDialogElement;
+        if (modal && typeof modal.showModal === 'function') {
+          modal.showModal();
+        }
+      }
+    });
+  });
+
+  // Manejo de modales con PicoCSS
+  document.querySelectorAll('.modal .close').forEach((closeBtn) => {
+    closeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const modal = closeBtn.closest('.modal') as HTMLDialogElement;
+      if (modal && typeof modal.close === 'function') {
+        modal.close();
+      }
+    });
+  });
+
+  // Cerrar modales con Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal[open]').forEach((modal) => {
+        const dialogModal = modal as HTMLDialogElement;
+        if (typeof dialogModal.close === 'function') {
+          dialogModal.close();
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  .admin-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .dashboard-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .dashboard-section {
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 0.5rem;
+    font-size: 1.8rem;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  .dashboard-card {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+    padding: var(--spacing-md);
+  }
+
+  .dashboard-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary);
+  }
+
+  .card-title {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .card-description {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .modal {
+    display: none;
+  }
+
+  .modal[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+
+  .modal[open] > article {
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal .close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border: none;
+    background: none;
+    color: var(--text-primary);
+  }
+</style>
