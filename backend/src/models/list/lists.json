@@ -1,0 +1,515 @@
+[
+  {
+    "title": "To Do",
+    "board": "Frontend Features",
+    "position": 0,
+    "config": {
+      "color": "#0079BF"
+    },
+    "archived": false
+  },
+  {
+    "title": "In Progress",
+    "board": "Frontend Features",
+    "position": 1,
+    "config": {
+      "color": "#FFBE0B"
+    },
+    "archived": false
+  },
+  {
+    "title": "Review",
+    "board": "Frontend Features",
+    "position": 2,
+    "config": {
+      "color": "#FB5607"
+    },
+    "archived": false
+  },
+  {
+    "title": "Done",
+    "board": "Frontend Features",
+    "position": 3,
+    "config": {
+      "color": "#06FFA5"
+    },
+    "archived": false
+  },
+  {
+    "title": "Backlog",
+    "board": "Backend APIs",
+    "position": 0,
+    "config": {
+      "color": "#8338EC"
+    },
+    "archived": false
+  },
+  {
+    "title": "Ready for Development",
+    "board": "Backend APIs",
+    "position": 1,
+    "config": {
+      "color": "#3A86FF"
+    },
+    "archived": false
+  },
+  {
+    "title": "Development",
+    "board": "Backend APIs",
+    "position": 2,
+    "config": {
+      "color": "#0079BF"
+    },
+    "archived": false
+  },
+  {
+    "title": "Testing",
+    "board": "Backend APIs",
+    "position": 3,
+    "config": {
+      "color": "#FFBE0B"
+    },
+    "archived": false
+  },
+  {
+    "title": "Completed",
+    "board": "Backend APIs",
+    "position": 4,
+    "config": {
+      "color": "#06FFA5"
+    },
+    "archived": false
+  },
+  {
+    "title": "Issues Found",
+    "board": "Testing Sprint",
+    "position": 0,
+    "config": {
+      "color": "#FF006E"
+    },
+    "archived": false
+  },
+  {
+    "title": "Bugs",
+    "board": "Testing Sprint",
+    "position": 1,
+    "config": {
+      "color": "#FB5607"
+    },
+    "archived": false
+  },
+  {
+    "title": "Fixed",
+    "board": "Testing Sprint",
+    "position": 2,
+    "config": {
+      "color": "#06FFA5"
+    },
+    "archived": false
+  },
+  {
+    "title": "Verified",
+    "board": "Testing Sprint",
+    "position": 3,
+    "config": {
+      "color": "#27AE60"
+    },
+    "archived": false
+  },
+  {
+    "title": "Design Concepts",
+    "board": "UI/UX Design",
+    "position": 0,
+    "config": {
+      "color": "#8338EC"
+    },
+    "archived": false
+  },
+  {
+    "title": "Approved Designs",
+    "board": "UI/UX Design",
+    "position": 1,
+    "config": {
+      "color": "#3A86FF"
+    },
+    "archived": false
+  },
+  {
+    "title": "Implementation",
+    "board": "UI/UX Design",
+    "position": 2,
+    "config": {
+      "color": "#0079BF"
+    },
+    "archived": false
+  },
+  {
+    "title": "Ready",
+    "board": "Infrastructure Setup",
+    "position": 0,
+    "config": {
+      "color": "#FFBE0B"
+    },
+    "archived": false
+  },
+  {
+    "title": "In Progress",
+    "board": "Infrastructure Setup",
+    "position": 1,
+    "config": {
+      "color": "#FB5607"
+    },
+    "archived": false
+  },
+  {
+    "title": "Testing",
+    "board": "Infrastructure Setup",
+    "position": 2,
+    "config": {
+      "color": "#FF006E"
+    },
+    "archived": false
+  },
+  {
+    "title": "Deployed",
+    "board": "Infrastructure Setup",
+    "position": 3,
+    "config": {
+      "color": "#06FFA5"
+    },
+    "archived": false
+  },
+  {
+    "title": "Proposed",
+    "board": "Architecture Review",
+    "position": 0,
+    "config": {
+      "color": "#8338EC"
+    },
+    "archived": false
+  },
+  {
+    "title": "Under Review",
+    "board": "Architecture Review",
+    "position": 1,
+    "config": {
+      "color": "#3A86FF"
+    },
+    "archived": false
+  },
+  {
+    "title": "Approved",
+    "board": "Architecture Review",
+    "position": 2,
+    "config": {
+      "color": "#06FFA5"
+    },
+    "archived": false
+  },
+  {
+    "title": "Metrics",
+    "board": "Analytics Dashboard",
+    "position": 0,
+    "config": {
+      "color": "#0079BF"
+    },
+    "archived": false
+  },
+  {
+    "title": "Reports",
+    "board": "Analytics Dashboard",
+    "position": 1,
+    "config": {
+      "color": "#FFBE0B"
+    },
+    "archived": false
+  },
+  {
+    "title": "Dashboards",
+    "board": "Analytics Dashboard",
+    "position": 2,
+    "config": {
+      "color": "#06FFA5"
+    },
+    "archived": false
+  },
+  {
+    "title": "Sprint Backlog",
+    "board": "Sprint Planning",
+    "position": 0,
+    "config": {
+      "color": "#FB5607"
+    },
+    "archived": false
+  },
+  {
+    "title": "Current Sprint",
+    "board": "Sprint Planning",
+    "position": 1,
+    "config": {
+      "color": "#FFBE0B"
+    },
+    "archived": false
+  },
+  {
+    "title": "Sprint Review",
+    "board": "Sprint Planning",
+    "position": 2,
+    "config": {
+      "color": "#06FFA5"
+    },
+    "archived": false
+  },
+  {
+    "title": "Requirements",
+    "board": "Alpha Project Board",
+    "position": 0,
+    "config": {
+      "color": "#8338EC"
+    },
+    "archived": false
+  },
+  {
+    "title": "In Development",
+    "board": "Alpha Project Board",
+    "position": 1,
+    "config": {
+      "color": "#3A86FF"
+    },
+    "archived": false
+  },
+  {
+    "title": "QA Testing",
+    "board": "Alpha Project Board",
+    "position": 2,
+    "config": {
+      "color": "#0079BF"
+    },
+    "archived": false
+  },
+  {
+    "title": "Deployment",
+    "board": "Alpha Project Board",
+    "position": 3,
+    "config": {
+      "color": "#FFBE0B"
+    },
+    "archived": false
+  },
+  {
+    "title": "Released",
+    "board": "Alpha Project Board",
+    "position": 4,
+    "config": {
+      "color": "#06FFA5"
+    },
+    "archived": false
+  },
+  {
+    "title": "Task List",
+    "board": "Development Board",
+    "position": 0,
+    "config": {
+      "color": "#0079BF"
+    },
+    "archived": false
+  },
+  {
+    "title": "In Progress",
+    "board": "Development Board",
+    "position": 1,
+    "config": {
+      "color": "#FFBE0B"
+    },
+    "archived": false
+  },
+  {
+    "title": "Complete",
+    "board": "Development Board",
+    "position": 2,
+    "config": {
+      "color": "#06FFA5"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 1",
+    "board": "Board 11",
+    "position": 0,
+    "config": {
+      "color": "#8338EC"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 2",
+    "board": "Board 11",
+    "position": 1,
+    "config": {
+      "color": "#3A86FF"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 3",
+    "board": "Board 12",
+    "position": 0,
+    "config": {
+      "color": "#0079BF"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 4",
+    "board": "Board 12",
+    "position": 1,
+    "config": {
+      "color": "#FFBE0B"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 5",
+    "board": "Board 14",
+    "position": 0,
+    "config": {
+      "color": "#06FFA5"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 6",
+    "board": "Board 14",
+    "position": 1,
+    "config": {
+      "color": "#FF006E"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 7",
+    "board": "Board 15",
+    "position": 0,
+    "config": {
+      "color": "#8338EC"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 8",
+    "board": "Board 15",
+    "position": 1,
+    "config": {
+      "color": "#FB5607"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 9",
+    "board": "Board 16",
+    "position": 0,
+    "config": {
+      "color": "#3A86FF"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 10",
+    "board": "Board 16",
+    "position": 1,
+    "config": {
+      "color": "#0079BF"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 11",
+    "board": "Board 18",
+    "position": 0,
+    "config": {
+      "color": "#FFBE0B"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 12",
+    "board": "Board 18",
+    "position": 1,
+    "config": {
+      "color": "#06FFA5"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 13",
+    "board": "Board 20",
+    "position": 0,
+    "config": {
+      "color": "#FF006E"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 14",
+    "board": "Board 20",
+    "position": 1,
+    "config": {
+      "color": "#8338EC"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 15",
+    "board": "Board 23",
+    "position": 0,
+    "config": {
+      "color": "#FB5607"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 16",
+    "board": "Board 23",
+    "position": 1,
+    "config": {
+      "color": "#3A86FF"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 17",
+    "board": "Board 25",
+    "position": 0,
+    "config": {
+      "color": "#0079BF"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 18",
+    "board": "Board 25",
+    "position": 1,
+    "config": {
+      "color": "#FFBE0B"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 19",
+    "board": "Board 28",
+    "position": 0,
+    "config": {
+      "color": "#06FFA5"
+    },
+    "archived": false
+  },
+  {
+    "title": "List 20",
+    "board": "Board 28",
+    "position": 1,
+    "config": {
+      "color": "#FF006E"
+    },
+    "archived": false
+  }
+]

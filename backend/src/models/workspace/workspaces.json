@@ -1,0 +1,1122 @@
+[
+  {
+    "name": "TechCorp Development",
+    "description": "Main development workspace for TechCorp projects",
+    "owner": "john_developer",
+    "members": [
+      {
+        "userId": "maria_pm",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "carlos_design",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      },
+      {
+        "userId": "ana_qa",
+        "role": "member",
+        "addedAt": "2024-01-15T10:10:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#0079BF",
+      "icon": "rocket"
+    },
+    "active": true
+  },
+  {
+    "name": "Design Team Hub",
+    "description": "Design collaboration and UI/UX workspace",
+    "owner": "carlos_design",
+    "members": [
+      {
+        "userId": "john_developer",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "sofia_frontend",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FF5733",
+      "icon": "palette"
+    },
+    "active": true
+  },
+  {
+    "name": "QA Testing Zone",
+    "description": "Quality assurance and testing workspace",
+    "owner": "ana_qa",
+    "members": [
+      {
+        "userId": "john_developer",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "luis_backend",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      },
+      {
+        "userId": "sofia_frontend",
+        "role": "member",
+        "addedAt": "2024-01-15T10:10:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#27AE60",
+      "icon": "check-circle"
+    },
+    "active": true
+  },
+  {
+    "name": "Backend Infrastructure",
+    "description": "Backend development and API workspace",
+    "owner": "luis_backend",
+    "members": [
+      {
+        "userId": "diego_devops",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "miguel_architect",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#2E86AB",
+      "icon": "server"
+    },
+    "active": true
+  },
+  {
+    "name": "Frontend Development",
+    "description": "Frontend and UI development workspace",
+    "owner": "sofia_frontend",
+    "members": [
+      {
+        "userId": "carlos_design",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "john_developer",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#A23B72",
+      "icon": "code"
+    },
+    "active": true
+  },
+  {
+    "name": "DevOps & Cloud",
+    "description": "DevOps, infrastructure, and deployment workspace",
+    "owner": "diego_devops",
+    "members": [
+      {
+        "userId": "luis_backend",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "miguel_architect",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#F18F01",
+      "icon": "cloud"
+    },
+    "active": true
+  },
+  {
+    "name": "Data Analytics",
+    "description": "Data analysis and reporting workspace",
+    "owner": "elena_analyst",
+    "members": [
+      {
+        "userId": "miguel_architect",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#6A4C93",
+      "icon": "bar-chart"
+    },
+    "active": true
+  },
+  {
+    "name": "Architecture & Planning",
+    "description": "System architecture and technical planning",
+    "owner": "miguel_architect",
+    "members": [
+      {
+        "userId": "luis_backend",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "diego_devops",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      },
+      {
+        "userId": "sofia_frontend",
+        "role": "member",
+        "addedAt": "2024-01-15T10:10:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#1B263B",
+      "icon": "blueprint"
+    },
+    "active": true
+  },
+  {
+    "name": "Agile & Scrum",
+    "description": "Agile project management and sprint planning",
+    "owner": "laura_scrum",
+    "members": [
+      {
+        "userId": "maria_pm",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "john_developer",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FB5607",
+      "icon": "sprint"
+    },
+    "active": true
+  },
+  {
+    "name": "Project Alpha",
+    "description": "Alpha project development workspace",
+    "owner": "maria_pm",
+    "members": [
+      {
+        "userId": "john_developer",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "carlos_design",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      },
+      {
+        "userId": "ana_qa",
+        "role": "member",
+        "addedAt": "2024-01-15T10:10:00Z"
+      },
+      {
+        "userId": "luis_backend",
+        "role": "member",
+        "addedAt": "2024-01-15T10:15:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FFBE0B",
+      "icon": "star"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 11",
+    "description": "General workspace for collaboration",
+    "owner": "user_11",
+    "members": [
+      {
+        "userId": "user_12",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_13",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#8338EC",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 12",
+    "description": "Team collaboration space",
+    "owner": "user_12",
+    "members": [
+      {
+        "userId": "user_11",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_14",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#3A86FF",
+      "icon": "users"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 13",
+    "description": "Project management workspace",
+    "owner": "user_13",
+    "members": [
+      {
+        "userId": "user_15",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_16",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FB5607",
+      "icon": "tasks"
+    },
+    "active": false
+  },
+  {
+    "name": "Workspace 14",
+    "description": "Development environment",
+    "owner": "user_14",
+    "members": [
+      {
+        "userId": "user_17",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_18",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FFBE0B",
+      "icon": "code-branch"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 15",
+    "description": "Testing and QA",
+    "owner": "user_15",
+    "members": [
+      {
+        "userId": "user_19",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_20",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#06FFA5",
+      "icon": "test-tube"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 16",
+    "description": "Design and prototyping",
+    "owner": "user_16",
+    "members": [
+      {
+        "userId": "user_21",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_22",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FF006E",
+      "icon": "paintbrush"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 17",
+    "description": "Marketing campaigns",
+    "owner": "user_17",
+    "members": [
+      {
+        "userId": "user_23",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_24",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#8338EC",
+      "icon": "megaphone"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 18",
+    "description": "Sales and leads",
+    "owner": "user_18",
+    "members": [
+      {
+        "userId": "user_25",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_26",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FB5607",
+      "icon": "trending-up"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 19",
+    "description": "Customer support",
+    "owner": "user_19",
+    "members": [
+      {
+        "userId": "user_27",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_28",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FFBE0B",
+      "icon": "headset"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 20",
+    "description": "Operations and HR",
+    "owner": "user_20",
+    "members": [
+      {
+        "userId": "user_29",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_30",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#06FFA5",
+      "icon": "briefcase"
+    },
+    "active": false
+  },
+  {
+    "name": "Workspace 21",
+    "description": "Finance and budgeting",
+    "owner": "user_21",
+    "members": [
+      {
+        "userId": "user_31",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_32",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FF006E",
+      "icon": "dollar-sign"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 22",
+    "description": "Legal and compliance",
+    "owner": "user_22",
+    "members": [
+      {
+        "userId": "user_33",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_34",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#0079BF",
+      "icon": "scale"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 23",
+    "description": "Research and development",
+    "owner": "user_23",
+    "members": [
+      {
+        "userId": "user_35",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_36",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#8338EC",
+      "icon": "beaker"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 24",
+    "description": "Product management",
+    "owner": "user_24",
+    "members": [
+      {
+        "userId": "user_37",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_38",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#3A86FF",
+      "icon": "package"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 25",
+    "description": "Community engagement",
+    "owner": "user_25",
+    "members": [
+      {
+        "userId": "user_39",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_40",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FB5607",
+      "icon": "users"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 26",
+    "description": "Partnership collaboration",
+    "owner": "user_26",
+    "members": [
+      {
+        "userId": "user_41",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_42",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FFBE0B",
+      "icon": "handshake"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 27",
+    "description": "Vendor management",
+    "owner": "user_27",
+    "members": [
+      {
+        "userId": "user_43",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_44",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#06FFA5",
+      "icon": "shopping-cart"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 28",
+    "description": "Training and onboarding",
+    "owner": "user_28",
+    "members": [
+      {
+        "userId": "user_45",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_46",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FF006E",
+      "icon": "book"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 29",
+    "description": "Knowledge base",
+    "owner": "user_29",
+    "members": [
+      {
+        "userId": "user_47",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_48",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#0079BF",
+      "icon": "database"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 30",
+    "description": "Innovation lab",
+    "owner": "user_30",
+    "members": [
+      {
+        "userId": "user_49",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      },
+      {
+        "userId": "user_50",
+        "role": "member",
+        "addedAt": "2024-01-15T10:05:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#8338EC",
+      "icon": "lightbulb"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 31",
+    "description": "General workspace 31",
+    "owner": "user_31",
+    "members": [
+      {
+        "userId": "user_11",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#3A86FF",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 32",
+    "description": "General workspace 32",
+    "owner": "user_32",
+    "members": [
+      {
+        "userId": "user_12",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FB5607",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 33",
+    "description": "General workspace 33",
+    "owner": "user_33",
+    "members": [
+      {
+        "userId": "user_13",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FFBE0B",
+      "icon": "folder"
+    },
+    "active": false
+  },
+  {
+    "name": "Workspace 34",
+    "description": "General workspace 34",
+    "owner": "user_34",
+    "members": [
+      {
+        "userId": "user_14",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#06FFA5",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 35",
+    "description": "General workspace 35",
+    "owner": "user_35",
+    "members": [
+      {
+        "userId": "user_15",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FF006E",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 36",
+    "description": "General workspace 36",
+    "owner": "user_36",
+    "members": [
+      {
+        "userId": "user_16",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#0079BF",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 37",
+    "description": "General workspace 37",
+    "owner": "user_37",
+    "members": [
+      {
+        "userId": "user_17",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#8338EC",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 38",
+    "description": "General workspace 38",
+    "owner": "user_38",
+    "members": [
+      {
+        "userId": "user_18",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#3A86FF",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 39",
+    "description": "General workspace 39",
+    "owner": "user_39",
+    "members": [
+      {
+        "userId": "user_19",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FB5607",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 40",
+    "description": "General workspace 40",
+    "owner": "user_40",
+    "members": [
+      {
+        "userId": "user_20",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FFBE0B",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 41",
+    "description": "General workspace 41",
+    "owner": "user_41",
+    "members": [
+      {
+        "userId": "user_21",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#06FFA5",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 42",
+    "description": "General workspace 42",
+    "owner": "user_42",
+    "members": [
+      {
+        "userId": "user_22",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FF006E",
+      "icon": "folder"
+    },
+    "active": false
+  },
+  {
+    "name": "Workspace 43",
+    "description": "General workspace 43",
+    "owner": "user_43",
+    "members": [
+      {
+        "userId": "user_23",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#0079BF",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 44",
+    "description": "General workspace 44",
+    "owner": "user_44",
+    "members": [
+      {
+        "userId": "user_24",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#8338EC",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 45",
+    "description": "General workspace 45",
+    "owner": "user_45",
+    "members": [
+      {
+        "userId": "user_25",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#3A86FF",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 46",
+    "description": "General workspace 46",
+    "owner": "user_46",
+    "members": [
+      {
+        "userId": "user_26",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FB5607",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 47",
+    "description": "General workspace 47",
+    "owner": "user_47",
+    "members": [
+      {
+        "userId": "user_27",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FFBE0B",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 48",
+    "description": "General workspace 48",
+    "owner": "user_48",
+    "members": [
+      {
+        "userId": "user_28",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#06FFA5",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 49",
+    "description": "General workspace 49",
+    "owner": "user_49",
+    "members": [
+      {
+        "userId": "user_29",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#FF006E",
+      "icon": "folder"
+    },
+    "active": true
+  },
+  {
+    "name": "Workspace 50",
+    "description": "General workspace 50",
+    "owner": "user_50",
+    "members": [
+      {
+        "userId": "user_11",
+        "role": "member",
+        "addedAt": "2024-01-15T10:00:00Z"
+      }
+    ],
+    "boards": [],
+    "files": [],
+    "config": {
+      "color": "#0079BF",
+      "icon": "folder"
+    },
+    "active": true
+  }
+]

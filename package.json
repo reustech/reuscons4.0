@@ -1,0 +1,8 @@
+{
+  "name": "ikanban",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
+}
