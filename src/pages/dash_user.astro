@@ -25,12 +25,9 @@ import {
   TrendingUp,
   Inbox,
   Phone,
-  Filter,
-  Search,
   Activity,
   Briefcase,
-  Award,
-  GitBranch
+  Award
 } from 'lucide-react';
 ---
 
@@ -136,25 +133,6 @@ import {
 				<IndexCard Icon={CheckCircle} title="Tareas Completadas" description="Historial de tareas completadas. Estadísticas de productividad." />
 				<IndexCard Icon={BarChart3} title="Estimaciones vs Real" description="Comparar tiempo estimado con tiempo real invertido." />
 				<IndexCard Icon={Award} title="Rendimiento" description="Indicadores de rendimiento personal. Comparativas de equipo." />
-			</section>
-		</section>
-
-		<!-- BÚSQUEDA Y FILTROS -->
-		<section style={{ marginBottom: '4rem' }}>
-			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
-				🔍 Búsqueda y Filtros
-			</h2>
-			<section style={{
-				display: 'grid',
-				gridTemplateColumns: 'repeat(3, 1fr)',
-				gap: '1rem'
-			}}>
-				<IndexCard Icon={Search} title="Búsqueda Global" description="Buscar en tareas, archivos y proyectos. Búsqueda avanzada." />
-				<IndexCard Icon={Filter} title="Mis Filtros" description="Guardar filtros personalizados. Vistas guardadas." />
-				<IndexCard Icon={AlertCircle} title="Alertas Personales" description="Configurar alertas de palabras clave. Notificaciones inteligentes." />
-				<IndexCard Icon={Bookmark} title="Guardados" description="Guardar tareas y archivos para leer después. Colecciones." />
-				<IndexCard Icon={Eye} title="Ver Recientes" description="Elementos que ves frecuentemente. Historial de acceso." />
-				<IndexCard Icon={GitBranch} title="Cambios Recientes" description="Últimas actualizaciones en mis proyectos. Feed de actividad." />
 			</section>
 		</section>
 
