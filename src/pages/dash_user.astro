@@ -18,7 +18,12 @@ import {
   Archive,
   Activity,
   Briefcase,
-  Award
+  Award,
+  ListTodo,
+  Folder,
+  User,
+  Clock,
+  TrendingUp
 } from 'lucide-react';
 ---
 
@@ -34,8 +39,8 @@ import {
 
 		<!-- MIS TAREAS Y PROYECTOS -->
 		<section style={{ marginBottom: '4rem' }}>
-			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
-				📋 Mis Tareas y Proyectos
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+				<ListTodo size={48} /> Mis Tareas y Proyectos
 			</h2>
 			<section style={{
 				display: 'grid',
@@ -53,8 +58,8 @@ import {
 
 		<!-- MIS ARCHIVOS Y DOCUMENTOS -->
 		<section style={{ marginBottom: '4rem' }}>
-			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
-				📎 Mis Archivos y Documentos
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+				<Folder size={48} /> Mis Archivos y Documentos
 			</h2>
 			<section style={{
 				display: 'grid',
@@ -72,8 +77,8 @@ import {
 
 		<!-- MI CUENTA Y PERFIL -->
 		<section style={{ marginBottom: '4rem' }}>
-			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
-				👤 Mi Cuenta y Perfil
+			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+				<User size={48} /> Mi Cuenta y Perfil
 			</h2>
 			<section style={{
 				display: 'grid',
