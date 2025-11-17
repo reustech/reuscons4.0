@@ -8,7 +8,6 @@ import {
   Building2,
   CheckCircle,
   Calendar,
-  Users,
   BarChart3,
   Clock,
   Zap,
@@ -28,12 +27,7 @@ import {
   Phone,
   HelpCircle,
   Filter,
-  Search,
-  MapPin,
-  Activity,
-  Briefcase,
-  Award,
-  GitBranch
+  Search
 } from 'lucide-react';
 ---
 
@@ -196,25 +190,6 @@ import {
 				<IndexCard Icon={Share2} title="Compartir" description="Compartir tareas, archivos y proyectos. Generar enlaces." />
 				<IndexCard Icon={Lock} title="Seguridad" description="Verificación de dos factores. Sesiones activas." />
 				<IndexCard Icon={Settings} title="Configuración Avanzada" description="Ajustes técnicos personales. Tokens y API keys." />
-			</section>
-		</section>
-
-		<!-- EQUIPO Y COLABORADORES -->
-		<section style={{ marginBottom: '4rem' }}>
-			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
-				👥 Equipo y Colaboradores
-			</h2>
-			<section style={{
-				display: 'grid',
-				gridTemplateColumns: 'repeat(3, 1fr)',
-				gap: '1rem'
-			}}>
-				<IndexCard Icon={Users} title="Mi Red de Contactos" description="Personas con las que trabajo. Directorio de colegas." />
-				<IndexCard Icon={Briefcase} title="Proyectos Compartidos" description="Proyectos donde soy colaborador. Mis roles y responsabilidades." />
-				<IndexCard Icon={MapPin} title="Ubicaciones" description="Ubicaciones de equipo. Oficinas y espacios de trabajo." />
-				<IndexCard Icon={Award} title="Reconocimientos de Pares" description="Reconocimientos recibidos de colegas. Endorsements." />
-				<IndexCard Icon={MessageSquare} title="Menciones" description="Mensajes donde fui mencionado. Notificaciones de @." />
-				<IndexCard Icon={Activity} title="Actividad del Equipo" description="Ver actividad de mi equipo. Timeline de eventos." />
 			</section>
 		</section>
 
