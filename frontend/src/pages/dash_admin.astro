@@ -2,25 +2,25 @@
 import Layout from '../layouts/Layout.astro';
 import { Users, Users2, Edit, Trash2, Building2, SquareKanban, FileText, Upload, Download } from 'lucide-react';
 
-import CreateUserModal from '../components/Composed/modals/users/CreateUserModal.astro';
-import EditUserModal from '../components/Composed/modals/users/EditUserModal.astro';
-import DeleteUserModal from '../components/Composed/modals/users/DeleteUserModal.astro';
-import ListUserModal from '../components/Composed/modals/users/ListUserModal.astro';
+import CreateUserModal from '../components/composed/modals/users/CreateUserModal.astro';
+import EditUserModal from '../components/composed/modals/users/EditUserModal.astro';
+import DeleteUserModal from '../components/composed/modals/users/DeleteUserModal.astro';
+import ListUserModal from '../components/composed/modals/users/ListUserModal.astro';
 
-import CreateProjectModal from '../components/Composed/modals/projects/CreateProjectModal.astro';
-import EditProjectModal from '../components/Composed/modals/projects/EditProjectModal.astro';
-import DeleteProjectModal from '../components/Composed/modals/projects/DeleteProjectModal.astro';
-import ListProjectModal from '../components/Composed/modals/projects/ListProjectModal.astro';
+import CreateProjectModal from '../components/composed/modals/projects/CreateProjectModal.astro';
+import EditProjectModal from '../components/composed/modals/projects/EditProjectModal.astro';
+import DeleteProjectModal from '../components/composed/modals/projects/DeleteProjectModal.astro';
+import ListProjectModal from '../components/composed/modals/projects/ListProjectModal.astro';
 
-import CreateKanbanModal from '../components/Composed/modals/kanbans/CreateKanbanModal.astro';
-import EditKanbanModal from '../components/Composed/modals/kanbans/EditKanbanModal.astro';
-import ListKanbanModal from '../components/Composed/modals/kanbans/ListKanbanModal.astro';
+import CreateKanbanModal from '../components/composed/modals/kanbans/CreateKanbanModal.astro';
+import EditKanbanModal from '../components/composed/modals/kanbans/EditKanbanModal.astro';
+import ListKanbanModal from '../components/composed/modals/kanbans/ListKanbanModal.astro';
 
-import UploadFileModal from '../components/Composed/modals/files/UploadFileModal.astro';
-import EditFileModal from '../components/Composed/modals/files/EditFileModal.astro';
-import DeleteFileModal from '../components/Composed/modals/files/DeleteFileModal.astro';
-import ListFileModal from '../components/Composed/modals/files/ListFileModal.astro';
-import DownloadFileModal from '../components/Composed/modals/files/DownloadFileModal.astro';
+import UploadFileModal from '../components/composed/modals/files/UploadFileModal.astro';
+import EditFileModal from '../components/composed/modals/files/EditFileModal.astro';
+import DeleteFileModal from '../components/composed/modals/files/DeleteFileModal.astro';
+import ListFileModal from '../components/composed/modals/files/ListFileModal.astro';
+import DownloadFileModal from '../components/composed/modals/files/DownloadFileModal.astro';
 
 const sections = [
   {
@@ -62,29 +62,29 @@ const sections = [
 ];
 ---
 
+<!-- Modales -->
+<CreateUserModal />
+<EditUserModal />
+<DeleteUserModal />
+<ListUserModal />
+
+<CreateProjectModal />
+<EditProjectModal />
+<DeleteProjectModal />
+<ListProjectModal />
+
+<CreateKanbanModal />
+<EditKanbanModal />
+<ListKanbanModal />
+
+<UploadFileModal />
+<EditFileModal />
+<DeleteFileModal />
+<ListFileModal />
+<DownloadFileModal />
+
 <Layout title="Dashboard Administrativo - Reuscons">
 	<main class="admin-dashboard">
-		<!-- Modales -->
-		<CreateUserModal />
-		<EditUserModal />
-		<DeleteUserModal />
-		<ListUserModal />
-
-		<CreateProjectModal />
-		<EditProjectModal />
-		<DeleteProjectModal />
-		<ListProjectModal />
-
-		<CreateKanbanModal />
-		<EditKanbanModal />
-		<ListKanbanModal />
-
-		<UploadFileModal />
-		<EditFileModal />
-		<DeleteFileModal />
-		<ListFileModal />
-		<DownloadFileModal />
-
 		<!-- Dashboard Header -->
 		<section class="dashboard-header">
 			<h1>Panel Administrativo</h1>
@@ -110,42 +110,69 @@ const sections = [
 	</main>
 </Layout>
 
-<script>
-  // Manejo de click en tarjetas del dashboard
-  document.querySelectorAll('.dashboard-card').forEach((card) => {
-    card.addEventListener('click', () => {
-      const modalId = card.getAttribute('data-modal');
-      if (modalId) {
-        const modal = document.getElementById(modalId) as HTMLDialogElement;
-        if (modal && typeof modal.showModal === 'function') {
-          modal.showModal();
-        }
-      }
+<script is:inline>
+  function initDashboard() {
+    console.log('Inicializando dashboard...');
+    const modals = document.querySelectorAll('.modal');
+    console.log('Modales encontrados:', modals.length);
+    modals.forEach((modal) => {
+      console.log('Modal ID:', modal.id);
     });
-  });
 
-  // Manejo de modales con PicoCSS
-  document.querySelectorAll('.modal .close').forEach((closeBtn) => {
-    closeBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const modal = closeBtn.closest('.modal') as HTMLDialogElement;
-      if (modal && typeof modal.close === 'function') {
-        modal.close();
-      }
-    });
-  });
-
-  // Cerrar modales con Escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      document.querySelectorAll('.modal[open]').forEach((modal) => {
-        const dialogModal = modal as HTMLDialogElement;
-        if (typeof dialogModal.close === 'function') {
-          dialogModal.close();
+    // Manejo de click en tarjetas del dashboard
+    const cards = document.querySelectorAll('.dashboard-card');
+    cards.forEach((card) => {
+      card.addEventListener('click', function() {
+        const modalId = this.getAttribute('data-modal');
+        console.log('Tarjeta clickeada, modalId:', modalId);
+        if (modalId) {
+          const modal = document.getElementById(modalId);
+          console.log('Modal encontrado:', modal);
+          if (modal) {
+            modal.classList.add('open');
+            console.log('Modal abierto');
+          }
         }
       });
-    }
-  });
+    });
+
+    // Manejo de modales - cerrar con click en X
+    const closeButtons = document.querySelectorAll('.modal .close');
+    closeButtons.forEach((closeBtn) => {
+      closeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const modal = this.closest('.modal');
+        if (modal) {
+          modal.classList.remove('open');
+        }
+      });
+    });
+
+    // Cerrar modales con Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal.open').forEach((modal) => {
+          modal.classList.remove('open');
+        });
+      }
+    });
+
+    // Cerrar modal al clickear fuera del contenido
+    modals.forEach((modal) => {
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('open');
+        }
+      });
+    });
+  }
+
+  // Ejecutar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDashboard);
+  } else {
+    initDashboard();
+  }
 </script>
 
 <style>
@@ -214,7 +241,7 @@ const sections = [
     display: none;
   }
 
-  .modal[open] {
+  .modal.open {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -224,7 +251,7 @@ const sections = [
     z-index: 1000;
   }
 
-  .modal[open] > article {
+  .modal.open > article {
     width: 90%;
     max-width: 600px;
     max-height: 90vh;
