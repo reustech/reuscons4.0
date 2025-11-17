@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { SCHEMAS } from '../../../schemas/validation.schemas';
+import { SCHEMAS } from '../../../shared/schemas/validation.schemas';
 
 export default function CreateUserModal({ onClose, onUserCreated }) {
   const {
