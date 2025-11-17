@@ -8,6 +8,7 @@ import {
   Building2,
   CheckCircle,
   Calendar,
+  Users,
   BarChart3,
   Clock,
   Zap,
@@ -27,7 +28,11 @@ import {
   Phone,
   HelpCircle,
   Filter,
-  Search
+  Search,
+  Activity,
+  Briefcase,
+  Award,
+  GitBranch
 } from 'lucide-react';
 ---
 
@@ -171,25 +176,6 @@ import {
 				<IndexCard Icon={AlertCircle} title="Anuncios" description="Noticias del sistema. Actualizaciones y cambios importantes." />
 				<IndexCard Icon={FileText} title="Documentación" description="Acceder a la documentación completa. Manuales y guías." />
 				<IndexCard Icon={Inbox} title="Feedback" description="Enviar feedback y sugerencias. Reportar problemas." />
-			</section>
-		</section>
-
-		<!-- INTEGRACIONES Y HERRAMIENTAS -->
-		<section style={{ marginBottom: '4rem' }}>
-			<h2 style={{ marginBottom: '1.5rem', borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem' }}>
-				🔗 Integraciones y Herramientas
-			</h2>
-			<section style={{
-				display: 'grid',
-				gridTemplateColumns: 'repeat(3, 1fr)',
-				gap: '1rem'
-			}}>
-				<IndexCard Icon={Zap} title="Mis Integraciones" description="Integraciones que he configurado. Conectar con otras apps." />
-				<IndexCard Icon={Calendar} title="Calendario Sincronizado" description="Mi calendario personal sincronizado. Importar/exportar eventos." />
-				<IndexCard Icon={Download} title="Exportar Datos" description="Descargar mis datos personales. Backup de información." />
-				<IndexCard Icon={Share2} title="Compartir" description="Compartir tareas, archivos y proyectos. Generar enlaces." />
-				<IndexCard Icon={Lock} title="Seguridad" description="Verificación de dos factores. Sesiones activas." />
-				<IndexCard Icon={Settings} title="Configuración Avanzada" description="Ajustes técnicos personales. Tokens y API keys." />
 			</section>
 		</section>
 
